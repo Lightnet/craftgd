@@ -1,4 +1,4 @@
-# godot4multiplayersimplefps
+# craftgd
 
 # Godot Version:
  * Godot 4 Stable
@@ -11,6 +11,9 @@
  * handle disconnect
  * simple player capsule
  * 
+# To Do List:
+ * melee
+ * hit scan
 
 # Bugs: 
  * didn't add player when client get disconnect from server
