@@ -1,0 +1,159 @@
+[gd_scene load_steps=11 format=3 uid="uid://cvweamksg4ske"]
+
+[ext_resource type="Script" path="res://prefabs/players/melee01.gd" id="1_1364u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1trae"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n2cg8"]
+albedo_color = Color(1, 1, 0.196078, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_covmj"]
+material = SubResource("StandardMaterial3D_n2cg8")
+size = Vector3(0.05, 0.8, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypty4"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1lc5y"]
+material = SubResource("StandardMaterial3D_ypty4")
+size = Vector3(0.2, 0.2, 0.4)
+
+[sub_resource type="Animation" id="Animation_prprq"]
+resource_name = "Attack"
+length = 0.02
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.37296, -0.264466, -0.58789), Vector3(0.37296, -0.264466, -0.58789)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.22217, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q4etd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.37296, -0.264466, -0.58789)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4vyd6"]
+resource_name = "Return"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.22217, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kod7g"]
+_data = {
+"Attack": SubResource("Animation_prprq"),
+"RESET": SubResource("Animation_q4etd"),
+"Return": SubResource("Animation_4vyd6")
+}
+
+[node name="Melee01" type="Node3D"]
+
+[node name="HitBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_1trae")
+
+[node name="MeleeWeapon" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37296, -0.264466, -0.58789)
+script = ExtResource("1_1364u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeleeWeapon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206183, 0)
+mesh = SubResource("BoxMesh_covmj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeleeWeapon/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.253983, 0)
+mesh = SubResource("BoxMesh_1lc5y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeleeWeapon"]
+libraries = {
+"": SubResource("AnimationLibrary_kod7g")
+}

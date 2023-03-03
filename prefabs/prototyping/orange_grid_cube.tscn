@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckvysroefrhwm"]
+
+[ext_resource type="Texture2D" uid="uid://dupj2je5pvu24" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="1_v0s5g"]
+[ext_resource type="Texture2D" uid="uid://cneuuahph6r34" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="2_e44n5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v2kdo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujyfd"]
+render_priority = 1
+albedo_texture = ExtResource("1_v0s5g")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xtr8"]
+albedo_texture = ExtResource("2_e44n5")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_sn8nv"]
+
+[node name="OrangeCubeStaticBody3D" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_v2kdo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_ujyfd")
+material_overlay = SubResource("StandardMaterial3D_4xtr8")
+mesh = SubResource("BoxMesh_sn8nv")
+skeleton = NodePath("../../StaticBody3D/MeshInstance3D")
