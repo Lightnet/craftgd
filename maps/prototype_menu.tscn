@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwryv4sorwp6q"]
+
+[ext_resource type="Script" path="res://scripts/menu_settings.gd" id="1_khyfj"]
+
+[node name="Node" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_khyfj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 2
+offset_right = 390.0
+offset_bottom = 333.0
+
+[node name="btn_save" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="btn_load" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+text = "Load"
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/btn_save" to="CanvasLayer/Control" method="_on_btn_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/btn_load" to="CanvasLayer/Control" method="_on_btn_load_pressed"]

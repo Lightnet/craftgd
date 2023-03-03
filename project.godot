@@ -15,6 +15,11 @@ run/main_scene="res://maps/world.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Network="*res://scripts/network.gd"
+PlayerSettings="*res://scripts/player_settings.gd"
+
 [input]
 
 up={
