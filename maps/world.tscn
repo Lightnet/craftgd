@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b53s1qrvm1u21"]
+[gd_scene load_steps=10 format=3 uid="uid://b53s1qrvm1u21"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_v5s6a"]
 [ext_resource type="PackedScene" uid="uid://dwy27pfj45xvr" path="res://maps/prototype01.tscn" id="2_toehv"]
 [ext_resource type="Texture2D" uid="uid://dsu4i8oftqh0k" path="res://addons/kenney_particle_pack/circle_05.png" id="3_vcqxt"]
+[ext_resource type="PackedScene" uid="uid://d1lmd0si3awbb" path="res://chat/prototype_chat_msg.tscn" id="4_hjb1r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ugj4p"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -71,6 +72,13 @@ vertical_alignment = 1
 layout_mode = 2
 text = "Host"
 
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Universal Plug and Play for querying and port forwarding.
+Current Disable for dev."
+text = "UPNP"
+alignment = 2
+
 [node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Join"
@@ -81,6 +89,21 @@ text = "localhost"
 placeholder_text = "Enter Address to Join Here!"
 alignment = 1
 
+[node name="IUserName" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "User Name Require!"
+alignment = 1
+
+[node name="btnRandomName" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Random Name"
+
+[node name="lTokenKey" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "For access to server for vertify token."
+placeholder_text = "Token Key"
+alignment = 1
+
 [node name="HUD" type="Control" parent="CanvasLayer"]
 visible = false
 layout_mode = 3
@@ -89,36 +112,165 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/HUD"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.03, 0.03)
-pivot_offset = Vector2(576, 324)
-texture = ExtResource("3_vcqxt")
-stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 231.0
-offset_top = 22.0
-offset_right = -231.0
-offset_bottom = -568.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CrossPoint" type="TextureRect" parent="CanvasLayer/HUD/AspectRatioContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_vcqxt")
+expand_mode = 1
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD/AspectRatioContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(512, 20)
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_fq6h4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_e4r4r")
 max_value = 3.0
 value = 3.0
 show_percentage = false
+
+[node name="ChatRegion" type="VBoxContainer" parent="CanvasLayer/HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -239.0
+offset_right = 468.0
+offset_bottom = -1.0
+grow_vertical = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/HUD/ChatRegion"]
+layout_direction = 3
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Chat Messages"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer" instance=ExtResource("4_hjb1r")]
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Testing..."
+
+[node name="Label7" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Testing..."
+
+[node name="Label8" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Testing..."
+
+[node name="Label9" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Testing..."
+
+[node name="Label10" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Testing..."
+
+[node name="Label11" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Testing..."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/ChatRegion"]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/HUD/ChatRegion/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Type message here!"
+
+[node name="Button" type="Button" parent="CanvasLayer/HUD/ChatRegion/HBoxContainer"]
+layout_mode = 2
+text = "Send"
+
+[node name="MenuPlayers" type="Control" parent="CanvasLayer/HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/MenuPlayers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/MenuPlayers/VBoxContainer"]
+layout_mode = 2
+
+[node name="LPlayers" type="Label" parent="CanvasLayer/HUD/MenuPlayers/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Players"
+
+[node name="btnVoteKick" type="Button" parent="CanvasLayer/HUD/MenuPlayers/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Vote Kick"
+
+[node name="btnMapVote" type="Button" parent="CanvasLayer/HUD/MenuPlayers/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Vote Kick"
+
+[node name="btnReport" type="Button" parent="CanvasLayer/HUD/MenuPlayers/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Report"
+
+[node name="MenuAdmin" type="Control" parent="CanvasLayer/HUD"]
+editor_description = "For game rules. Tools for kick, teleport, npc and other things."
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/MenuAdmin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/MenuAdmin/VBoxContainer"]
+layout_mode = 2
+
+[node name="LAdmin" type="Label" parent="CanvasLayer/HUD/MenuAdmin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Admin Access"
+
+[node name="btnPlayers" type="Button" parent="CanvasLayer/HUD/MenuAdmin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Players"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://prefabs/players/player.tscn")
@@ -126,4 +278,5 @@ spawn_path = NodePath("..")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/btnRandomName" to="." method="_on_btn_random_name_pressed"]
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

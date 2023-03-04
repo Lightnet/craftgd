@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d1lmd0si3awbb"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+size_flags_vertical = 3
+
+[node name="UserName" type="Label" parent="."]
+layout_mode = 2
+text = "Testing..."
+
+[node name="Span" type="Label" parent="."]
+layout_mode = 2
+text = ":
+"
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 2
+text = "Testing... Testing... Testing... Testing... 
+Testing... \\n
+Testing... Testing... Testing..."

@@ -7,11 +7,30 @@ func _unhandled_input(event):
 @onready var main_menu = $CanvasLayer/MainMenu
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 @onready var hud = $CanvasLayer/HUD
-@onready var health_bar = $CanvasLayer/HUD/HealthBar
+@onready var health_bar =  $CanvasLayer/HUD/AspectRatioContainer/HealthBar
+
+@onready var IPlayerName = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/IUserName 
 
 const Player = preload("res://prefabs/players/player.tscn")
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
+
+var characters = 'abcdefghijklmnopqrstuvwxyz'
+
+func _ready():
+	var new_word = generate_word(characters, 11)
+	print(new_word)
+	IPlayerName.text = new_word
+	
+	pass # Replace with function body.
+
+func generate_word(chars, length):
+	var word: String
+	var n_char = len(chars)
+	for i in range(length):
+		word += chars[randi()% n_char]
+	return word
+
 
 func _on_host_button_pressed():
 	main_menu.hide()
@@ -55,6 +74,8 @@ func return_menu(peer_id):
 	print("server disconnected!", peer_id)
 	main_menu.show()
 	hud.hide()
+	#set network null
+	get_tree().network_peer = null
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	pass
 
@@ -80,3 +101,9 @@ func upnp_setup():
 		"UPNP Port Mapping Failed! Error %s" % discover_result)
 	
 	print("Syccess! Join Address: %s" % upnp.query_external_address())
+
+
+func _on_btn_random_name_pressed():
+	var new_word = generate_word(characters, 11)
+	print(new_word)
+	IPlayerName.text = new_word
