@@ -35,10 +35,6 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aw8tw")
 
-[node name="Level" type="Node" parent="."]
-
-[node name="Prototype01" parent="Level" instance=ExtResource("2_2g70h")]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
@@ -429,13 +425,19 @@ text = "Prototype Build"
 _spawnable_scenes = PackedStringArray("res://prefabs/players/player.tscn")
 spawn_path = NodePath("..")
 
-[node name="Players" type="Node" parent="."]
+[node name="world" type="Node" parent="."]
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Players" type="Node" parent="world"]
 
-[node name="NPCs" type="Node" parent="."]
+[node name="Enemies" type="Node" parent="world"]
 
-[node name="Blocks" type="Node" parent="."]
+[node name="NPCs" type="Node" parent="world"]
+
+[node name="Blocks" type="Node" parent="world"]
+
+[node name="Level" type="Node" parent="world"]
+
+[node name="Prototype01" parent="world/Level" instance=ExtResource("2_2g70h")]
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
@@ -443,4 +445,5 @@ spawn_path = NodePath("..")
 [connection signal="visibility_changed" from="CanvasLayer/Lobby" to="CanvasLayer/Lobby" method="_on_visibility_changed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer/btnSendMsg" to="." method="_on_btn_send_msg_pressed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer2/HBoxContainer/btnRedreshPlayers" to="CanvasLayer/Lobby" method="_on_btn_redresh_players_pressed"]
+[connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Bottom_NavMenus/btnStartGame" to="CanvasLayer/Lobby" method="_on_btn_start_game_pressed"]
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

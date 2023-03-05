@@ -83,3 +83,11 @@ func _on_visibility_changed():
 		setup_connection()
 		getPlayerList()
 	pass
+
+
+func _on_btn_start_game_pressed():
+	if is_multiplayer_authority():
+		print("AUTH HELLO")
+	else:
+		print("NOT AUTH")
+	pass # Replace with function body.
