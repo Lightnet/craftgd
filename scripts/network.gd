@@ -35,7 +35,8 @@ func server_host():
 	
 	#add_player(multiplayer.get_unique_id())
 	#print("game server")
-	#upnp_setup()
+	if isupnp:
+		upnp_setup()
 	
 func client_join():
 	#main_menu.hide()
@@ -45,6 +46,7 @@ func client_join():
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(_player_connected)
 	multiplayer.peer_disconnected.connect(_player_disconnected)
+	multiplayer.server_disconnected.connect(_server_disconnect)
 	#multiplayer.peer_disconnected.connect(return_menu)
 	#print("client")
 
@@ -62,6 +64,12 @@ func _player_disconnected(id):
 	#print("PLAYER: ", player)
 	if player:
 		player.queue_free()
+		
+func _server_disconnect():
+	var node_main = get_node_or_null("/root/Main")
+	if node_main:
+		node_main.return_mainmenu()
+	pass
 
 @rpc("any_peer")
 func register_player(info):
@@ -87,13 +95,3 @@ func upnp_setup():
 		"UPNP Port Mapping Failed! Error %s" % discover_result)
 	
 	print("Syccess! Join Address: %s" % upnp.query_external_address())
-
-
-#func return_menu(peer_id):
-	#print("server disconnected!", peer_id)
-	#main_menu.show()
-	#hud.hide()
-	#set network null
-	#get_tree().network_peer = null
-	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	#pass

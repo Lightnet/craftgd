@@ -20,13 +20,10 @@ var UIChatMessage = preload("res://lobby/lobby_player_message.tscn")
 var playercount = 0
 var oldplayercount = 0
 
-
 # Called when the node enters the scene tree for the first time.
-func _ready():
+#func _ready():
 	#getPlayerList()
-	#setup_connection()
-	pass # Replace with function body.
-
+	#pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -37,25 +34,6 @@ func _process(_delta):
 		oldplayercount = playercount
 		getPlayerList()
 	pass
-
-func setup_connection():
-	print("Hello SET LOBBY CONNECTION")
-	#get_tree().peer
-	
-	#print("has_multiplayer_peer: ",multiplayer.has_multiplayer_peer())
-	#if multiplayer.has_multiplayer_peer() == true:
-		#multiplayer.peer_connected.connect(_player_connected)
-		#multiplayer.peer_disconnected.connect(_player_disconnected)
-	pass
-
-func _player_connected(_id):
-	#update player list
-	print("LOBBY ADDED ID?", _id)
-	getPlayerList()
-
-func _player_disconnected(_id):
-	#update player list
-	getPlayerList()
 
 #@rpc("any_peer")
 func getPlayerList():
@@ -76,10 +54,9 @@ func getPlayerList():
 		var player_row1 = UIPlayerData.instantiate()
 		player_row1.get_node("LPlayerName").text = player_info[p]["name"]
 		UIPlayerlist.add_child(player_row1)
-		
-		print("player_info >>:", p)
-		pass
-	print("player list...")
+		#print("player_info >>:", p)
+		#pass
+	#print("player list...")
 
 func _on_btn_redresh_players_pressed():
 	getPlayerList()
@@ -89,7 +66,6 @@ func _on_btn_redresh_players_pressed():
 func _on_visibility_changed():
 	print("_on_visibility_changed")
 	if visible == true:
-		setup_connection()
 		getPlayerList()
 	pass
 

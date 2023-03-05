@@ -13,7 +13,7 @@ func melee():
 		if not melee_anim.is_playing():
 			melee_anim.play("Attack")
 			melee_anim.queue("Return")
-			print("Attack...")
+			#print("Attack...")
 		if melee_anim.current_animation == "Attack":
 			for body in hitbox.get_overlapping_bodies():
 				if body.is_in_group("Enemy"):
