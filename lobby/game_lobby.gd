@@ -11,6 +11,8 @@ extends PanelContainer
 #@onready var EntityPlayers = $"../../world/players"
 @onready var EntityPlayers = $"../../"
 
+@onready var health_bar =  $"../HUD/AspectRatioContainer/HealthBar"
+
 var UIPlayerData = preload("res://lobby/lobby_player_row01.tscn")
 
 var UIChatMessage = preload("res://lobby/lobby_player_message.tscn")
@@ -133,6 +135,13 @@ func _on_le_chat_message_text_submitted(new_text):
 	rpc("ChatMessageAppend",  new_text)
 	pass
 
+func update_health_bar(health_value):
+	health_bar.value = health_value
+
+func _on_multiplayer_spawner_spawned(node):
+	if node.is_multiplayer_authority():
+		node.health_change.connect(update_health_bar)
+
 # set up host map and player
 @rpc("call_remote")
 func setup_host():
@@ -148,6 +157,8 @@ func setup_host():
 		# Load my player
 		var my_player = preload("res://prefabs/players/player.tscn").instantiate()
 		my_player.set_name(str(selfPeerID))
+		#if my_player.is_multiplayer_authority():
+		my_player.health_change.connect(update_health_bar)
 		#add_child(my_player)
 		EntityPlayers.add_child(my_player)
 		
@@ -156,6 +167,8 @@ func setup_host():
 		for p in player_info:
 			var player = preload("res://prefabs/players/player.tscn").instantiate()
 			player.set_name(str(p))
+			#if player.is_multiplayer_authority():
+				#player.health_change.connect(update_health_bar)
 			#player.set_network_master(p) # Will be explained later
 			#get_node("/root/Main/world/players").add_child(player)
 			#EntityPlayers.add_child(player)
@@ -191,9 +204,9 @@ func pre_configure_game():
 	#add_child(my_player)
 	
 
-	var player_info = Network.player_info
+	#var player_info = Network.player_info
 	# Load other players
-	for p in player_info:
+	#for p in player_info:
 		#var player = preload("res://prefabs/players/player.tscn").instantiate()
 		#player.set_name(str(p))
 		#player.set_network_master(p) # Will be explained later
@@ -201,7 +214,7 @@ func pre_configure_game():
 		#EntityPlayers.add_child(player)
 		#add_child(player)
 		#EntityPlayers.add_child(player)
-		pass
+		#pass
 		
 	
 	# Tell server (remember, server is always ID=1) that this peer is done pre-configuring.

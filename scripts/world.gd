@@ -18,7 +18,7 @@ func _unhandled_input(_event):
 
 
 const Player = preload("res://prefabs/players/player.tscn")
-const PORT = 9999
+var PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
 var characters = 'abcdefghijklmnopqrstuvwxyz'
@@ -27,8 +27,6 @@ func _ready():
 	var new_word = generate_word(characters, 11)
 	print(new_word)
 	IPlayerName.text = new_word
-	
-	pass # Replace with function body.
 
 func generate_word(chars, length):
 	var word: String = ""
@@ -57,17 +55,14 @@ func _on_host_button_pressed():
 	LNetworkType.text= "Server"
 	LHUDNetworkType.text= "Server"
 	LHUDPlayerName.text = IPlayerName.text
-	print("server")
-	
+	#print("server")
 	#upnp_setup()
 
 func _on_join_button_pressed():
 	main_menu.hide()
 	#hud.show()
-	
 	Network.setPlayerName(IPlayerName.text)
 	Network.client_join()
-	
 	menu_lobby.show()
 	
 	#enet_peer.create_client(address_entry.text,PORT)
@@ -81,28 +76,28 @@ func _on_join_button_pressed():
 	LNetworkType.text= "Client"
 	LHUDNetworkType.text= "Client"
 	LHUDPlayerName.text = IPlayerName.text
-	print("client")
+	#print("client")
 	
-func add_player(peer_id):
-	var player = Player.instantiate()
-	player.name = str(peer_id)
-	add_child(player)
-	if player.is_multiplayer_authority():
-		player.health_change.connect(update_health_bar)
+#func add_player(peer_id):
+	#var player = Player.instantiate()
+	#player.name = str(peer_id)
+	#add_child(player)
+	#if player.is_multiplayer_authority():
+		#player.health_change.connect(update_health_bar)
 		
-func remove_player(peer_id):
-	var player = get_node_or_null(str(peer_id))
-	if player:
-		player.queue_free()
+#func remove_player(peer_id):
+	#var player = get_node_or_null(str(peer_id))
+	#if player:
+		#player.queue_free()
 		
-func return_menu(peer_id):
-	print("server disconnected!", peer_id)
-	main_menu.show()
-	hud.hide()
+#func return_menu(peer_id):
+	#print("server disconnected!", peer_id)
+	#main_menu.show()
+	#hud.hide()
 	#set network null
-	get_tree().network_peer = null
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	pass
+	#get_tree().network_peer = null
+	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	#pass
 
 func update_health_bar(health_value):
 	health_bar.value = health_value

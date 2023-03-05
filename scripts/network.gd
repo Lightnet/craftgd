@@ -1,8 +1,9 @@
 extends Node
 
 var hostname = "localhost"
-const PORT = 9999
+var PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
+var isupnp = false
 
 # Player info, associate ID to data, map list
 var player_info = {}
@@ -13,8 +14,8 @@ var my_info = { name = "John Doe", favorite_color = Color8(255, 0, 255) }
 #const Player = preload("res://prefabs/players/player.tscn")
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+#func _ready():
+	#pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 	#pass
@@ -33,7 +34,7 @@ func server_host():
 	#multiplayer.peer_disconnected.connect(remove_player)
 	
 	#add_player(multiplayer.get_unique_id())
-	print("game server")
+	#print("game server")
 	#upnp_setup()
 	
 func client_join():
@@ -45,7 +46,7 @@ func client_join():
 	multiplayer.peer_connected.connect(_player_connected)
 	multiplayer.peer_disconnected.connect(_player_disconnected)
 	#multiplayer.peer_disconnected.connect(return_menu)
-	print("client")
+	#print("client")
 
 func _player_connected(id):
 	# Called on both clients and server when a peer connects. Send my info to it.
@@ -55,9 +56,10 @@ func _player_disconnected(id):
 	player_info.erase(id) # Erase player from info.
 	#var player = get_node_or_null(str(id))
 	
+	#get node from main match path of the player prefab spawn
 	var player = get_node("/root/Main").get_node_or_null(str(id))
-	print("PLAYER DISCONNECT: ", id)
-	print("PLAYER: ", player)
+	#print("PLAYER DISCONNECT: ", id)
+	#print("PLAYER: ", player)
 	if player:
 		player.queue_free()
 
@@ -68,36 +70,25 @@ func register_player(info):
 	var id = get_tree().get_multiplayer().get_remote_sender_id()
 	# Store the info
 	player_info[id] = info
-	print("info:>> ",info)
+	#print("info:>> ",info)
 
-	# Call function to update lobby UI here
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#func add_player(peer_id):
-	#var player = Player.instantiate()
-	#player.name = str(peer_id)
-	#add_child(player)
-	#if player.is_multiplayer_authority():
-		#player.health_change.connect(update_health_bar)
-	#pass
+func upnp_setup():
+	var upnp = UPNP.new()
+	
+	var discover_result = upnp.discover()
+	assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, \
+		"UPNP Discover Failed! Error %s" % discover_result)
 		
-#func remove_player(peer_id):
-	#var player = get_node_or_null(str(peer_id))
-	#if player:
-		#player.queue_free()
-		
+	assert(upnp.get_gateway() and upnp.get_gateway().is_valid_gateway(), \
+		"UPNP Invalid Gateway")
+	
+	var map_result = upnp.add_port_mapping(PORT)
+	assert(map_result == UPNP.UPNP_RESULT_SUCCESS, \
+		"UPNP Port Mapping Failed! Error %s" % discover_result)
+	
+	print("Syccess! Join Address: %s" % upnp.query_external_address())
+
+
 #func return_menu(peer_id):
 	#print("server disconnected!", peer_id)
 	#main_menu.show()
