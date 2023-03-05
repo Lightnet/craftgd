@@ -1,3 +1,34 @@
+# multiplayer api:
+
+```
+set_multiplayer_authority(str(name).to_int())
+
+if not is_multiplayer_authority(): return
+
+
+
+if not is_multiplayer_authority(): return
+
+hit_player.get_multiplayer_authority()
+```
+
+
+```
+Need to set ID authority for client.
+```
+
+
+
+
+
+
+
+
+
+
+# Notes:
+ * below is outdate godot 4.x
+
 # Links: 
  * https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html
  * https://docs.godotengine.org/en/latest/classes/class_enetmultiplayerpeer.html#class-enetmultiplayerpeer
