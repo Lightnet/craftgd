@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cokh82rmrm7dc"]
+
+[node name="HBC_PlayerMessage" type="HBoxContainer"]
+
+[node name="LPlayerName" type="Label" parent="."]
+layout_mode = 2
+text = "Guest"
+
+[node name="LSpan" type="Label" parent="."]
+layout_mode = 2
+text = ":"
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 2
+text = "Test Text!"

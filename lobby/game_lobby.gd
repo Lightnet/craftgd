@@ -5,8 +5,11 @@ extends PanelContainer
 
 @onready var UIPlayerlist = $VBoxContainer/HBC_Content/VBoxContainer2/PlayerList/VBC_Players
 @onready var UIPlayerName = $VBoxContainer/HBoxContainer/LPlayerName2
+@onready var UIChatMessages = $VBoxContainer/HBC_Content/VBoxContainer/SC_Chat/VBC_Messages
 
 var UIPlayerData = preload("res://lobby/lobby_player_row01.tscn")
+
+var UIChatMessage = preload("res://lobby/lobby_player_message.tscn")
 
 var playercount = 0
 var oldplayercount = 0
@@ -91,3 +94,36 @@ func _on_btn_start_game_pressed():
 	else:
 		print("NOT AUTH")
 	pass # Replace with function body.
+
+@rpc("any_peer","unreliable")
+func ChatMessageAppend(msg):
+	print("msg",msg )
+	var peer_id = self.multiplayer.get_remote_sender_id()
+	var playername = ""
+	if Network.player_info[peer_id] == null:
+		return
+	playername = Network.player_info[peer_id]["name"]
+	print("peer_id: ", peer_id)
+	var player_msg = UIChatMessage.instantiate()
+	player_msg.get_node("LPlayerName").text = playername
+	player_msg.get_node("Message").text = msg
+	UIChatMessages.add_child(player_msg)
+	pass
+
+
+func _on_le_chat_message_text_submitted(new_text):
+	print("CHAT TEXT INPUT ", new_text)
+	var peer_id = get_tree().get_multiplayer().get_unique_id()
+	print("peer_id", peer_id)
+	var playername = Network.my_info["name"]
+	#var playerlist = Network.player_info
+	#print("PLAYERS:", playerlist)
+	#if Network.player_info[peer_id] == null:
+		#return
+	var player_msg = UIChatMessage.instantiate()
+	player_msg.get_node("LPlayerName").text = playername
+	player_msg.get_node("Message").text = new_text
+	UIChatMessages.add_child(player_msg)
+	#boardcast all but not self
+	rpc("ChatMessageAppend",  new_text)
+	pass

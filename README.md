@@ -15,22 +15,22 @@
  - [x] main menu (wip)
  - [ ] Lobby (wip)
  - [ ] Network (wip)
-    - [ ] server (wip)
-      - [ ] handle disconnect
-      - [ ] handle connect
-    - [ ] client (wip)
-      - [ ] handle disconnect
-      - [ ] handle connect
+	- [ ] server (wip)
+	  - [ ] handle disconnect
+	  - [ ] handle connect
+	- [ ] client (wip)
+	  - [ ] handle disconnect
+	  - [ ] handle connect
   
  * Player
-    * Simple Capsule
-    * Melee weapon
-    * Hit scan weapon
-    * Build blocks
+	* Simple Capsule
+	* Melee weapon
+	* Hit scan weapon
+	* Build blocks
  * Map
-    * Prototype Test01
-    * Training Area
-    * 
+	* Prototype Test01
+	* Training Area
+	* 
 
 # To Do List:
  * Player model

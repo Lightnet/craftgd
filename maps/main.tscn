@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccloqiflsxmai"]
+[gd_scene load_steps=12 format=3 uid="uid://ccloqiflsxmai"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_4xjwc"]
 [ext_resource type="PackedScene" uid="uid://dwy27pfj45xvr" path="res://maps/prototype01.tscn" id="2_2g70h"]
 [ext_resource type="Texture2D" uid="uid://dsu4i8oftqh0k" path="res://addons/kenney_particle_pack/circle_05.png" id="3_d2u12"]
 [ext_resource type="PackedScene" uid="uid://d1lmd0si3awbb" path="res://chat/prototype_chat_msg.tscn" id="4_7veta"]
 [ext_resource type="Script" path="res://lobby/game_lobby.gd" id="5_2a3ko"]
+[ext_resource type="PackedScene" uid="uid://cokh82rmrm7dc" path="res://lobby/lobby_player_message.tscn" id="5_5bet1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ugj4p"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -312,6 +313,10 @@ text = "Leave"
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -331,13 +336,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="HBC_PlayerMessage" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/SC_Chat/VBC_Messages" instance=ExtResource("5_5bet1")]
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer"]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer"]
+[node name="LE_ChatMessage" type="LineEdit" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 3
 
 [node name="btnSendMsg" type="Button" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -374,6 +381,10 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
 
 [node name="HBC_Bottom_NavMenus" type="HBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer"]
 layout_mode = 2
@@ -443,6 +454,7 @@ spawn_path = NodePath("..")
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/btnRandomName" to="." method="_on_btn_random_name_pressed"]
 [connection signal="visibility_changed" from="CanvasLayer/Lobby" to="CanvasLayer/Lobby" method="_on_visibility_changed"]
+[connection signal="text_submitted" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer/LE_ChatMessage" to="CanvasLayer/Lobby" method="_on_le_chat_message_text_submitted"]
 [connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer/btnSendMsg" to="." method="_on_btn_send_msg_pressed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer2/HBoxContainer/btnRedreshPlayers" to="CanvasLayer/Lobby" method="_on_btn_redresh_players_pressed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Bottom_NavMenus/btnStartGame" to="CanvasLayer/Lobby" method="_on_btn_start_game_pressed"]
