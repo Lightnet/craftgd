@@ -39,21 +39,20 @@ func generate_word(chars, length):
 
 func _on_host_button_pressed():
 	main_menu.hide()
-	#hud.show()
-	
 	
 	Network.setPlayerName(IPlayerName.text)
-	
 	Network.server_host()
-	
+	#hud.show()
 	menu_lobby.show()
+	
+	var node = Node.new() #for handle remote debug
+	node.name = "NodeServer"
+	get_node("/root/Main").add_child(node)
 	
 	#enet_peer.create_server(PORT)
 	#multiplayer.multiplayer_peer = enet_peer
-	
 	#multiplayer.peer_connected.connect(add_player)
 	#multiplayer.peer_disconnected.connect(remove_player)
-	
 	#add_player(multiplayer.get_unique_id())
 	LNetworkType.text= "Server"
 	LHUDNetworkType.text= "Server"
@@ -74,6 +73,11 @@ func _on_join_button_pressed():
 	#enet_peer.create_client(address_entry.text,PORT)
 	#multiplayer.multiplayer_peer = enet_peer
 	#multiplayer.peer_disconnected.connect(return_menu)
+	
+	var node = Node.new() #for handle remote debug
+	node.name = "NodeClient"
+	get_node("/root/Main").add_child(node)
+	
 	LNetworkType.text= "Client"
 	LHUDNetworkType.text= "Client"
 	LHUDPlayerName.text = IPlayerName.text

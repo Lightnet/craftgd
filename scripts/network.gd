@@ -1,11 +1,10 @@
 extends Node
 
-
 var hostname = "localhost"
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
-# Player info, associate ID to data
+# Player info, associate ID to data, map list
 var player_info = {}
 
 # Info we send to other players
@@ -54,6 +53,13 @@ func _player_connected(id):
 
 func _player_disconnected(id):
 	player_info.erase(id) # Erase player from info.
+	#var player = get_node_or_null(str(id))
+	
+	var player = get_node("/root/Main").get_node_or_null(str(id))
+	print("PLAYER DISCONNECT: ", id)
+	print("PLAYER: ", player)
+	if player:
+		player.queue_free()
 
 @rpc("any_peer")
 func register_player(info):
