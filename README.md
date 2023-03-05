@@ -12,15 +12,15 @@
  Simple test fps. Sample test build from youtube https://www.youtube.com/@DevLogLogan
 
 # Features / To Do List:
- [x] main menu (wip)
- [ ] Lobby (wip)
- [ ] Network (wip)
-  [ ] server (wip)
-    [ ] handle disconnect
-    [ ] handle connect
-  [ ] client (wip)
-    [ ] handle disconnect
-    [ ] handle connect
+ - [x] main menu (wip)
+ - [ ] Lobby (wip)
+ - [ ] Network (wip)
+  - [ ] server (wip)
+    - [ ] handle disconnect
+    - [ ] handle connect
+  - [ ] client (wip)
+    - [ ] handle disconnect
+    - [ ] handle connect
   
  * Player
   * Simple Capsule
