@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dqux62ww404ba"]
+
+[node name="HBC_PlayerRow" type="HBoxContainer"]
+
+[node name="LPlayerName" type="Label" parent="."]
+layout_mode = 2
+text = "Player Name"
+
+[node name="HSC_1" type="HSplitContainer" parent="."]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="btnPM" type="Button" parent="."]
+layout_mode = 2
+text = "PM"
+
+[node name="HSC_2" type="HSplitContainer" parent="."]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="btnKick" type="Button" parent="."]
+layout_mode = 2
+text = "Kick"

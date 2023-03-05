@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b53s1qrvm1u21"]
+[gd_scene load_steps=11 format=3 uid="uid://ccloqiflsxmai"]
 
-[ext_resource type="Script" path="res://scripts/world.gd" id="1_v5s6a"]
-[ext_resource type="PackedScene" uid="uid://dwy27pfj45xvr" path="res://maps/prototype01.tscn" id="2_toehv"]
-[ext_resource type="Texture2D" uid="uid://dsu4i8oftqh0k" path="res://addons/kenney_particle_pack/circle_05.png" id="3_vcqxt"]
-[ext_resource type="PackedScene" uid="uid://d1lmd0si3awbb" path="res://chat/prototype_chat_msg.tscn" id="4_hjb1r"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_4xjwc"]
+[ext_resource type="PackedScene" uid="uid://dwy27pfj45xvr" path="res://maps/prototype01.tscn" id="2_2g70h"]
+[ext_resource type="Texture2D" uid="uid://dsu4i8oftqh0k" path="res://addons/kenney_particle_pack/circle_05.png" id="3_d2u12"]
+[ext_resource type="PackedScene" uid="uid://d1lmd0si3awbb" path="res://chat/prototype_chat_msg.tscn" id="4_7veta"]
+[ext_resource type="Script" path="res://lobby/game_lobby.gd" id="5_2a3ko"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ugj4p"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -24,8 +25,8 @@ bg_color = Color(0.533333, 0.109804, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4r4r"]
 bg_color = Color(0.0509804, 0.72549, 0, 1)
 
-[node name="World" type="Node"]
-script = ExtResource("1_v5s6a")
+[node name="Main" type="Node"]
+script = ExtResource("1_4xjwc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -36,7 +37,7 @@ environment = SubResource("Environment_aw8tw")
 
 [node name="Level" type="Node" parent="."]
 
-[node name="Prototype01" parent="Level" instance=ExtResource("2_toehv")]
+[node name="Prototype01" parent="Level" instance=ExtResource("2_2g70h")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -130,7 +131,7 @@ custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_vcqxt")
+texture = ExtResource("3_d2u12")
 expand_mode = 1
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD/AspectRatioContainer"]
@@ -167,7 +168,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer" instance=ExtResource("4_hjb1r")]
+[node name="HBoxContainer" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer" instance=ExtResource("4_7veta")]
 layout_mode = 2
 
 [node name="Label6" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
@@ -272,11 +273,174 @@ text = "Admin Access"
 layout_mode = 2
 text = "Players"
 
+[node name="Lobby" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_2a3ko")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Lobby"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer"]
+layout_mode = 2
+
+[node name="LLobby" type="Label" parent="CanvasLayer/Lobby/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Lobby Area [Dev Builds]"
+horizontal_alignment = 1
+
+[node name="LNetworkType" type="Label" parent="CanvasLayer/Lobby/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="LPlayerName" type="Label" parent="CanvasLayer/Lobby/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " Player Name:"
+
+[node name="LPlayerName2" type="Label" parent="CanvasLayer/Lobby/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Guest"
+
+[node name="HBC_NavMenus" type="HBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="btnLeave" type="Button" parent="CanvasLayer/Lobby/VBoxContainer/HBC_NavMenus"]
+layout_mode = 2
+text = "Leave"
+
+[node name="HBC_Content" type="HBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LChatLogs" type="Label" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer"]
+layout_mode = 2
+text = "Chat Logs"
+horizontal_alignment = 1
+
+[node name="SC_Chat" type="ScrollContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBC_Messages" type="VBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/SC_Chat"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 3
+
+[node name="btnSendMsg" type="Button" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Send"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LPlayers" type="Label" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Players"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btnRedreshPlayers" type="Button" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Refresh"
+
+[node name="PlayerList" type="ScrollContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBC_Players" type="VBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer2/PlayerList"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBC_Bottom_NavMenus" type="HBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="btnGameMode" type="Button" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Bottom_NavMenus"]
+layout_mode = 2
+text = "Game Mode"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Bottom_NavMenus"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="btnStartGame" type="Button" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Bottom_NavMenus"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Bottom_NavMenus"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="btnOptions" type="Button" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Bottom_NavMenus"]
+layout_mode = 2
+text = "Options"
+
+[node name="LLobby2" type="Label" parent="CanvasLayer/Lobby/VBoxContainer"]
+layout_mode = 2
+text = "Lobby Area"
+horizontal_alignment = 1
+
+[node name="WaterMark" type="Control" parent="CanvasLayer"]
+visible = false
+show_behind_parent = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LineEdit" type="Label" parent="CanvasLayer/WaterMark"]
+layout_mode = 0
+offset_right = 158.0
+offset_bottom = 31.0
+text = "Prototype Build"
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://prefabs/players/player.tscn")
 spawn_path = NodePath("..")
 
+[node name="Players" type="Node" parent="."]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Blocks" type="Node" parent="."]
+
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/btnRandomName" to="." method="_on_btn_random_name_pressed"]
+[connection signal="visibility_changed" from="CanvasLayer/Lobby" to="CanvasLayer/Lobby" method="_on_visibility_changed"]
+[connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer/btnSendMsg" to="." method="_on_btn_send_msg_pressed"]
+[connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer2/HBoxContainer/btnRedreshPlayers" to="CanvasLayer/Lobby" method="_on_btn_redresh_players_pressed"]
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

@@ -110,5 +110,73 @@ func _request_action(dir, shoot_request)-> void:
 ```
 
 
+```py
+remote func pre_configure_game():
+    var selfPeerID = get_tree().get_network_unique_id()
+
+    # Load world
+    var world = load(which_level).instantiate()
+    get_node("/root").add_child(world)
+
+    # Load my player
+    var my_player = preload("res://player.tscn").instantiate()
+    my_player.set_name(str(selfPeerID))
+    my_player.set_network_master(selfPeerID) # Will be explained later
+    get_node("/root/world/players").add_child(my_player)
+
+    # Load other players
+    for p in player_info:
+        var player = preload("res://player.tscn").instantiate()
+        player.set_name(str(p))
+        player.set_network_master(p) # Will be explained later
+        get_node("/root/world/players").add_child(player)
+
+    # Tell server (remember, server is always ID=1) that this peer is done pre-configuring.
+    # The server can call get_tree().get_rpc_sender_id() to find out who said they were done.
+    rpc_id(1, "done_preconfiguring")
 ```
+
+
+```
+remote func pre_configure_game():
+    get_tree().set_pause(true) # Pre-pause
+    # The rest is the same as in the code in the previous section (look above)
+```
+
+```
+var players_done = []
+remote func done_preconfiguring():
+    var who = get_tree().get_rpc_sender_id()
+    # Here are some checks you can do, for example
+    assert(get_tree().is_network_server())
+    assert(who in player_info) # Exists
+    assert(not who in players_done) # Was not added yet
+
+    players_done.append(who)
+
+    if players_done.size() == player_info.size():
+        rpc("post_configure_game")
+
+remote func post_configure_game():
+    # Only the server is allowed to tell a client to unpause
+    if 1 == get_tree().get_rpc_sender_id():
+        get_tree().set_pause(false)
+        # Game starts now!
+```
+
+```
+[...]
+# Load my player
+var my_player = preload("res://player.tscn").instantiate()
+my_player.set_name(str(selfPeerID))
+my_player.set_network_master(selfPeerID) # The player belongs to this peer; it has the authority.
+get_node("/root/world/players").add_child(my_player)
+
+# Load other players
+for p in player_info:
+    var player = preload("res://player.tscn").instantiate()
+    player.set_name(str(p))
+    player.set_network_master(p) # Each other connected peer has authority over their own player.
+    get_node("/root/world/players").add_child(player)
+[...]
 ```

@@ -1,15 +1,17 @@
 extends Node
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 
 @onready var main_menu = $CanvasLayer/MainMenu
+@onready var menu_lobby = $CanvasLayer/Lobby
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 @onready var hud = $CanvasLayer/HUD
 @onready var health_bar =  $CanvasLayer/HUD/AspectRatioContainer/HealthBar
 
 @onready var IPlayerName = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/IUserName 
+@onready var LNetworkType = $CanvasLayer/Lobby/VBoxContainer/HBoxContainer/LNetworkType
 
 const Player = preload("res://prefabs/players/player.tscn")
 const PORT = 9999
@@ -25,39 +27,50 @@ func _ready():
 	pass # Replace with function body.
 
 func generate_word(chars, length):
-	var word: String
+	var word: String = ""
 	var n_char = len(chars)
 	for i in range(length):
 		word += chars[randi()% n_char]
 	return word
 
-
 func _on_host_button_pressed():
 	main_menu.hide()
-	hud.show()
+	#hud.show()
 	
-	enet_peer.create_server(PORT)
-	multiplayer.multiplayer_peer = enet_peer
 	
-	multiplayer.peer_connected.connect(add_player)
-	multiplayer.peer_disconnected.connect(remove_player)
+	Network.setPlayerName(IPlayerName.text)
 	
-	add_player(multiplayer.get_unique_id())
+	Network.server_host()
+	
+	menu_lobby.show()
+	
+	#enet_peer.create_server(PORT)
+	#multiplayer.multiplayer_peer = enet_peer
+	
+	#multiplayer.peer_connected.connect(add_player)
+	#multiplayer.peer_disconnected.connect(remove_player)
+	
+	#add_player(multiplayer.get_unique_id())
+	LNetworkType.text= "Server"
 	print("server")
 	
 	#upnp_setup()
 
 func _on_join_button_pressed():
 	main_menu.hide()
-	hud.show()
+	#hud.show()
 	
-	enet_peer.create_client(address_entry.text,PORT)
+	Network.setPlayerName(IPlayerName.text)
+	Network.client_join()
 	
-	multiplayer.multiplayer_peer = enet_peer
-	multiplayer.peer_disconnected.connect(return_menu)
+	menu_lobby.show()
+	
+	#enet_peer.create_client(address_entry.text,PORT)
+	#multiplayer.multiplayer_peer = enet_peer
+	#multiplayer.peer_disconnected.connect(return_menu)
+	LNetworkType.text= "Client"
 	print("client")
 	
-
 func add_player(peer_id):
 	var player = Player.instantiate()
 	player.name = str(peer_id)
@@ -102,8 +115,24 @@ func upnp_setup():
 	
 	print("Syccess! Join Address: %s" % upnp.query_external_address())
 
-
 func _on_btn_random_name_pressed():
 	var new_word = generate_word(characters, 11)
 	print(new_word)
 	IPlayerName.text = new_word
+
+
+func _on_btn_send_msg_pressed():
+	
+	rpc("SendMessage")
+	pass # Replace with function body.
+	
+
+@rpc("any_peer", "unreliable")	
+func SendMessage(_username, _message):
+	
+	print("Hello server?", get_tree().get_multiplayer().is_server())
+	pass 
+
+
+
+
