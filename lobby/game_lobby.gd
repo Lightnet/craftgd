@@ -8,7 +8,8 @@ extends PanelContainer
 @onready var UIChatMessages = $VBoxContainer/HBC_Content/VBoxContainer/SC_Chat/VBC_Messages
 @onready var MenuLobby = $"."
 @onready var HUD = $"../HUD"
-@onready var EntityPlayers = $"../../world/players"
+#@onready var EntityPlayers = $"../../world/players"
+@onready var EntityPlayers = $"../../"
 
 var UIPlayerData = preload("res://lobby/lobby_player_row01.tscn")
 
@@ -95,6 +96,8 @@ func _on_btn_start_game_pressed():
 	if is_multiplayer_authority():
 		print("AUTH HELLO")
 		setup_host() 
+		#rpc_id(1,"setup_host")#fail
+		#rpc("setup_host")#
 	else:
 		print("NOT AUTH")
 	pass # Replace with function body.
@@ -132,36 +135,34 @@ func _on_le_chat_message_text_submitted(new_text):
 	pass
 
 # set up host map and player
+@rpc("call_remote")
 func setup_host():
 	MenuLobby.hide()
 	HUD.show()
-	print("init set up game...")
-	var selfPeerID = get_tree().get_multiplayer().get_unique_id()
-	# Load world
-	var world = load(load_map).instantiate()
-	get_node("/root/Main/world/level").add_child(world)
-	
-	# Load my player
-	var my_player = preload("res://prefabs/players/player.tscn").instantiate()
-	my_player.set_name(str(selfPeerID))
-	#add_child(my_player)
-	EntityPlayers.add_child(my_player)
-	
-	var player_info = Network.player_info
-	# Load other players
-	for p in player_info:
-		var player = preload("res://prefabs/players/player.tscn").instantiate()
-		player.set_name(str(p))
-		#player.set_network_master(p) # Will be explained later
-		#get_node("/root/Main/world/players").add_child(player)
-		#EntityPlayers.add_child(player)
-		#add_child(player)
-		EntityPlayers.add_child(player)
-		#pass
-	
-	
-	
-	
+	if is_multiplayer_authority():
+		print("init set up game...")
+		var selfPeerID = get_tree().get_multiplayer().get_unique_id()
+		# Load world
+		var world = load(load_map).instantiate()
+		get_node("/root/Main/world/level").add_child(world)
+		
+		# Load my player
+		var my_player = preload("res://prefabs/players/player.tscn").instantiate()
+		my_player.set_name(str(selfPeerID))
+		#add_child(my_player)
+		EntityPlayers.add_child(my_player)
+		
+		var player_info = Network.player_info
+		# Load other players
+		for p in player_info:
+			var player = preload("res://prefabs/players/player.tscn").instantiate()
+			player.set_name(str(p))
+			#player.set_network_master(p) # Will be explained later
+			#get_node("/root/Main/world/players").add_child(player)
+			#EntityPlayers.add_child(player)
+			#add_child(player)
+			EntityPlayers.add_child(player)
+			#pass
 	
 	#boardcast to other remote player 
 	rpc("pre_configure_game")
@@ -177,31 +178,31 @@ func pre_configure_game():
 	MenuLobby.hide()
 	HUD.show()
 	print("init set up game...")
-	var selfPeerID = get_tree().get_multiplayer().get_unique_id()
+	#var selfPeerID = get_tree().get_multiplayer().get_unique_id()
 	# Load world
 	var world = load(load_map).instantiate()
 	get_node("/root/Main/world/level").add_child(world)
 	
 	# Load my player
-	var my_player = preload("res://prefabs/players/player.tscn").instantiate()
-	my_player.set_name(str(selfPeerID))
+	#var my_player = preload("res://prefabs/players/player.tscn").instantiate()
+	#my_player.set_name(str(selfPeerID))
 	#my_player.set_network_master(selfPeerID) # Will be explained later
 	#get_node("/root/Main/world/players").add_child(my_player)
-	EntityPlayers.add_child(my_player)
+	#EntityPlayers.add_child(my_player)
 	#add_child(my_player)
 	
 
 	var player_info = Network.player_info
 	# Load other players
 	for p in player_info:
-		var player = preload("res://prefabs/players/player.tscn").instantiate()
-		player.set_name(str(p))
+		#var player = preload("res://prefabs/players/player.tscn").instantiate()
+		#player.set_name(str(p))
 		#player.set_network_master(p) # Will be explained later
 		#get_node("/root/Main/world/players").add_child(player)
 		#EntityPlayers.add_child(player)
 		#add_child(player)
-		EntityPlayers.add_child(player)
-		#pass
+		#EntityPlayers.add_child(player)
+		pass
 		
 	
 	# Tell server (remember, server is always ID=1) that this peer is done pre-configuring.

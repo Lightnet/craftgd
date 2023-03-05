@@ -13,6 +13,10 @@ func _unhandled_input(_event):
 @onready var IPlayerName = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/IUserName 
 @onready var LNetworkType = $CanvasLayer/Lobby/VBoxContainer/HBoxContainer/LNetworkType
 
+@onready var LHUDNetworkType = $CanvasLayer/HUD/AspectRatioContainer/LHUDNetworkType
+@onready var LHUDPlayerName = $CanvasLayer/HUD/AspectRatioContainer/LHUDPlayerName
+
+
 const Player = preload("res://prefabs/players/player.tscn")
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
@@ -52,6 +56,8 @@ func _on_host_button_pressed():
 	
 	#add_player(multiplayer.get_unique_id())
 	LNetworkType.text= "Server"
+	LHUDNetworkType.text= "Server"
+	LHUDPlayerName.text = IPlayerName.text
 	print("server")
 	
 	#upnp_setup()
@@ -69,6 +75,8 @@ func _on_join_button_pressed():
 	#multiplayer.multiplayer_peer = enet_peer
 	#multiplayer.peer_disconnected.connect(return_menu)
 	LNetworkType.text= "Client"
+	LHUDNetworkType.text= "Client"
+	LHUDPlayerName.text = IPlayerName.text
 	print("client")
 	
 func add_player(peer_id):

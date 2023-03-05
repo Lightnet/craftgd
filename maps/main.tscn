@@ -82,7 +82,6 @@ placeholder_text = "Token Key"
 alignment = 1
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,6 +99,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="CrossPoint" type="TextureRect" parent="CanvasLayer/HUD/AspectRatioContainer"]
@@ -119,6 +119,18 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_e4r4r")
 max_value = 3.0
 value = 3.0
 show_percentage = false
+
+[node name="LHUDNetworkType" type="Label" parent="CanvasLayer/HUD/AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Network Type"
+
+[node name="LHUDPlayerName" type="Label" parent="CanvasLayer/HUD/AspectRatioContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Player Name"
 
 [node name="ChatRegion" type="VBoxContainer" parent="CanvasLayer/HUD"]
 visible = false
