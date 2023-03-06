@@ -1,5 +1,9 @@
 # multiplayer api:
+ * https://godotengine.org/article/multiplayer-in-godot-4-0-scene-replication/
 
+
+
+ 
 ```
 set_multiplayer_authority(str(name).to_int())
 

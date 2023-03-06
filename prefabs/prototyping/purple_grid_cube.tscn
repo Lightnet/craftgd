@@ -1,22 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckvysroefrhwm"]
+[gd_scene load_steps=8 format=3 uid="uid://c2lftpljx614i"]
 
-[ext_resource type="Texture2D" uid="uid://c5v86jlhdjsj0" path="res://addons/kenney_prototype_textures/orange/texture_02.png" id="1_jgovj"]
-[ext_resource type="Texture2D" uid="uid://cneuuahph6r34" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="2_e44n5"]
+[ext_resource type="Texture2D" uid="uid://casti1o5eouh2" path="res://addons/kenney_prototype_textures/purple/texture_02.png" id="1_2pwox"]
+[ext_resource type="Texture2D" uid="uid://cneuuahph6r34" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="2_lni53"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v2kdo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujyfd"]
 render_priority = 1
-albedo_texture = ExtResource("1_jgovj")
+albedo_texture = ExtResource("1_2pwox")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xtr8"]
-albedo_texture = ExtResource("2_e44n5")
+albedo_texture = ExtResource("2_lni53")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_sn8nv"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2dfkd"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tl6xi"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
@@ -36,4 +36,4 @@ mesh = SubResource("BoxMesh_sn8nv")
 skeleton = NodePath("../../StaticBody3D/MeshInstance3D")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_2dfkd")
+replication_config = SubResource("SceneReplicationConfig_tl6xi")

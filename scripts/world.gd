@@ -17,7 +17,7 @@ func _unhandled_input(_event):
 @onready var LineEditRegEx = RegEx.new()
 var old_text = ""
 
-const Player = preload("res://prefabs/players/player.tscn")
+#const Player = preload("res://prefabs/player01/player.tscn")
 var PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
@@ -25,7 +25,7 @@ var characters = 'abcdefghijklmnopqrstuvwxyz'
 
 func _ready():
 	var new_word = generate_word(characters, 11)
-	print(new_word)
+	#print(new_word)
 	IPlayerName.text = new_word
 	LineEditRegEx.compile("^[0-9.]*$")
 
@@ -96,6 +96,7 @@ func _on_port_entry_text_changed(new_text):
 		#LEPort.set_cursor_position(LEPort.text.length())
 		#LEPort.set_c
 
-
-#func _on_port_entry_text_change_rejected(rejected_substring):
-	#pass # Replace with function body.
+# not sure of this where this but result from multiplayerspawner I think else give error
+func _on_multiplayer_spawner_spawned(data):
+	print("_on_multiplayer_spawner_spawned....", data)
+	pass

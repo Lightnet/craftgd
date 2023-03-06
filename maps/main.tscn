@@ -415,18 +415,14 @@ text = "Prototype Build"
 
 [node name="world" type="Node" parent="."]
 
-[node name="players" type="Node" parent="world"]
-
-[node name="enemies" type="Node" parent="world"]
-
-[node name="npcs" type="Node" parent="world"]
+[node name="entities" type="Node" parent="world"]
 
 [node name="blocks" type="Node" parent="world"]
 
 [node name="level" type="Node" parent="world"]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://prefabs/players/player.tscn")
+_spawnable_scenes = PackedStringArray("res://prefabs/player01/player.tscn", "res://maps/prototype01.tscn")
 spawn_path = NodePath("..")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]

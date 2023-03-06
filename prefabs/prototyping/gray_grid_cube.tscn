@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://00mbiccm7nu6"]
+[gd_scene load_steps=6 format=3 uid="uid://00mbiccm7nu6"]
 
 [ext_resource type="Texture2D" uid="uid://cneuuahph6r34" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="1_mu3l3"]
 
@@ -10,6 +10,14 @@ uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_1vh8y"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_batdu"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+
 [node name="GrayCubeStaticBody3D" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -19,3 +27,6 @@ shape = SubResource("BoxShape3D_dc26v")
 material_override = SubResource("StandardMaterial3D_51vm6")
 mesh = SubResource("BoxMesh_1vh8y")
 skeleton = NodePath("../../StaticBody3D/MeshInstance3D")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_batdu")

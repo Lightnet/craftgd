@@ -28,11 +28,11 @@ func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
 	
 	if Input.is_action_just_pressed("ToggleInteractMenu"):
-		print("HELLO?")
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		#print("HELLO?")
+		#if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		#else:
+			#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		pass

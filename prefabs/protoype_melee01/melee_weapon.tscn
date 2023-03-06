@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvweamksg4ske"]
+[gd_scene load_steps=11 format=3]
 
-[ext_resource type="Script" path="res://prefabs/players/melee01.gd" id="1_1364u"]
+[ext_resource type="Script" path="res://prefabs/player01/melee01.gd" id="1_1364u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1trae"]
 

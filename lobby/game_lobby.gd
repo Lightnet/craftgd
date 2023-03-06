@@ -10,7 +10,8 @@ extends PanelContainer
 @onready var MenuLobby = $"."
 @onready var HUD = $"../HUD"
 #@onready var EntityPlayers = $"../../world/players"
-@onready var EntityPlayers = $"../../"
+#@onready var EntityPlayers = $"../../"
+@onready var EntityPlayers = $"../.."
 
 @onready var health_bar =  $"../HUD/AspectRatioContainer/HealthBar"
 
@@ -20,6 +21,10 @@ extends PanelContainer
 var UIPlayerData = preload("res://lobby/lobby_player_row01.tscn")
 
 var UIChatMessage = preload("res://lobby/lobby_player_message.tscn")
+
+#need to config for server current local
+var load_map = "res://maps/prototype01.tscn"
+
 var playercount = 0
 var oldplayercount = 0
 
@@ -141,7 +146,7 @@ func _on_multiplayer_spawner_spawned(node):
 		node.health_change.connect(update_health_bar)
 
 # set up host map and player
-@rpc("call_remote")
+#@rpc("call_remote")
 func setup_host():
 	MenuLobby.hide()
 	HUD.show()
@@ -149,37 +154,58 @@ func setup_host():
 		#print("init set up game...")
 		var selfPeerID = get_tree().get_multiplayer().get_unique_id()
 		# Load world
+		#var world = preload(load_map).instantiate()
 		var world = load(load_map).instantiate()
 		get_node("/root/Main/world/level").add_child(world)
 		
 		# Load my player
-		var my_player = preload("res://prefabs/players/player.tscn").instantiate()
+		var my_player = preload("res://prefabs/player01/player.tscn").instantiate()
 		my_player.set_name(str(selfPeerID))
 		#if my_player.is_multiplayer_authority():
 		my_player.health_change.connect(update_health_bar)
 		#add_child(my_player)
 		EntityPlayers.add_child(my_player)
 		
-		var player_info = Network.player_info
+		
 		# Load other players
+		var player_info = Network.player_info
+		var PlayerIn = preload("res://prefabs/player01/player.tscn")
 		for p in player_info:
-			var player = preload("res://prefabs/players/player.tscn").instantiate()
+			var player = PlayerIn.instantiate()
 			player.set_name(str(p))
+			#player.set_multiplayer_authority(p)#???
 			#if player.is_multiplayer_authority():
 				#player.health_change.connect(update_health_bar)
 			#player.set_network_master(p) # Will be explained later
 			#get_node("/root/Main/world/players").add_child(player)
-			#EntityPlayers.add_child(player)
-			#add_child(player)
 			EntityPlayers.add_child(player)
+			#add_child(player)
 			#pass
 	
 	#boardcast to other remote player 
-	rpc("pre_configure_game")
+	#rpc("pre_configure_game")
+	rpc("spawn_map")
 	pass
 
-#need to config for server current local
-var load_map = "res://maps/prototype01.tscn"
+@rpc("call_remote")
+func spawn_map():
+	MenuLobby.hide()
+	HUD.show()
+	
+	#var selfPeerID = get_tree().get_multiplayer().get_unique_id()
+	# Load world
+	var world = load(load_map).instantiate()
+	get_node("/root/Main/world/level").add_child(world)
+
+	# Load my player
+	#var my_player = preload("res://prefabs/player01/player.tscn").instantiate()
+	#my_player.set_name(str(selfPeerID))
+	#if my_player.is_multiplayer_authority():
+	#my_player.health_change.connect(update_health_bar)
+	#add_child(my_player)
+	#EntityPlayers.add_child(my_player)
+	pass
+
 
 #init setup game config
 @rpc("call_remote")
@@ -188,15 +214,17 @@ func pre_configure_game():
 	MenuLobby.hide()
 	HUD.show()
 	#print("init set up game...")
-	#var selfPeerID = get_tree().get_multiplayer().get_unique_id()
+	
 	# Load world
 	var world = load(load_map).instantiate()
 	get_node("/root/Main/world/level").add_child(world)
 	
 	# Load my player
+	#var selfPeerID = get_tree().get_multiplayer().get_unique_id()
 	#var my_player = preload("res://prefabs/players/player.tscn").instantiate()
 	#my_player.set_name(str(selfPeerID))
-	#my_player.set_network_master(selfPeerID) # Will be explained later
+	##my_player.set_network_master(selfPeerID) # Will be explained later
+	#my_player.health_change.connect(update_health_bar)
 	#get_node("/root/Main/world/players").add_child(my_player)
 	#EntityPlayers.add_child(my_player)
 	#add_child(my_player)
