@@ -12,8 +12,21 @@
  Simple test fps. Sample test build from youtube https://www.youtube.com/@DevLogLogan
 
 # Features / To Do List:
- - [x] main menu (wip)
+ - [ ] config
+	 - [x] save and load (testing)
+ - [x] main menu
+ 		- [x] Host
+		- [x] Join
+		- [x] Port
+		- [x] IP Address
+		- [x] upnp (not tested)
  - [ ] Lobby (wip)
+ 		- [x] Chat Message
+		- [x] Player List
+				- [ ] kick
+		- [x] start game (simple load map and players)
+		- [ ] game settings
+		- [ ] options
  - [ ] Network (wip)
 	- [ ] server (wip)
 	  - [ ] handle disconnect
@@ -23,13 +36,16 @@
 	  - [ ] handle connect
   
  * Player
-	* Simple Capsule
-	* Melee weapon
-	* Hit scan weapon
-	* Build blocks
+	* [x] Simple Capsule
+	* [ ] Melee weapon (wip)
+	* [ ] Hit scan weapon (wip)
+	* [ ] Build blocks ( n/a )
+	* [ ] Inventory UI
+	* [ ] Hot Bar
+	* [ ] Build mode
  * Map
-	* Prototype Test01
-	* Training Area
+	* [ ] Prototype Test01
+	* [ ] Training Area
 	* 
 
 # To Do List:
