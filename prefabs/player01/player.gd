@@ -3,11 +3,15 @@ extends CharacterBody3D
 signal health_change(health_value)
 
 @onready var camera = $Camera3D
-@onready var anim_player = $AnimationPlayer
-@onready var muzzle_flash = $Camera3D/gun/MuzzleFlash
+#@onready var anim_player = $AnimationPlayer
+#@onready var muzzle_flash = $Camera3D/gun/MuzzleFlash
 @onready var raycast = $Camera3D/RayCast3D
 
 var health = 3
+#editor
+#@export var isMove:bool = false
+#@onready var isMove:bool = false
+var isMove:bool = false
 
 const SPEED = 10.0
 const JUMP_VELOCITY = 10.0
@@ -21,11 +25,13 @@ func _enter_tree():
 
 func _ready():
 	if not is_multiplayer_authority(): return
+	#print("HELL INPUT?")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true;
 
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
+	#print("Hello?")
 	
 	if Input.is_action_just_pressed("ToggleInteractMenu"):
 		#print("HELLO?")
@@ -41,12 +47,14 @@ func _unhandled_input(event):
 		rotate_y(-event.relative.x * 0.005)
 		camera.rotate_x(-event.relative.y * 0.005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
-	if Input.is_action_just_pressed("shoot") and anim_player.current_animation != "shoot":
+	#if Input.is_action_just_pressed("shoot") and anim_player.current_animation != "shoot":
 		#play_shoot_effects()
-		play_shoot_effects.rpc()
-		if raycast.is_colliding():
-			var hit_player = raycast.get_collider()
-			hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
+		#play_shoot_effects.rpc()
+		#if raycast.is_colliding():
+			#var hit_player = raycast.get_collider()
+			#hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
+
+
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
@@ -70,12 +78,17 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
-	if anim_player.current_animation == "shoot":
-		pass
-	elif input_dir != Vector2.ZERO and is_on_floor():
-		anim_player.play("move")
+	if input_dir != Vector2.ZERO and is_on_floor():
+		isMove = true
 	else:
-		anim_player.play("idle")
+		isMove = false
+		
+	#if anim_player.current_animation == "shoot":
+		#pass
+	#elif input_dir != Vector2.ZERO and is_on_floor():
+		#anim_player.play("move")
+	#else:
+		#anim_player.play("idle")
 
 	move_and_slide()
 	
@@ -87,13 +100,13 @@ func receive_damage():
 		position = Vector3.ZERO;
 	health_change.emit(health)
 	
-@rpc("call_local")
-func play_shoot_effects():
-	anim_player.stop()
-	anim_player.play("shoot")
-	muzzle_flash.restart()
-	muzzle_flash.emitting = true
+#@rpc("call_local")
+#func play_shoot_effects():
+	#anim_player.stop()
+	#anim_player.play("shoot")
+	#muzzle_flash.restart()
+	#muzzle_flash.emitting = true
 	
-func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "shoot":
-		anim_player.play("idle")
+#func _on_animation_player_animation_finished(anim_name):
+	#if anim_name == "shoot":
+		#anim_player.play("idle")

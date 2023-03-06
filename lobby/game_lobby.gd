@@ -151,9 +151,12 @@ func _on_multiplayer_spawner_spawned(node):
 func setup_host():
 	MenuLobby.hide()
 	HUD.show()
-	if is_multiplayer_authority():
+	#if is_multiplayer_authority():
+	if true:
 		#print("init set up game...")
-		var selfPeerID = get_tree().get_multiplayer().get_unique_id()
+		#var selfPeerID = get_tree().get_multiplayer().get_unique_id()
+		var selfPeerID = 1 #host id AUTH
+		set_multiplayer_authority(1)
 		# Load world
 		#var world = preload(load_map).instantiate()
 		var world = load(load_map).instantiate()

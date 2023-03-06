@@ -101,7 +101,7 @@ func _on_port_entry_text_changed(new_text):
 		#LEPort.set_cursor_position(LEPort.text.length())
 		#LEPort.set_c
 
-# not sure of this where this but result from multiplayerspawner I think else give error
+#node multiplayerspawner
 func _on_multiplayer_spawner_spawned(data):
 	print("_on_multiplayer_spawner_spawned....", data)
 	pass

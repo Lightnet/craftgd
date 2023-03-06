@@ -1,9 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccloqiflsxmai"]
+[gd_scene load_steps=11 format=3 uid="uid://ccloqiflsxmai"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_4xjwc"]
 [ext_resource type="Texture2D" uid="uid://dsu4i8oftqh0k" path="res://addons/kenney_particle_pack/circle_05.png" id="3_d2u12"]
 [ext_resource type="Script" path="res://chat/gamechat.gd" id="3_ykhnb"]
 [ext_resource type="Script" path="res://lobby/game_lobby.gd" id="5_2a3ko"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xeoab"]
+bg_color = Color(0.6, 0.0901961, 0.0980392, 1)
+
+[sub_resource type="Theme" id="Theme_fhpx8"]
+Button/styles/normal = SubResource("StyleBoxFlat_xeoab")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhncx"]
+bg_color = Color(0, 0.717647, 0.34902, 1)
+
+[sub_resource type="Theme" id="Theme_ba0u2"]
+Button/styles/normal = SubResource("StyleBoxFlat_bhncx")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fq6h4"]
 bg_color = Color(0.533333, 0.109804, 0, 1)
@@ -63,6 +75,7 @@ virtual_keyboard_type = 2
 [node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Server Host Game."
+theme = SubResource("Theme_fhpx8")
 text = "Host"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
@@ -89,6 +102,7 @@ alignment = 1
 [node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Join Server."
+theme = SubResource("Theme_ba0u2")
 text = "Join"
 
 [node name="IUserName" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
@@ -199,6 +213,7 @@ layout_mode = 2
 text = "Send"
 
 [node name="MenuPlayers" type="Control" parent="CanvasLayer/HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -448,4 +463,3 @@ spawn_path = NodePath("..")
 [connection signal="text_submitted" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer/LE_ChatMessage" to="CanvasLayer/Lobby" method="_on_le_chat_message_text_submitted"]
 [connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer2/HBoxContainer/btnRedreshPlayers" to="CanvasLayer/Lobby" method="_on_btn_redresh_players_pressed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Bottom_NavMenus/btnStartGame" to="CanvasLayer/Lobby" method="_on_btn_start_game_pressed"]
-[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
