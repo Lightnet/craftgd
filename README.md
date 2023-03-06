@@ -15,14 +15,14 @@
  * [ ] Build world with blocks and other types.
  * [ ] Simple combat
     * [ ] Basic weapons for melee
-			* [ ] dagger
-		 	* [ ] sword
-		 	* [ ] spear
-		 	* [ ] shield
-		 	* [ ] long sword
-		 	* [ ] axe
-		 	* [ ] pickaxe
-		 	* [ ] hoe
+			 * [ ] dagger
+		 	 * [ ] sword
+		 	 * [ ] spear
+		 	 * [ ] shield
+		 		* [ ] long sword
+		 		* [ ] axe
+		 		* [ ] pickaxe
+		 		* [ ] hoe
 		 	* [ ] sabare
 		 	* [ ] rapier
 		 	* [ ] hammer
