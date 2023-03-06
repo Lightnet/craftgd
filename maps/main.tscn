@@ -50,10 +50,9 @@ layout_mode = 2
 tooltip_text = "Server Host Game."
 text = "Host"
 
-[node name="CheckButton" type="CheckButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+[node name="CBtnUPNP" type="CheckButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-tooltip_text = "Universal Plug and Play for querying and port forwarding.
-Current Disable for dev."
+tooltip_text = "Universal Plug and Play for querying and port forwarding."
 text = "UPNP"
 alignment = 2
 
@@ -71,7 +70,7 @@ alignment = 1
 
 [node name="PortEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-tooltip_text = "Not added yet."
+tooltip_text = "Server Port for host and join same port."
 text = "9999"
 placeholder_text = "Port Number!"
 alignment = 1
@@ -426,6 +425,7 @@ _spawnable_scenes = PackedStringArray("res://prefabs/player01/player.tscn", "res
 spawn_path = NodePath("..")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="toggled" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/CBtnUPNP" to="." method="_on_c_btn_upnp_toggled"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="text_changed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/PortEntry" to="." method="_on_port_entry_text_changed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/btnRandomName" to="." method="_on_btn_random_name_pressed"]

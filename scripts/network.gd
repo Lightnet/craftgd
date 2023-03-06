@@ -2,7 +2,6 @@ extends Node
 
 var hostname = "localhost"
 var PORT = 9999
-
 var isupnp = false
 
 # Player info, associate ID to data, map list

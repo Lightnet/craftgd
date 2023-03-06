@@ -14,12 +14,9 @@ func _unhandled_input(_event):
 @onready var LHUDPlayerName = $CanvasLayer/HUD/AspectRatioContainer/LHUDPlayerName
 
 @onready var LEPort = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/PortEntry
+@onready var CBUPNP = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/CBtnUPNP
 @onready var LineEditRegEx = RegEx.new()
 var old_text = ""
-
-#const Player = preload("res://prefabs/player01/player.tscn")
-var PORT = 9999
-var enet_peer = ENetMultiplayerPeer.new()
 
 var characters = 'abcdefghijklmnopqrstuvwxyz'
 
@@ -28,7 +25,14 @@ func _ready():
 	#print(new_word)
 	IPlayerName.text = new_word
 	LineEditRegEx.compile("^[0-9.]*$")
-
+	
+	LEPort.text = str(Network.PORT)
+	if Network.isupnp:
+		CBUPNP.button_pressed = true
+	else:
+		CBUPNP.button_pressed = false
+	#CBUPNP.button_pressed = true
+	
 func generate_word(chars, length):
 	var word: String = ""
 	var n_char = len(chars)
@@ -90,6 +94,7 @@ func _on_btn_random_name_pressed():
 func _on_port_entry_text_changed(new_text):
 	if LineEditRegEx.search(new_text):
 		old_text = str(new_text)
+		Network.PORT = int(new_text)
 	else:
 		LEPort.text = old_text
 		#LEPort.insert_text_at_caret(old_text)
@@ -100,3 +105,8 @@ func _on_port_entry_text_changed(new_text):
 func _on_multiplayer_spawner_spawned(data):
 	print("_on_multiplayer_spawner_spawned....", data)
 	pass
+
+func _on_c_btn_upnp_toggled(button_pressed):
+	print("button_pressed: ",button_pressed)
+	Network.isupnp = button_pressed
+	pass # Replace with function body.
