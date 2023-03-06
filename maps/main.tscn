@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_4xjwc"]
 [ext_resource type="Texture2D" uid="uid://dsu4i8oftqh0k" path="res://addons/kenney_particle_pack/circle_05.png" id="3_d2u12"]
-[ext_resource type="PackedScene" uid="uid://d1lmd0si3awbb" path="res://chat/prototype_chat_msg.tscn" id="4_7veta"]
+[ext_resource type="Script" path="res://chat/gamechat.gd" id="3_ykhnb"]
 [ext_resource type="Script" path="res://lobby/game_lobby.gd" id="5_2a3ko"]
 [ext_resource type="PackedScene" uid="uid://cokh82rmrm7dc" path="res://lobby/lobby_player_message.tscn" id="5_5bet1"]
 
@@ -47,6 +47,7 @@ vertical_alignment = 1
 
 [node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "Server Host Game."
 text = "Host"
 
 [node name="CheckButton" type="CheckButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
@@ -58,21 +59,34 @@ alignment = 2
 
 [node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "Join Server."
 text = "Join"
 
 [node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "IP Address or Url."
 text = "localhost"
 placeholder_text = "Enter Address to Join Here!"
 alignment = 1
 
+[node name="PortEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Not added yet."
+text = "9999"
+placeholder_text = "Port Number!"
+alignment = 1
+max_length = 5
+virtual_keyboard_type = 2
+
 [node name="IUserName" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "User Name!"
 placeholder_text = "User Name Require!"
 alignment = 1
 
 [node name="btnRandomName" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "Random Name Letters."
 text = "Random Name"
 
 [node name="lTokenKey" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
@@ -134,7 +148,6 @@ size_flags_vertical = 0
 text = "Player Name"
 
 [node name="ChatRegion" type="VBoxContainer" parent="CanvasLayer/HUD"]
-visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -144,55 +157,29 @@ offset_top = -239.0
 offset_right = 468.0
 offset_bottom = -1.0
 grow_vertical = 0
+script = ExtResource("3_ykhnb")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/HUD/ChatRegion"]
 layout_direction = 3
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Chat Messages"
+vertical_scroll_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer"]
+[node name="VBC_ChatMsg" type="VBoxContainer" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HBoxContainer" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer" instance=ExtResource("4_7veta")]
-layout_mode = 2
-
-[node name="Label6" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Testing..."
-
-[node name="Label7" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Testing..."
-
-[node name="Label8" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Testing..."
-
-[node name="Label9" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Testing..."
-
-[node name="Label10" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Testing..."
-
-[node name="Label11" type="Label" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Testing..."
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/ChatRegion"]
 layout_mode = 2
 
-[node name="TextEdit" type="TextEdit" parent="CanvasLayer/HUD/ChatRegion/HBoxContainer"]
+[node name="TE_ChatMsg" type="LineEdit" parent="CanvasLayer/HUD/ChatRegion/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Type message here!"
 
-[node name="Button" type="Button" parent="CanvasLayer/HUD/ChatRegion/HBoxContainer"]
+[node name="btnSend" type="Button" parent="CanvasLayer/HUD/ChatRegion/HBoxContainer"]
 layout_mode = 2
 text = "Send"
 
@@ -322,6 +309,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+vertical_scroll_mode = 2
 
 [node name="VBC_Messages" type="VBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/SC_Chat"]
 layout_mode = 2
@@ -368,6 +356,7 @@ text = "Refresh"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+vertical_scroll_mode = 2
 
 [node name="VBC_Players" type="VBoxContainer" parent="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer2/PlayerList"]
 layout_mode = 2
@@ -442,10 +431,11 @@ spawn_path = NodePath("..")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="text_changed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/PortEntry" to="." method="_on_port_entry_text_changed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/btnRandomName" to="." method="_on_btn_random_name_pressed"]
-[connection signal="visibility_changed" from="CanvasLayer/Lobby" to="CanvasLayer/Lobby" method="_on_visibility_changed"]
+[connection signal="text_submitted" from="CanvasLayer/HUD/ChatRegion/HBoxContainer/TE_ChatMsg" to="CanvasLayer/HUD/ChatRegion" method="_on_te_chat_msg_text_submitted"]
+[connection signal="item_rect_changed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/SC_Chat/VBC_Messages" to="CanvasLayer/Lobby" method="_on_vbc_messages_item_rect_changed"]
 [connection signal="text_submitted" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer/LE_ChatMessage" to="CanvasLayer/Lobby" method="_on_le_chat_message_text_submitted"]
-[connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer/btnSendMsg" to="." method="_on_btn_send_msg_pressed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer2/HBoxContainer/btnRedreshPlayers" to="CanvasLayer/Lobby" method="_on_btn_redresh_players_pressed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Bottom_NavMenus/btnStartGame" to="CanvasLayer/Lobby" method="_on_btn_start_game_pressed"]
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

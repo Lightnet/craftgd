@@ -1,6 +1,7 @@
 extends PanelContainer
 # https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html
 # https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html#signals
+# https://www.reddit.com/r/godot/comments/qhbi8y/how_to_scroll_a_scrollcontainer_to_the_bottom/
 # 
 
 @onready var UIPlayerlist = $VBoxContainer/HBC_Content/VBoxContainer2/PlayerList/VBC_Players
@@ -13,17 +14,24 @@ extends PanelContainer
 
 @onready var health_bar =  $"../HUD/AspectRatioContainer/HealthBar"
 
+@onready var scrollbar_msg = $VBoxContainer/HBC_Content/VBoxContainer/SC_Chat
+@onready var vmessages = $VBoxContainer/HBC_Content/VBoxContainer/SC_Chat/VBC_Messages
+
 var UIPlayerData = preload("res://lobby/lobby_player_row01.tscn")
 
 var UIChatMessage = preload("res://lobby/lobby_player_message.tscn")
-
 var playercount = 0
 var oldplayercount = 0
+
+var max_scroll_length = 0
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
 	#getPlayerList()
+	#scrollbar_messages.connect("changed", scroll_to_bottom)
+	#max_scroll = scrollbar_messages.max_value 
 	#pass
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -34,6 +42,8 @@ func _process(_delta):
 		oldplayercount = playercount
 		getPlayerList()
 	pass
+	
+	update_scroll_msg()
 
 #@rpc("any_peer")
 func getPlayerList():
@@ -63,15 +73,15 @@ func _on_btn_redresh_players_pressed():
 	#rpc("getPlayerList")
 	pass
 
-func _on_visibility_changed():
-	print("_on_visibility_changed")
-	if visible == true:
-		getPlayerList()
-	pass
+#func _on_visibility_changed():
+	#print("_on_visibility_changed")
+	#if visible == true:
+		#getPlayerList()
+	#pass
 
 func _on_btn_start_game_pressed():
 	if is_multiplayer_authority():
-		print("AUTH HELLO")
+		print("Server AUTH")
 		setup_host() 
 		#rpc_id(1,"setup_host")#fail
 		#rpc("setup_host")#
@@ -81,23 +91,24 @@ func _on_btn_start_game_pressed():
 
 @rpc("any_peer","unreliable")
 func ChatMessageAppend(msg):
-	print("msg",msg )
+	#print("msg",msg )
 	var peer_id = self.multiplayer.get_remote_sender_id()
 	var playername = ""
 	if Network.player_info[peer_id] == null:
 		return
 	playername = Network.player_info[peer_id]["name"]
-	print("peer_id: ", peer_id)
+	#print("peer_id: ", peer_id)
 	var player_msg = UIChatMessage.instantiate()
 	player_msg.get_node("LPlayerName").text = playername
 	player_msg.get_node("Message").text = msg
 	UIChatMessages.add_child(player_msg)
+	#update_scroll_msg()
 	pass
 
 func _on_le_chat_message_text_submitted(new_text):
-	print("CHAT TEXT INPUT ", new_text)
-	var peer_id = get_tree().get_multiplayer().get_unique_id()
-	print("peer_id", peer_id)
+	#print("CHAT TEXT INPUT ", new_text)
+	#var peer_id = get_tree().get_multiplayer().get_unique_id()
+	#print("peer_id", peer_id)
 	var playername = Network.my_info["name"]
 	#var playerlist = Network.player_info
 	#print("PLAYERS:", playerlist)
@@ -107,8 +118,19 @@ func _on_le_chat_message_text_submitted(new_text):
 	player_msg.get_node("LPlayerName").text = playername
 	player_msg.get_node("Message").text = new_text
 	UIChatMessages.add_child(player_msg)
+	#update_scroll_msg()
 	#boardcast all but not self
 	rpc("ChatMessageAppend",  new_text)
+	pass
+
+func update_scroll_msg(): #loop update
+	#await get_tree().create_timer(500).timeout
+	
+	if scrollbar_msg: #check if node exist
+		var scrollbar = scrollbar_msg.get_v_scroll_bar()
+		if max_scroll_length != scrollbar.max_value: #check if scroll diff
+			max_scroll_length = scrollbar.max_value
+			scrollbar_msg.scroll_vertical = scrollbar.max_value
 	pass
 
 func update_health_bar(health_value):
@@ -124,7 +146,7 @@ func setup_host():
 	MenuLobby.hide()
 	HUD.show()
 	if is_multiplayer_authority():
-		print("init set up game...")
+		#print("init set up game...")
 		var selfPeerID = get_tree().get_multiplayer().get_unique_id()
 		# Load world
 		var world = load(load_map).instantiate()
@@ -165,7 +187,7 @@ func pre_configure_game():
 	#get_tree().set_pause(true) # Pre-pause
 	MenuLobby.hide()
 	HUD.show()
-	print("init set up game...")
+	#print("init set up game...")
 	#var selfPeerID = get_tree().get_multiplayer().get_unique_id()
 	# Load world
 	var world = load(load_map).instantiate()
@@ -226,4 +248,9 @@ func post_configure_game():
 		get_tree().set_pause(false)
 		print("UN PAUSE GAME.... ")
 		# Game starts now!
+	pass
+
+func _on_vbc_messages_item_rect_changed():
+	#print("LOBBY MESSAGE V CHANGE...")
+	#update_scroll_msg()
 	pass

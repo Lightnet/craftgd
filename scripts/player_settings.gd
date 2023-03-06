@@ -21,20 +21,20 @@ func save_settings():
 	var file = FileAccess.open(SAVED_SETTINGS_FILE, FileAccess.WRITE)
 	file.store_var(settings_data)
 	file = null
-	print("Save")
+	#print("Save")
 	
 func load_settings():
-	print("checking load file exist")
+	#print("checking load file exist")
 	if not FileAccess.file_exists(SAVED_SETTINGS_FILE):
 		settings_data = {
 			"auto_walk": true,
 			"play_music": true,
 		}
 		save_settings()
-	print("... load file")
+	#print("... load file")
 	var file = FileAccess.open(SAVED_SETTINGS_FILE, FileAccess.READ)
 	settings_data = file.get_var()
-	print("DATA", settings_data)
+	#print("DATA", settings_data)
 	#print("DATA", settings_data["auto_walk"])
 	#print("DATA", settings_data.auto_walk)
 	file = null

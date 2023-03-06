@@ -21,12 +21,21 @@ func _enter_tree():
 
 func _ready():
 	if not is_multiplayer_authority(): return
-	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true;
 
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
+	
+	if Input.is_action_just_pressed("ToggleInteractMenu"):
+		print("HELLO?")
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		pass
 	
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * 0.005)

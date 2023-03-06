@@ -8,14 +8,14 @@ func _unhandled_input(_event):
 @onready var menu_lobby = $CanvasLayer/Lobby
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 @onready var hud = $CanvasLayer/HUD
-@onready var health_bar =  $CanvasLayer/HUD/AspectRatioContainer/HealthBar
-
 @onready var IPlayerName = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/IUserName 
 @onready var LNetworkType = $CanvasLayer/Lobby/VBoxContainer/HBoxContainer/LNetworkType
-
 @onready var LHUDNetworkType = $CanvasLayer/HUD/AspectRatioContainer/LHUDNetworkType
 @onready var LHUDPlayerName = $CanvasLayer/HUD/AspectRatioContainer/LHUDPlayerName
 
+@onready var LEPort = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/PortEntry
+@onready var LineEditRegEx = RegEx.new()
+var old_text = ""
 
 const Player = preload("res://prefabs/players/player.tscn")
 var PORT = 9999
@@ -27,6 +27,7 @@ func _ready():
 	var new_word = generate_word(characters, 11)
 	print(new_word)
 	IPlayerName.text = new_word
+	LineEditRegEx.compile("^[0-9.]*$")
 
 func generate_word(chars, length):
 	var word: String = ""
@@ -68,7 +69,7 @@ func _on_join_button_pressed():
 	LHUDNetworkType.text= "Client"
 	LHUDPlayerName.text = IPlayerName.text
 	#print("client")
-	
+# network call from node path
 func return_mainmenu():
 	#print("server disconnected!", peer_id)
 	hud.hide()
@@ -79,23 +80,22 @@ func return_mainmenu():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	#pass
 
-func update_health_bar(health_value):
-	health_bar.value = health_value
-
-func _on_multiplayer_spawner_spawned(node):
-	if node.is_multiplayer_authority():
-		node.health_change.connect(update_health_bar)
-
 func _on_btn_random_name_pressed():
 	var new_word = generate_word(characters, 11)
 	print(new_word)
 	IPlayerName.text = new_word
 
-func _on_btn_send_msg_pressed():
-	rpc("SendMessage")
-	pass # Replace with function body.
-	
-@rpc("any_peer", "unreliable")	
-func SendMessage(_username, _message):
-	print("Hello server?", get_tree().get_multiplayer().is_server())
-	pass 
+# https://godotengine.org/qa/112648/lineedit-make-sure-only-getting-number-input-least-validate
+# https://godotengine.org/qa/86533/textedit-caret-position-there-ignore-tab-enter-indentations
+func _on_port_entry_text_changed(new_text):
+	if LineEditRegEx.search(new_text):
+		old_text = str(new_text)
+	else:
+		LEPort.text = old_text
+		#LEPort.insert_text_at_caret(old_text)
+		#LEPort.set_cursor_position(LEPort.text.length())
+		#LEPort.set_c
+
+
+#func _on_port_entry_text_change_rejected(rejected_substring):
+	#pass # Replace with function body.
