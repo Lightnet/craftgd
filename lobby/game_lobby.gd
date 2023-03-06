@@ -68,6 +68,7 @@ func getPlayerList():
 	for p in player_info:
 		var player_row1 = UIPlayerData.instantiate()
 		player_row1.get_node("LPlayerName").text = player_info[p]["name"]
+		player_row1.playerid = p
 		UIPlayerlist.add_child(player_row1)
 		#print("player_info >>:", p)
 		#pass

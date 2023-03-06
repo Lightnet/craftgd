@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://dqux62ww404ba"]
+[gd_scene load_steps=2 format=3 uid="uid://dqux62ww404ba"]
+
+[ext_resource type="Script" path="res://lobby/lobby_player.gd" id="1_b7kqu"]
 
 [node name="HBC_PlayerRow" type="HBoxContainer"]
+script = ExtResource("1_b7kqu")
 
 [node name="LPlayerName" type="Label" parent="."]
 layout_mode = 2
@@ -21,3 +24,5 @@ layout_mode = 2
 [node name="btnKick" type="Button" parent="."]
 layout_mode = 2
 text = "Kick"
+
+[connection signal="pressed" from="btnKick" to="." method="_on_btn_kick_pressed"]

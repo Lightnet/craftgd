@@ -14,7 +14,7 @@ func _unhandled_input(_event):
 @onready var LHUDPlayerName = $CanvasLayer/HUD/AspectRatioContainer/LHUDPlayerName
 
 @onready var LEPort = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/PortEntry
-@onready var CBUPNP = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/CBtnUPNP
+@onready var CBUPNP = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/CBtnUPNP
 @onready var LineEditRegEx = RegEx.new()
 var old_text = ""
 
@@ -110,3 +110,8 @@ func _on_c_btn_upnp_toggled(button_pressed):
 	print("button_pressed: ",button_pressed)
 	Network.isupnp = button_pressed
 	pass # Replace with function body.
+
+
+func _on_btn_quit_pressed():
+	get_tree().quit()
+	pass

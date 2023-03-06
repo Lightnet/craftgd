@@ -47,13 +47,15 @@ func client_join():
 	enet_peer.create_client(hostname,PORT)
 	if enet_peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		OS.alert("Failed to start multiplayer client.")
-		return
+		return false
+	print("Client STATUS: ", enet_peer.get_connection_status())
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(_player_connected)
 	multiplayer.peer_disconnected.connect(_player_disconnected)
 	multiplayer.server_disconnected.connect(_server_disconnect)
 	#multiplayer.peer_disconnected.connect(return_menu)
 	#print("client")
+	return true
 
 func _player_connected(id):
 	# Called on both clients and server when a peer connects. Send my info to it.

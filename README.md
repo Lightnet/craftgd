@@ -11,6 +11,43 @@
 # Information:
  Simple test fps. Sample test build from youtube https://www.youtube.com/@DevLogLogan
 
+# Design Plans:
+ * [ ] Build world with blocks and other types.
+ * [ ] Simple combat
+  * [ ] Basic weapons for melee
+		* [ ] dagger
+		* [ ] sword
+		* [ ] spear
+		* [ ] shield
+		* [ ] long sword
+		* [ ] axe
+		* [ ] pickaxe
+		* [ ] hoe
+		* [ ] sabare
+		* [ ] rapier
+		* [ ] hammer
+		* [ ] bayonet
+		* [ ] polearms
+		* [ ] blunt weapons
+	* [ ] simple projectile
+		* [ ] bow
+		* [ ] cross
+		* [ ] gun
+		* [ ] dart
+	* [ ] interact props
+		* [ ] damage
+		* [ ] health
+	* [ ] build mode
+		* [ ] deployable
+		* [ ] create
+		* [ ] destory
+		* [ ] logic script or blocks
+	* [ ] mobs
+		* [ ] puppets
+		* [ ] training doll
+
+
+
 # Features / To Do List:
  - [ ] config
 	 - [x] save and load (testing)
@@ -23,7 +60,8 @@
  - [ ] Lobby (wip)
  		- [x] Chat Message
 		- [x] Player List
-				- [ ] kick
+				- [x] kick
+				- [ ] pm
 		- [x] start game (simple load map and players)
 		- [ ] game settings
 		- [ ] options
@@ -46,7 +84,8 @@
  * Map
 	* [ ] Prototype Test01
 	* [ ] Training Area
-	* 
+	* [ ] Prototype Quick Test
+	* [ ] Prototype Offline Test
 
 # To Do List:
  * Player model
@@ -65,6 +104,8 @@
 
 # Bugs: 
  * Note this project is work in progress. It subject change in dev builds.
+ * Host Input Pause when start game if clicked.
+ * Host HealthBar not reduce only client works.
 
 # Links:
  * https://www.youtube.com/watch?v=n8D3vEx7NAE
