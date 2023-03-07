@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddc3hysgntajl"]
+[gd_scene load_steps=6 format=3 uid="uid://ddc3hysgntajl"]
 
 [ext_resource type="Script" path="res://prefabs/player01/player.gd" id="1_vevhy"]
-[ext_resource type="Script" path="res://prefabs/prototype_hitscan_gun/hitscan_gun01.gd" id="2_0v2w3"]
 [ext_resource type="PackedScene" uid="uid://cvhlxefd6ktrr" path="res://prefabs/prototype_build/build_tool.tscn" id="3_quw2l"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_82yuq"]
@@ -45,7 +44,6 @@ collision_mask = 2
 
 [node name="RightHand" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
-script = ExtResource("2_0v2w3")
 
 [node name="build_tool" parent="Camera3D/RightHand" instance=ExtResource("3_quw2l")]
 

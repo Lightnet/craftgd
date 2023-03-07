@@ -448,7 +448,7 @@ text = "Prototype Build"
 [node name="level" type="Node" parent="world"]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://prefabs/player01/player.tscn", "res://maps/prototype01.tscn")
+_spawnable_scenes = PackedStringArray("res://prefabs/player01/player.tscn", "res://maps/prototype01.tscn", "res://prefabs/prototyping/placeholders/ph_light_cube.tscn", "res://prefabs/prototyping/light_grid_cube.tscn")
 spawn_path = NodePath("..")
 
 [connection signal="text_changed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/PortEntry" to="." method="_on_port_entry_text_changed"]
