@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccwb3rotvosmj"]
+
+[ext_resource type="Texture2D" uid="uid://copvsy5ee03vg" path="res://addons/kenney_prototype_textures/light/texture_02.png" id="1_pk8v7"]
+[ext_resource type="Texture2D" uid="uid://cneuuahph6r34" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="2_ua110"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v2kdo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujyfd"]
+render_priority = 1
+albedo_texture = ExtResource("1_pk8v7")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xtr8"]
+albedo_texture = ExtResource("2_ua110")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_sn8nv"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3vo1e"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+
+[node name="OrangeCubeStaticBody3D" type="StaticBody3D"]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_v2kdo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_ujyfd")
+material_overlay = SubResource("StandardMaterial3D_4xtr8")
+mesh = SubResource("BoxMesh_sn8nv")
+skeleton = NodePath("../../StaticBody3D/MeshInstance3D")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_3vo1e")

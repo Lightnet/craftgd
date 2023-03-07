@@ -9,11 +9,21 @@
  * Lobby builds
 
 # Information:
- Simple test fps. Sample test build from youtube https://www.youtube.com/@DevLogLogan
+ Working on toward craft build with some simple first person view.
+
+ Will have some element of shooter, farming, buildings and other prototype builds.
+
+ Idea base on minecraft, shooter games, open world and other things.
+
+ Working on sandbox world.
 
 # Design Plans:
  * [ ] Build world with blocks and other types.
  * [ ] Simple combat
+  * [ ] fist
+	* [ ] knock out
+	* [ ] wall jump
+	* [ ] wall climb
 
  * [ ] Basic weapons for melee
 	* [ ] dagger
@@ -113,3 +123,5 @@
  * https://www.youtube.com/watch?v=ybya2TbHgSE
  * https://godotengine.org
  
+# Credits:
+ * https://www.youtube.com/@DevLogLogan FPS set up.
