@@ -5,11 +5,11 @@
 
 # Information:
 
-```
+```godot
 int get_multiplayer_authority ( ) const
 bool is_multiplayer_authority ( ) const
 void set_multiplayer_authority ( int id, bool recursive=true )
-
+print("isServer: ",multiplayer.is_server())
 ```
  * authority over the node on the network
  * ultimately defaults to peer ID 1 (the server)

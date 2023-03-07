@@ -22,10 +22,19 @@ func _ready():
 	#local_ph_spawn()
 	pass 
 
-func _unhandled_input(_event):
-	"""
+func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
-	
+	#print("Hello Test ID AUTH: ", get_multiplayer_authority())
+	if Input.is_action_just_pressed("BuildBlock") and event.is_pressed():
+		print("is_server", multiplayer.is_server())
+		print("REMOTE PEER ID :", multiplayer.get_remote_sender_id())
+		print("PEER ID :", multiplayer.get_unique_id())
+		print("AUTH PEER ID :", get_multiplayer_authority())
+		pass
+	if Input.is_action_just_pressed("ClearTest"):
+		print("....")
+		pass	
+	"""
 	if Input.is_action_just_pressed("BuildBlock"):
 		count+=1
 		var mybuild = prebuild_obj.instantiate()

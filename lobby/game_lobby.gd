@@ -37,7 +37,6 @@ var max_scroll_length = 0
 	#max_scroll = scrollbar_messages.max_value 
 	#pass
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	#print("Hello")
@@ -47,10 +46,8 @@ func _process(_delta):
 		oldplayercount = playercount
 		getPlayerList()
 	pass
-	
 	update_scroll_msg()
 
-#@rpc("any_peer")
 func getPlayerList():
 	if UIPlayerlist == null:
 		return
@@ -79,13 +76,8 @@ func _on_btn_redresh_players_pressed():
 	#rpc("getPlayerList")
 	pass
 
-#func _on_visibility_changed():
-	#print("_on_visibility_changed")
-	#if visible == true:
-		#getPlayerList()
-	#pass
-
 func _on_btn_start_game_pressed():
+	print("CHECKING...")
 	if is_multiplayer_authority():
 		print("Server AUTH")
 		setup_host() 
@@ -147,74 +139,69 @@ func _on_multiplayer_spawner_spawned(node):
 		node.health_change.connect(update_health_bar)
 
 # set up host map and player
-#@rpc("call_remote")
 func setup_host():
+	show_hud()
+	if is_multiplayer_authority():
+		#boardcast to other remote player 
+		#rpc("pre_configure_game")
+		#rpc_id(1,"spawn_map") #nope #current host
+		rpc("spawn_map")
+		#rpc("setup_players")
+		setup_players()
+		rpc("show_hud")
+	pass
+	
+# HUD
+@rpc("call_remote")
+func show_hud():
 	MenuLobby.hide()
 	HUD.show()
-	if is_multiplayer_authority():
-	#if true:
-		#print("init set up game...")
-		#var selfPeerID = get_tree().get_multiplayer().get_unique_id()
-		var selfPeerID = 1 #host id AUTH
-		set_multiplayer_authority(1)
-		# Load world
-		#var world = preload(load_map).instantiate()
-		var world = load(load_map).instantiate()
-		get_node("/root/Main/world/level").add_child(world)
-		
-		# Load my player
-		var my_player = preload("res://prefabs/player01/player.tscn").instantiate()
-		my_player.set_name(str(selfPeerID))
-		
-		#if my_player.is_multiplayer_authority():
-		my_player.health_change.connect(update_health_bar)
-		#add_child(my_player)
-		EntityPlayers.add_child(my_player)
-		#my_player.local_spawn_tool.rpc()
-		my_player.spawn_tool.rpc()
-		
-		
-		# Load other players
-		var player_info = Network.player_info
-		var PlayerIn = preload("res://prefabs/player01/player.tscn")
-		for p in player_info:
-			var player = PlayerIn.instantiate()
-			player.set_name(str(p))
-			EntityPlayers.add_child(player)
-			player.spawn_tool.rpc()
-			
-			#player.set_multiplayer_authority(p)#???
-			#if player.is_multiplayer_authority():
-				#player.health_change.connect(update_health_bar)
-			#player.set_network_master(p) # Will be explained later
-			#get_node("/root/Main/world/players").add_child(player)
-			#add_child(player)
-			pass
-	
-	#boardcast to other remote player 
-	#rpc("pre_configure_game")
-	rpc("spawn_map")
 	pass
 
 @rpc("call_remote")
 func spawn_map():
-	MenuLobby.hide()
-	HUD.show()
 	
 	#var selfPeerID = get_tree().get_multiplayer().get_unique_id()
 	# Load world
 	var world = load(load_map).instantiate()
 	get_node("/root/Main/world/level").add_child(world)
-
-	# Load my player
-	#var my_player = preload("res://prefabs/player01/player.tscn").instantiate()
-	#my_player.set_name(str(selfPeerID))
-	#if my_player.is_multiplayer_authority():
-	#my_player.health_change.connect(update_health_bar)
-	#add_child(my_player)
-	#EntityPlayers.add_child(my_player)
 	pass
 
+#@rpc("authority")
+func setup_players():
+	#print("init set up game...")
+	var treeSelfPeerID = get_tree().get_multiplayer().get_unique_id()
+	print("treeSelfPeerID: ", treeSelfPeerID)
+	var selfPeerID = 1 #host id AUTH
+	set_multiplayer_authority(1)
+	# Load world
+	#var world = preload(load_map).instantiate()
+	var world = load(load_map).instantiate()
+	get_node("/root/Main/world/level").add_child(world)
+	
+	# Load my player
+	var my_player = preload("res://prefabs/player01/player.tscn").instantiate()
+	my_player.set_name(str(selfPeerID))
+	my_player.health_change.connect(update_health_bar)
+	EntityPlayers.add_child(my_player)
+	my_player.local_spawn_tool.rpc()
+	my_player.spawn_tool.rpc()
+	my_player.set_auth()
+	
+	
+	# Load other players
+	var player_info = Network.player_info
+	var PlayerIn = preload("res://prefabs/player01/player.tscn")
+	for p in player_info:
+		var player = PlayerIn.instantiate()
+		player.set_name(str(p))
+		EntityPlayers.add_child(player)
+		player.my_spawn_tool() # host spawn tool
+		player.spawn_tool.rpc() # boardcast
+		#player.set_multiplayer_authority(p)
+		#player.set_auth.rpc() # boardcast
+		pass
+	pass
 
 #init setup game config
 @rpc("call_remote")
@@ -287,7 +274,4 @@ func post_configure_game():
 		# Game starts now!
 	pass
 
-func _on_vbc_messages_item_rect_changed():
-	#print("LOBBY MESSAGE V CHANGE...")
-	#update_scroll_msg()
-	pass
+#END SCRIPT

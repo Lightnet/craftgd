@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cpwj7qk256b85"]
+
+[node name="MenuPlayers" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LPlayers" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Players"
+
+[node name="btnVoteKick" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Vote Kick"
+
+[node name="btnMapVote" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Map Vote"
+
+[node name="btnReport" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Report"

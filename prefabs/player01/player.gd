@@ -23,36 +23,40 @@ const JUMP_VELOCITY = 10.0
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = 20
 
+#@rpc("call_remote")
+@rpc("call_local")
+func set_auth():
+	set_multiplayer_authority(str(name).to_int())
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	camera.current = true;
+	pass
+
 func _enter_tree():
+	print("is_server: ", multiplayer.is_server())
+	print("set_multiplayer_authority: ", name)
 	set_multiplayer_authority(str(name).to_int())
 	#print("PEER ID: ",name)
 	#rpc("local_spawn_tool")#nope
 	pass
 	
 func _ready():
-	
-	#if is_multiplayer_authority():
-	if multiplayer.is_server():
-		var peer_id = multiplayer.get_remote_sender_id()
-		print("_ready")
-		print("isServer: ",multiplayer.is_server())
-		print("isAuth: ",is_multiplayer_authority())
-		print("peer_id: ", peer_id)
-		print("ENTITY PEER ID: ",name)
-		print("get_multiplayer_authority(): ",get_multiplayer_authority())
-		#rpc("local_spawn_tool")
-		#rpc("spawn_tool")
-	else:
-		rpc("spawn_tool")
-		
 	if not is_multiplayer_authority(): return
 	#print("HELL INPUT?")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true;
 	#local_spawn_tool()
+	pass
 	
+func my_spawn_tool():
+	var mytool = IPlaceHolder.instantiate()
+	#var name_id = mytool.name +"_"+ Helper.generate_random_numbers()
+	#mytool.name = 
+	#mytool.set_multiplayer_authority(str(name).to_int())
+	RightHand.add_child(mytool)
+	#spawn_tool()
+	#rpc("spawn_tool", str(name).to_int())
+	pass
 	
-#@rpc("call_local")
 @rpc("call_local")
 func local_spawn_tool():
 	var mytool = IPlaceHolder.instantiate()
@@ -88,28 +92,11 @@ func spawn_tool():
 
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
-	#print("Hello?")
-	
-	if Input.is_action_just_pressed("ToggleInteractMenu"):
-		#print("HELLO?")
-		#if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		#else:
-			#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		pass
-	
+
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * 0.005)
 		camera.rotate_x(-event.relative.y * 0.005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
-	#if Input.is_action_just_pressed("shoot") and anim_player.current_animation != "shoot":
-		#play_shoot_effects()
-		#play_shoot_effects.rpc()
-		#if raycast.is_colliding():
-			#var hit_player = raycast.get_collider()
-			#hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
@@ -137,13 +124,6 @@ func _physics_process(delta):
 		isMove = true
 	else:
 		isMove = false
-		
-	#if anim_player.current_animation == "shoot":
-		#pass
-	#elif input_dir != Vector2.ZERO and is_on_floor():
-		#anim_player.play("move")
-	#else:
-		#anim_player.play("idle")
 
 	move_and_slide()
 	

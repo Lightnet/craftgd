@@ -25,7 +25,7 @@ func setPlayerName(_name):
 
 func server_host():
 	var enet_peer = ENetMultiplayerPeer.new()
-	print("PORT: ",str(PORT), "SERVER ADDRESS: ", str(HOST))
+	#print("PORT: ",str(PORT), "SERVER ADDRESS: ", str(HOST))
 	enet_peer.create_server(int(PORT), PLAYERS)
 	if enet_peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		OS.alert("Failed to start multiplayer server.")
@@ -33,11 +33,6 @@ func server_host():
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(_player_connected)
 	multiplayer.peer_disconnected.connect(_player_disconnected)
-	
-	#multiplayer.peer_connected.connect(add_player)
-	#multiplayer.peer_disconnected.connect(remove_player)
-	
-	#add_player(multiplayer.get_unique_id())
 	#print("game server")
 	if isupnp:
 		upnp_setup()
@@ -46,18 +41,17 @@ func client_join():
 	#main_menu.hide()
 	#hud.show()
 	var enet_peer = ENetMultiplayerPeer.new()
-	print("PORT: ",str(PORT), "SERVER ADDRESS: ", str(HOST))
+	#print("PORT: ",str(PORT), "SERVER ADDRESS: ", str(HOST))
 	enet_peer.create_client(HOST,PORT)
-	print("enet_peer.get_connection_status(): ", enet_peer.get_connection_status())
+	#print("enet_peer.get_connection_status(): ", enet_peer.get_connection_status())
 	if enet_peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		OS.alert("Failed to start multiplayer client.")
 		return false
-	print("Client STATUS: ", enet_peer.get_connection_status())
+	#print("Client STATUS: ", enet_peer.get_connection_status())
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(_player_connected)
 	multiplayer.peer_disconnected.connect(_player_disconnected)
 	multiplayer.server_disconnected.connect(_server_disconnect)
-	#multiplayer.peer_disconnected.connect(return_menu)
 	#print("client")
 	return true
 

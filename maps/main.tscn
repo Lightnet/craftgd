@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccloqiflsxmai"]
+[gd_scene load_steps=10 format=3 uid="uid://ccloqiflsxmai"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_4xjwc"]
 [ext_resource type="Texture2D" uid="uid://dsu4i8oftqh0k" path="res://addons/kenney_particle_pack/circle_05.png" id="3_d2u12"]
-[ext_resource type="Script" path="res://chat/gamechat.gd" id="3_ykhnb"]
 [ext_resource type="Script" path="res://lobby/game_lobby.gd" id="5_2a3ko"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xeoab"]
@@ -38,6 +37,7 @@ offset_right = -432.0
 offset_bottom = -225.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
 layout_mode = 2
@@ -156,6 +156,7 @@ custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("3_d2u12")
 expand_mode = 1
 
@@ -163,6 +164,7 @@ expand_mode = 1
 clip_contents = true
 custom_minimum_size = Vector2(512, 20)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_fq6h4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_e4r4r")
 max_value = 3.0
@@ -181,108 +183,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Player Name"
 
-[node name="ChatRegion" type="VBoxContainer" parent="CanvasLayer/HUD"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -239.0
-offset_right = 468.0
-offset_bottom = -1.0
-grow_vertical = 0
-script = ExtResource("3_ykhnb")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/HUD/ChatRegion"]
-layout_direction = 3
-layout_mode = 2
-size_flags_vertical = 3
-tooltip_text = "Chat Messages"
-vertical_scroll_mode = 2
-
-[node name="VBC_ChatMsg" type="VBoxContainer" parent="CanvasLayer/HUD/ChatRegion/ScrollContainer"]
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/ChatRegion"]
-layout_mode = 2
-
-[node name="TE_ChatMsg" type="LineEdit" parent="CanvasLayer/HUD/ChatRegion/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Type message here!"
-
-[node name="btnSend" type="Button" parent="CanvasLayer/HUD/ChatRegion/HBoxContainer"]
-layout_mode = 2
-text = "Send"
-
-[node name="MenuPlayers" type="Control" parent="CanvasLayer/HUD"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/MenuPlayers"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/MenuPlayers/VBoxContainer"]
-layout_mode = 2
-
-[node name="LPlayers" type="Label" parent="CanvasLayer/HUD/MenuPlayers/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Players"
-
-[node name="btnVoteKick" type="Button" parent="CanvasLayer/HUD/MenuPlayers/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Vote Kick"
-
-[node name="btnMapVote" type="Button" parent="CanvasLayer/HUD/MenuPlayers/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Map Vote"
-
-[node name="btnReport" type="Button" parent="CanvasLayer/HUD/MenuPlayers/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Report"
-
-[node name="MenuAdmin" type="Control" parent="CanvasLayer/HUD"]
-editor_description = "For game rules. Tools for kick, teleport, npc and other things."
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/MenuAdmin"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/MenuAdmin/VBoxContainer"]
-layout_mode = 2
-
-[node name="LAdmin" type="Label" parent="CanvasLayer/HUD/MenuAdmin/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Admin Access"
-
-[node name="btnPlayers" type="Button" parent="CanvasLayer/HUD/MenuAdmin/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Players"
-
 [node name="Lobby" type="PanelContainer" parent="CanvasLayer"]
 visible = false
 anchors_preset = 15
@@ -290,6 +190,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("5_2a3ko")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Lobby"]
@@ -427,23 +328,6 @@ layout_mode = 2
 text = "Lobby Area"
 horizontal_alignment = 1
 
-[node name="WaterMark" type="Control" parent="CanvasLayer"]
-visible = false
-show_behind_parent = true
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="LineEdit" type="Label" parent="CanvasLayer/WaterMark"]
-layout_mode = 0
-offset_right = 158.0
-offset_bottom = 31.0
-text = "Prototype Build"
-
 [node name="world" type="Node" parent="."]
 
 [node name="entities" type="Node" parent="world"]
@@ -463,8 +347,6 @@ spawn_path = NodePath("..")
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/btnRandomName" to="." method="_on_btn_random_name_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/btnQuit" to="." method="_on_btn_quit_pressed"]
-[connection signal="text_submitted" from="CanvasLayer/HUD/ChatRegion/HBoxContainer/TE_ChatMsg" to="CanvasLayer/HUD/ChatRegion" method="_on_te_chat_msg_text_submitted"]
-[connection signal="item_rect_changed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/SC_Chat/VBC_Messages" to="CanvasLayer/Lobby" method="_on_vbc_messages_item_rect_changed"]
 [connection signal="text_submitted" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer/LE_ChatMessage" to="CanvasLayer/Lobby" method="_on_le_chat_message_text_submitted"]
 [connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Content/VBoxContainer2/HBoxContainer/btnRedreshPlayers" to="CanvasLayer/Lobby" method="_on_btn_redresh_players_pressed"]
 [connection signal="pressed" from="CanvasLayer/Lobby/VBoxContainer/HBC_Bottom_NavMenus/btnStartGame" to="CanvasLayer/Lobby" method="_on_btn_start_game_pressed"]

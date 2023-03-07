@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://cejw302s2ia0d"]
+
+[ext_resource type="Script" path="res://chat/gamechat.gd" id="1_qe3xh"]
+
+[node name="ChatRegion" type="VBoxContainer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -239.0
+offset_right = 468.0
+offset_bottom = -1.0
+grow_vertical = 0
+script = ExtResource("1_qe3xh")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_direction = 3
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Chat Messages"
+vertical_scroll_mode = 2
+
+[node name="VBC_ChatMsg" type="VBoxContainer" parent="ScrollContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TE_ChatMsg" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Type message here!"
+
+[node name="btnSend" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Send"
+
+[connection signal="text_submitted" from="HBoxContainer/TE_ChatMsg" to="." method="_on_te_chat_msg_text_submitted"]

@@ -111,7 +111,7 @@ func _on_c_btn_upnp_toggled(button_pressed):
 	Network.isupnp = button_pressed
 	pass # Replace with function body.
 
-
+#quit app
 func _on_btn_quit_pressed():
 	get_tree().quit()
 	pass
