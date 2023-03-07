@@ -4,27 +4,32 @@ extends Node3D
 @onready var preplaceholder = preload("res://prefabs/prototyping/placeholders/ph_light_cube.tscn")
 @onready var prebuild_obj = preload("res://prefabs/prototyping/light_grid_cube.tscn")
 
-@onready var blocks = 
+@onready var blocks = $"/root/Main/world/blocks"
 
 var placeholder = null
 var snap_grid = 1 #32 = 1
 var offset = Vector3(0,0.5,0)
 var place_location = Vector3.ZERO
 var select_block = null
+var count = 100
 
 func _ready():
-	placeholder = preplaceholder.instantiate()
-	get_node("/root/Main/world/blocks").add_child(placeholder)
+	# Only process for the local player.
+	#set_process(get_multiplayer_authority() == multiplayer.get_unique_id())
+	#rpc("local_ph_spawn")
+	
+	#if not is_multiplayer_authority(): return
+	#local_ph_spawn()
 	pass 
 
 func _unhandled_input(_event):
-	
+	"""
 	if not is_multiplayer_authority(): return
 	
 	if Input.is_action_just_pressed("BuildBlock"):
 		count+=1
 		var mybuild = prebuild_obj.instantiate()
-		var block_id = "block" + str(count)
+		var block_id = mybuild.name + Helper.generate_random_name()
 		mybuild.name = block_id
 		mybuild.global_transform.origin = place_location
 		get_node("/root/Main/world/blocks").add_child(mybuild)
@@ -38,7 +43,8 @@ func _unhandled_input(_event):
 			select_block.queue_free()
 			select_block = null
 		pass
-	#pass
+	"""
+	pass
 	
 func _process(_delta):
 	#print("hit_obj", raycast)
@@ -62,8 +68,6 @@ func _process(_delta):
 			pass
 	pass
 
-var count = 100
-
 @rpc("call_remote")
 func place_block(block_id, pos):
 	#print("remote build?")
@@ -76,4 +80,25 @@ func place_block(block_id, pos):
 @rpc("any_peer","call_local")
 func remove_block():
 	
+	pass
+
+#@rpc("call_local")
+func local_ph_spawn():
+	#if not is_multiplayer_authority(): return
+	
+	placeholder = preplaceholder.instantiate()
+	#var block_id = placeholder.name + "_" + Helper.generate_random_name()
+	#placeholder.name = block_id
+	var block_id = placeholder.name + "_" + Helper.generate_random_numbers()
+	placeholder.name = block_id
+	get_node("/root/Main").add_child(placeholder)
+	
+	#rpc("ph_spawn", block_id)
+	pass
+
+@rpc("call_remote")
+func ph_spawn(block_id):
+	placeholder = preplaceholder.instantiate()
+	placeholder.name = block_id
+	get_node("/root/Main").add_child(placeholder)
 	pass

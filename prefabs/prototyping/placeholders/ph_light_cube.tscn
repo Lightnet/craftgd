@@ -24,13 +24,13 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/sync = true
 
-[node name="OrangeCubeStaticBody3D" type="StaticBody3D"]
+[node name="SB3D_OrangeCube" type="StaticBody3D"]
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_v2kdo")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshCube" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_ujyfd")
 material_overlay = SubResource("StandardMaterial3D_4xtr8")
 mesh = SubResource("BoxMesh_sn8nv")

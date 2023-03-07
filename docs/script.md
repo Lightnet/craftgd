@@ -8,6 +8,7 @@ func _unhandled_input(_event):
 func _physics_process(_delta):
 func _process(delta):
 func _enter_tree():
+func _exit_tree():
 ```
 
 

@@ -7,6 +7,9 @@ signal health_change(health_value)
 #@onready var muzzle_flash = $Camera3D/gun/MuzzleFlash
 @onready var raycast = $Camera3D/RayCast3D
 
+@onready var RightHand = $Camera3D/RightHand
+@onready var IPlaceHolder = preload("res://prefabs/prototype_build/build_tool.tscn")
+
 var health = 3
 #editor
 #@export var isMove:bool = false
@@ -22,12 +25,66 @@ var gravity = 20
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
-
+	#print("PEER ID: ",name)
+	#rpc("local_spawn_tool")#nope
+	pass
+	
 func _ready():
+	
+	#if is_multiplayer_authority():
+	if multiplayer.is_server():
+		var peer_id = multiplayer.get_remote_sender_id()
+		print("_ready")
+		print("isServer: ",multiplayer.is_server())
+		print("isAuth: ",is_multiplayer_authority())
+		print("peer_id: ", peer_id)
+		print("ENTITY PEER ID: ",name)
+		print("get_multiplayer_authority(): ",get_multiplayer_authority())
+		#rpc("local_spawn_tool")
+		#rpc("spawn_tool")
+	else:
+		rpc("spawn_tool")
+		
 	if not is_multiplayer_authority(): return
 	#print("HELL INPUT?")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true;
+	#local_spawn_tool()
+	
+	
+#@rpc("call_local")
+@rpc("call_local")
+func local_spawn_tool():
+	var mytool = IPlaceHolder.instantiate()
+	#var name_id = mytool.name +"_"+ Helper.generate_random_numbers()
+	#mytool.name = 
+	#mytool.set_multiplayer_authority(str(name).to_int())
+	RightHand.add_child(mytool)
+	#spawn_tool()
+	#rpc("spawn_tool", str(name).to_int())
+	pass
+	
+# https://docs.godotengine.org/en/stable/classes/class_nodepath.html
+@rpc("any_peer")
+func spawn_tool():
+	#var peer_id = multiplayer.get_remote_sender_id()
+	#print("call_remote spawn_tool")
+	#print("isServer: ",multiplayer.is_server())
+	#print("isAuth: ",is_multiplayer_authority())
+	#print("peer_id: ",peer_id)
+	#print("assign_id: ",_id)
+	var mytool = IPlaceHolder.instantiate()
+	RightHand.add_child(mytool)
+	
+	
+	#mytool.set_multiplayer_authority(str(name).to_int())
+	#RightHand.add_child(mytool)
+	#$Camera3D/RightHand.add_child(mytool)
+	#print("DATA>>>: /root/Main/"+str(peer_id)+"/Camera3D/RightHand")
+	#get_node("/root/Main/"+str(peer_id)+"/Camera3D/RightHand").add_child(mytool)
+	#var obj = get_node("/root/Main").get_children()
+	#print("obj: ", obj)
+	pass
 
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
@@ -53,8 +110,6 @@ func _unhandled_input(event):
 		#if raycast.is_colliding():
 			#var hit_player = raycast.get_collider()
 			#hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
-
-
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return

@@ -1,7 +1,8 @@
 extends Node
 
-var hostname = "localhost"
+var HOST = "localhost"
 var PORT = 9999
+var PLAYERS = 1
 var isupnp = false
 
 # Player info, associate ID to data, map list
@@ -24,7 +25,8 @@ func setPlayerName(_name):
 
 func server_host():
 	var enet_peer = ENetMultiplayerPeer.new()
-	enet_peer.create_server(PORT)
+	print("PORT: ",str(PORT), "SERVER ADDRESS: ", str(HOST))
+	enet_peer.create_server(int(PORT), PLAYERS)
 	if enet_peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		OS.alert("Failed to start multiplayer server.")
 		return
@@ -44,7 +46,9 @@ func client_join():
 	#main_menu.hide()
 	#hud.show()
 	var enet_peer = ENetMultiplayerPeer.new()
-	enet_peer.create_client(hostname,PORT)
+	print("PORT: ",str(PORT), "SERVER ADDRESS: ", str(HOST))
+	enet_peer.create_client(HOST,PORT)
+	print("enet_peer.get_connection_status(): ", enet_peer.get_connection_status())
 	if enet_peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		OS.alert("Failed to start multiplayer client.")
 		return false

@@ -17,3 +17,5 @@ mesh = SubResource("BoxMesh_u22dy")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+process_mode = 4
+public_visibility = false

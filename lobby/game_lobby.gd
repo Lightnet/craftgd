@@ -151,8 +151,8 @@ func _on_multiplayer_spawner_spawned(node):
 func setup_host():
 	MenuLobby.hide()
 	HUD.show()
-	#if is_multiplayer_authority():
-	if true:
+	if is_multiplayer_authority():
+	#if true:
 		#print("init set up game...")
 		#var selfPeerID = get_tree().get_multiplayer().get_unique_id()
 		var selfPeerID = 1 #host id AUTH
@@ -165,10 +165,13 @@ func setup_host():
 		# Load my player
 		var my_player = preload("res://prefabs/player01/player.tscn").instantiate()
 		my_player.set_name(str(selfPeerID))
+		
 		#if my_player.is_multiplayer_authority():
 		my_player.health_change.connect(update_health_bar)
 		#add_child(my_player)
 		EntityPlayers.add_child(my_player)
+		#my_player.local_spawn_tool.rpc()
+		my_player.spawn_tool.rpc()
 		
 		
 		# Load other players
@@ -177,14 +180,16 @@ func setup_host():
 		for p in player_info:
 			var player = PlayerIn.instantiate()
 			player.set_name(str(p))
+			EntityPlayers.add_child(player)
+			player.spawn_tool.rpc()
+			
 			#player.set_multiplayer_authority(p)#???
 			#if player.is_multiplayer_authority():
 				#player.health_change.connect(update_health_bar)
 			#player.set_network_master(p) # Will be explained later
 			#get_node("/root/Main/world/players").add_child(player)
-			EntityPlayers.add_child(player)
 			#add_child(player)
-			#pass
+			pass
 	
 	#boardcast to other remote player 
 	#rpc("pre_configure_game")

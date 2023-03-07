@@ -1,5 +1,42 @@
 # multiplayer api:
  * https://godotengine.org/article/multiplayer-in-godot-4-0-scene-replication/
+ * https://kidscancode.org/godot_recipes/4.x/basics/node_communication/
+
+
+# Information:
+
+```
+int get_multiplayer_authority ( ) const
+bool is_multiplayer_authority ( ) const
+void set_multiplayer_authority ( int id, bool recursive=true )
+
+```
+ * authority over the node on the network
+ * ultimately defaults to peer ID 1 (the server)
+
+To set peer client set_multiplayer_authority for access their player character.
+
+```
+Enumerations¶
+enum RPCMode:
+
+RPCMode RPC_MODE_DISABLED = 0
+
+Used with Node.rpc_config to disable a method or property for all RPC calls, making it unavailable. Default for all methods.
+
+RPCMode RPC_MODE_ANY_PEER = 1
+
+Used with Node.rpc_config to set a method to be callable remotely by any peer. Analogous to the @rpc("any_peer") annotation. Calls are accepted from all remote peers, no matter if they are node's authority or not.
+
+RPCMode RPC_MODE_AUTHORITY = 2
+
+Used with Node.rpc_config to set a method to be callable remotely only by the current multiplayer authority (which is the server by default). Analogous to the @rpc("authority") annotation. See Node.set_multiplayer_authority.
+
+
+```
+
+
+
 
 
 

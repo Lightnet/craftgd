@@ -72,6 +72,11 @@ alignment = 1
 max_length = 5
 virtual_keyboard_type = 2
 
+[node name="SpinBox" type="SpinBox" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Max Number of players."
+prefix = "Players"
+
 [node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Server Host Game."
