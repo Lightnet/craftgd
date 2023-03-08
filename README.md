@@ -25,6 +25,13 @@
 	* [ ] wall jump
 	* [ ] wall climb
 
+	* [ ] protype items
+		* [ ] build tool to place blocks and delete (wip)
+		* [ ] melee (wip)
+		* [ ] projectile ( n/a )
+		* [ ] storage menu ( n/a )
+		* [ ] npc menu ( n/a )
+
  * [ ] Basic weapons for melee
 	* [ ] dagger
 	* [ ] sword

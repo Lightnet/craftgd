@@ -6,6 +6,8 @@ func _unhandled_input(_event):
 
 @onready var main_menu = $CanvasLayer/MainMenu
 @onready var menu_lobby = $CanvasLayer/Lobby
+@onready var menu_settings = $CanvasLayer/Settings
+
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 @onready var hud = $CanvasLayer/HUD
 @onready var IPlayerName = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/IUserName 
@@ -115,3 +117,7 @@ func _on_c_btn_upnp_toggled(button_pressed):
 func _on_btn_quit_pressed():
 	get_tree().quit()
 	pass
+
+func _on_btn_settings_pressed():
+	menu_settings.show()
+	pass # Replace with function body.
