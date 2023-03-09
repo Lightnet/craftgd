@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk81jqfpbp5ww"]
+
+[ext_resource type="Script" path="res://prefabs/enemy01/enemy01.gd" id="1_o6h3i"]
+[ext_resource type="PackedScene" uid="uid://8a5x3f7xc6s8" path="res://prefabs/healthbar3d/health_bar_3d.tscn" id="1_vt6js"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2j6rg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tjw3l"]
+
+[node name="enemy" type="CharacterBody3D"]
+script = ExtResource("1_o6h3i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_2j6rg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_tjw3l")
+
+[node name="HealthBar3D" parent="." instance=ExtResource("1_vt6js")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2296, 0)
