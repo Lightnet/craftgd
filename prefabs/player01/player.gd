@@ -8,7 +8,8 @@ signal health_change(health_value)
 @onready var raycast = $Camera3D/RayCast3D
 
 @onready var RightHand = $Camera3D/RightHand
-@onready var IPlaceHolder = preload("res://prefabs/prototype_build/build_tool.tscn")
+#@onready var IPlaceHolder = preload("res://prefabs/prototype_build/build_tool.tscn")
+@onready var IPlaceHolder = preload("res://prefabs/prototype_projectile/prototype_gun_01.tscn")
 
 var health = 3
 #editor

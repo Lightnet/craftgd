@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://blinan8ttnyql"]
+
+[ext_resource type="Script" path="res://prefabs/prototype_projectile/prototype_gun_01.gd" id="1_i4x4p"]
+[ext_resource type="PackedScene" uid="uid://blvr303ap33fu" path="res://prefabs/prototype_projectile/projectile01.tscn" id="2_2agah"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sjmc7"]
+size = Vector3(0.1, 0.1, 0.3)
+
+[node name="prototype_gun01" type="Node3D"]
+script = ExtResource("1_i4x4p")
+bullet = ExtResource("2_2agah")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0977371)
+mesh = SubResource("BoxMesh_sjmc7")
+
+[node name="firepoint" type="Node3D" parent="Node3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.211426)
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
