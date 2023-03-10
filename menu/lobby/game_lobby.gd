@@ -24,10 +24,8 @@ var UIChatMessage = preload("res://menu/lobby/lobby_player_message.tscn")
 
 #need to config for server current local
 var load_map = "res://maps/prototype01.tscn"
-
 var playercount = 0
 var oldplayercount = 0
-
 var max_scroll_length = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -45,8 +43,9 @@ func _process(_delta):
 		#print("UPDATE ME?????")
 		oldplayercount = playercount
 		getPlayerList()
-	pass
+	
 	update_scroll_msg()
+	pass
 
 func getPlayerList():
 	if UIPlayerlist == null:
@@ -77,9 +76,9 @@ func _on_btn_redresh_players_pressed():
 	pass
 
 func _on_btn_start_game_pressed():
-	print("CHECKING...")
+	#print("CHECKING...")
 	if is_multiplayer_authority():
-		print("Server AUTH")
+		#print("Server AUTH")
 		setup_host() 
 		#rpc_id(1,"setup_host")#fail
 		#rpc("setup_host")#
@@ -170,8 +169,8 @@ func spawn_map():
 #@rpc("authority")
 func setup_players():
 	#print("init set up game...")
-	var treeSelfPeerID = get_tree().get_multiplayer().get_unique_id()
-	print("treeSelfPeerID: ", treeSelfPeerID)
+	#var treeSelfPeerID = get_tree().get_multiplayer().get_unique_id()
+	#print("treeSelfPeerID: ", treeSelfPeerID)
 	var selfPeerID = 1 #host id AUTH
 	set_multiplayer_authority(1)
 	# Load world

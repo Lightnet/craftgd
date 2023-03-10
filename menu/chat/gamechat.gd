@@ -1,7 +1,7 @@
 extends Node
- # https://godotengine.org/qa/12831/can-anyone-explain-to-me-unhandled-input-and-handled-input
+# https://godotengine.org/qa/12831/can-anyone-explain-to-me-unhandled-input-and-handled-input
+# https://godotengine.org/qa/3558/how-to-check-whether-a-node-is-active
 @onready var UIChatMessage = preload("res://menu/chat/player_message.tscn")
-
 @onready var UIChatMessages = $ScrollContainer/VBC_ChatMsg
 @onready var UIScrollMessages = $ScrollContainer
 @onready var UIInputChatMessage = $HBoxContainer/TE_ChatMsg
@@ -17,6 +17,7 @@ var max_scroll_length = 0
 #func _unhandled_input(event):
 func _input(_event):
 	if chatbox:
+		#print("chatbox.is_visible()",chatbox.is_visible())#nope
 		if Input.is_action_just_released("Comand") and chatbox.is_visible_in_tree() == true:
 			#print("Here..?", chatbox.visible)
 			#print("Here is_visible_in_tree?", chatbox.is_visible_in_tree())

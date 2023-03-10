@@ -33,8 +33,8 @@ func set_auth():
 	pass
 
 func _enter_tree():
-	print("is_server: ", multiplayer.is_server())
-	print("set_multiplayer_authority: ", name)
+	#print("is_server: ", multiplayer.is_server())
+	#print("set_multiplayer_authority: ", name)
 	set_multiplayer_authority(str(name).to_int())
 	#print("PEER ID: ",name)
 	#rpc("local_spawn_tool")#nope

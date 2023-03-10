@@ -4,6 +4,7 @@ var HOST = "localhost"
 var PORT = 9999
 var PLAYERS = 1
 var isupnp = false
+var headless = false
 
 # Player info, associate ID to data, map list
 var player_info = {}
@@ -71,7 +72,7 @@ func _player_disconnected(id):
 		player.queue_free()
 		
 func _server_disconnect():
-	var node_main = get_node_or_null("/root/Main")
+	var node_main = get_node_or_null("/root/Main/CanvasLayer/MainMenu")
 	if node_main:
 		node_main.return_mainmenu()
 	pass

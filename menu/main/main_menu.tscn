@@ -117,7 +117,10 @@ text = "Settings"
 layout_mode = 2
 text = "Quit"
 
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/PortEntry" to="." method="_on_port_entry_text_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer/CBtnHeadless" to="." method="_on_c_btn_headless_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer/CBtnUPNP" to="." method="_on_c_btn_upnp_toggled"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/btnRandomName" to="." method="_on_btn_random_name_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/btnSettings" to="." method="_on_btn_settings_pressed"]
