@@ -18,9 +18,9 @@ extends PanelContainer
 @onready var scrollbar_msg = $VBoxContainer/HBC_Content/VBoxContainer/SC_Chat
 @onready var vmessages = $VBoxContainer/HBC_Content/VBoxContainer/SC_Chat/VBC_Messages
 
-var UIPlayerData = preload("res://lobby/lobby_player_row01.tscn")
+var UIPlayerData = preload("res://menu/lobby/lobby_player_row01.tscn")
 
-var UIChatMessage = preload("res://lobby/lobby_player_message.tscn")
+var UIChatMessage = preload("res://menu/lobby/lobby_player_message.tscn")
 
 #need to config for server current local
 var load_map = "res://maps/prototype01.tscn"

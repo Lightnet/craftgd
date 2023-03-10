@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cpwj7qk256b85"]
 
 [node name="MenuPlayers" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,9 +28,9 @@ text = "Players"
 layout_mode = 2
 text = "Vote Kick"
 
-[node name="btnMapVote" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="btnParty" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Map Vote"
+text = "Party"
 
 [node name="btnReport" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2

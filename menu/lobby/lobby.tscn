@@ -1,0 +1,152 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhaotcq2nkc4x"]
+
+[ext_resource type="Script" path="res://menu/lobby/game_lobby.gd" id="1_gu8ya"]
+
+[node name="Lobby" type="PanelContainer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_gu8ya")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LLobby" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Lobby Area [Dev Builds]"
+horizontal_alignment = 1
+
+[node name="LNetworkType" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="LPlayerName" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " Player Name:"
+
+[node name="LPlayerName2" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Guest"
+
+[node name="HBC_NavMenus" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="btnLeave" type="Button" parent="VBoxContainer/HBC_NavMenus"]
+layout_mode = 2
+text = "Leave"
+
+[node name="HBC_Content" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/HBC_Content"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBC_Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LChatLogs" type="Label" parent="VBoxContainer/HBC_Content/VBoxContainer"]
+layout_mode = 2
+text = "Chat Logs"
+horizontal_alignment = 1
+
+[node name="SC_Chat" type="ScrollContainer" parent="VBoxContainer/HBC_Content/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical_scroll_mode = 2
+
+[node name="VBC_Messages" type="VBoxContainer" parent="VBoxContainer/HBC_Content/VBoxContainer/SC_Chat"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBC_Content/VBoxContainer"]
+layout_mode = 2
+
+[node name="LE_ChatMessage" type="LineEdit" parent="VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="btnSendMsg" type="Button" parent="VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Send"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/HBC_Content"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBC_Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBC_Content/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LPlayers" type="Label" parent="VBoxContainer/HBC_Content/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Players"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btnRedreshPlayers" type="Button" parent="VBoxContainer/HBC_Content/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Refresh"
+
+[node name="PlayerList" type="ScrollContainer" parent="VBoxContainer/HBC_Content/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical_scroll_mode = 2
+
+[node name="VBC_Players" type="VBoxContainer" parent="VBoxContainer/HBC_Content/VBoxContainer2/PlayerList"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="VBoxContainer/HBC_Content"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="HBC_Bottom_NavMenus" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="btnGameMode" type="Button" parent="VBoxContainer/HBC_Bottom_NavMenus"]
+layout_mode = 2
+text = "Game Mode"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/HBC_Bottom_NavMenus"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="btnStartGame" type="Button" parent="VBoxContainer/HBC_Bottom_NavMenus"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="VBoxContainer/HBC_Bottom_NavMenus"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="btnOptions" type="Button" parent="VBoxContainer/HBC_Bottom_NavMenus"]
+layout_mode = 2
+text = "Options"
+
+[node name="LLobby2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Lobby Area"
+horizontal_alignment = 1
+
+[connection signal="text_submitted" from="VBoxContainer/HBC_Content/VBoxContainer/HBoxContainer/LE_ChatMessage" to="." method="_on_le_chat_message_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/HBC_Content/VBoxContainer2/HBoxContainer/btnRedreshPlayers" to="." method="_on_btn_redresh_players_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBC_Bottom_NavMenus/btnStartGame" to="." method="_on_btn_start_game_pressed"]

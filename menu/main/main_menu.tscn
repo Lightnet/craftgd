@@ -1,0 +1,124 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxservbvuwtht"]
+
+[ext_resource type="Script" path="res://menu/main/main_menu.gd" id="1_c0klr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xeoab"]
+bg_color = Color(0.6, 0.0901961, 0.0980392, 1)
+
+[sub_resource type="Theme" id="Theme_fhpx8"]
+Button/styles/normal = SubResource("StyleBoxFlat_xeoab")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhncx"]
+bg_color = Color(0, 0.717647, 0.34902, 1)
+
+[sub_resource type="Theme" id="Theme_ba0u2"]
+Button/styles/normal = SubResource("StyleBoxFlat_bhncx")
+
+[node name="MainMenu" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 432.0
+offset_top = 225.0
+offset_right = -432.0
+offset_bottom = -225.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_c0klr")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AddressEntry" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "IP Address or Url."
+text = "localhost"
+placeholder_text = "Enter Address to Join Here!"
+alignment = 1
+
+[node name="PortEntry" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Server Port for host and join same port."
+text = "9999"
+placeholder_text = "Port Number!"
+alignment = 1
+max_length = 5
+virtual_keyboard_type = 2
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Max Number of players."
+prefix = "Players"
+
+[node name="HostButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Server Host Game."
+theme = SubResource("Theme_fhpx8")
+text = "Host"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CBtnHeadless" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Headless Host Server. Run on background. Not added."
+text = "Headless"
+alignment = 2
+
+[node name="CBtnUPNP" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Universal Plug and Play for querying and port forwarding."
+text = "UPNP"
+alignment = 2
+
+[node name="lTokenKey" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "For access to server for vertify token."
+placeholder_text = "Token Key"
+alignment = 1
+
+[node name="JoinButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Join Server."
+theme = SubResource("Theme_ba0u2")
+text = "Join"
+
+[node name="IUserName" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "User Name!"
+placeholder_text = "User Name Require!"
+alignment = 1
+
+[node name="btnRandomName" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Random Name Letters."
+text = "Random Name"
+
+[node name="btnSettings" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="btnQuit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/btnRandomName" to="." method="_on_btn_random_name_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/btnSettings" to="." method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/btnQuit" to="." method="_on_btn_quit_pressed"]

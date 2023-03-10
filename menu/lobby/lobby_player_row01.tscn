@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqux62ww404ba"]
+[gd_scene load_steps=2 format=3 uid="uid://bentjpukr0q2x"]
 
-[ext_resource type="Script" path="res://lobby/lobby_player.gd" id="1_b7kqu"]
+[ext_resource type="Script" path="res://menu/lobby/lobby_player.gd" id="1_6cgg3"]
 
 [node name="HBC_PlayerRow" type="HBoxContainer"]
-script = ExtResource("1_b7kqu")
+script = ExtResource("1_6cgg3")
 
 [node name="LPlayerName" type="Label" parent="."]
 layout_mode = 2

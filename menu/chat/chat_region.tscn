@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cejw302s2ia0d"]
+[gd_scene load_steps=2 format=3 uid="uid://5ucoijx2oa0k"]
 
-[ext_resource type="Script" path="res://chat/gamechat.gd" id="1_qe3xh"]
+[ext_resource type="Script" path="res://menu/chat/gamechat.gd" id="1_qe3xh"]
 
 [node name="ChatRegion" type="VBoxContainer"]
 anchors_preset = 2

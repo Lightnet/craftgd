@@ -17,8 +17,10 @@ func generate_word(chars, length):
 		word += chars[randi()% n_char]
 	return word
 
-func generate_random_name():
-	return generate_word(characters, 32)
+func generate_random_name(_len):
+	if _len == null:
+		_len = 11
+	return generate_word(characters, _len)
 
 func generate_random_numbers():
 	return generate_word(numbers, 32)
