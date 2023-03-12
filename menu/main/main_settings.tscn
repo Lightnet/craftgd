@@ -1,9 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwgva5mghy0dv"]
+[gd_scene load_steps=4 format=3 uid="uid://bwgva5mghy0dv"]
 
 [ext_resource type="Script" path="res://scripts/Settings.gd" id="1_om7v7"]
+[ext_resource type="Script" path="res://menu/main/keybind.gd" id="2_0edj2"]
+[ext_resource type="Script" path="res://scripts/guikeybinding.gd" id="2_q4jqx"]
 
 [node name="MainSettings" type="MarginContainer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -81,6 +82,135 @@ popup/item_1/text = "Normal"
 popup/item_1/id = 1
 popup/item_2/text = "Hard"
 popup/item_2/id = 2
+
+[node name="Key Binding" type="TabBar" parent="VBoxContainer/Panel/TabContainer"]
+layout_mode = 2
+script = ExtResource("2_q4jqx")
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Panel/TabContainer/Key Binding"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.5
+offset_right = 48.5
+offset_bottom = 66.0
+grow_horizontal = 2
+columns = 2
+
+[node name="LForward" type="Label" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer"]
+layout_mode = 2
+text = "Forward:"
+
+[node name="btnForward" type="Button" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer" groups=["button_keys"]]
+layout_mode = 2
+text = "W"
+script = ExtResource("2_0edj2")
+action_name = "up"
+
+[node name="LBack" type="Label" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer"]
+layout_mode = 2
+text = "Back:"
+
+[node name="btnBack" type="Button" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer" groups=["button_keys"]]
+layout_mode = 2
+text = "S"
+script = ExtResource("2_0edj2")
+action_name = "back"
+
+[node name="LRight" type="Label" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer"]
+layout_mode = 2
+text = "Right:"
+
+[node name="btnRight" type="Button" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer" groups=["button_keys"]]
+layout_mode = 2
+text = "A"
+script = ExtResource("2_0edj2")
+action_name = "right"
+
+[node name="LLeft" type="Label" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer"]
+layout_mode = 2
+text = "Left:"
+
+[node name="btnLeft" type="Button" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer" groups=["button_keys"]]
+layout_mode = 2
+text = "D"
+script = ExtResource("2_0edj2")
+action_name = "left"
+
+[node name="LJump" type="Label" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer"]
+layout_mode = 2
+text = "Jump:"
+
+[node name="btnJump" type="Button" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer" groups=["button_keys"]]
+layout_mode = 2
+text = "Space"
+script = ExtResource("2_0edj2")
+action_name = "jump"
+
+[node name="LFire" type="Label" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer"]
+layout_mode = 2
+text = "Fire:"
+
+[node name="btnFire" type="Button" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer" groups=["button_keys"]]
+layout_mode = 2
+text = "F"
+script = ExtResource("2_0edj2")
+action_name = "fire"
+
+[node name="LAltfire" type="Label" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer"]
+layout_mode = 2
+text = "Alt Fire:"
+
+[node name="btnAltFire" type="Button" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer" groups=["button_keys"]]
+layout_mode = 2
+mouse_filter = 1
+text = "S"
+script = ExtResource("2_0edj2")
+action_name = "altfire"
+
+[node name="LCrouch" type="Label" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer"]
+layout_mode = 2
+text = "Crouch:"
+
+[node name="btnCrouch" type="Button" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer" groups=["button_keys"]]
+layout_mode = 2
+text = "Shift"
+script = ExtResource("2_0edj2")
+action_name = "crouch"
+
+[node name="LBreak" type="Label" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer"]
+layout_mode = 2
+text = "Break:"
+
+[node name="btnBreak" type="Button" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer" groups=["button_keys"]]
+layout_mode = 2
+text = "Space
+"
+script = ExtResource("2_0edj2")
+action_name = "break"
+
+[node name="LInteract" type="Label" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer"]
+layout_mode = 2
+text = "Interact:"
+
+[node name="btnInteract" type="Button" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer" groups=["button_keys"]]
+layout_mode = 2
+text = "F
+"
+script = ExtResource("2_0edj2")
+action_name = "interact"
+
+[node name="LMelee" type="Label" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer"]
+layout_mode = 2
+text = "Melee:"
+
+[node name="btnMelee" type="Button" parent="VBoxContainer/Panel/TabContainer/Key Binding/GridContainer" groups=["button_keys"]]
+layout_mode = 2
+text = "E
+"
+script = ExtResource("2_0edj2")
+action_name = "melee"
 
 [node name="Graphic" type="TabBar" parent="VBoxContainer/Panel/TabContainer"]
 visible = false

@@ -13,9 +13,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_pressed("Fire") and can_shoot:
+	if Input.is_action_pressed("fire") and can_shoot:
 		shoot()
-		print("shoot...")
+		#print("shoot...")
 	pass
 
 func shoot():

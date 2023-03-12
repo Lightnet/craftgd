@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhpg7408tcwtm"]
+
+[ext_resource type="Script" path="res://prefabs/player00/player0.gd" id="1_v2k5i"]
+[ext_resource type="PackedScene" uid="uid://b6m5ri5jky3ya" path="res://prefabs/prototype/grapplinghook/grapplinghook01.tscn" id="2_g8x28"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_82yuq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ls172"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yejnr"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("Camera3D:rotation")
+properties/2/spawn = true
+properties/2/sync = true
+
+[node name="Player" type="CharacterBody3D" groups=["Enemy"]]
+editor_description = "Player pawn."
+collision_layer = 2
+script = ExtResource("1_v2k5i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_82yuq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ls172")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50613, 0)
+
+[node name="RayCast3D2" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -50)
+collision_mask = 3
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -50)
+collision_mask = 2
+
+[node name="RightHand" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
+
+[node name="grapplinghook" parent="Camera3D/RightHand" instance=ExtResource("2_g8x28")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_yejnr")

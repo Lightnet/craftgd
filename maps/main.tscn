@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bowkysu0ejvc3"]
+[gd_scene load_steps=9 format=3 uid="uid://bowkysu0ejvc3"]
 
+[ext_resource type="PackedScene" uid="uid://dyk3oji6q18yy" path="res://ui/ui_sounds.tscn" id="1_bjnoo"]
 [ext_resource type="PackedScene" uid="uid://bxservbvuwtht" path="res://menu/main/main_menu.tscn" id="1_y7vtr"]
 [ext_resource type="Texture2D" uid="uid://dsu4i8oftqh0k" path="res://addons/kenney_particle_pack/circle_05.png" id="3_d2u12"]
 [ext_resource type="PackedScene" uid="uid://5ucoijx2oa0k" path="res://menu/chat/chat_region.tscn" id="3_hh5nb"]
@@ -13,6 +14,9 @@ bg_color = Color(0.533333, 0.109804, 0, 1)
 bg_color = Color(0.0509804, 0.72549, 0, 1)
 
 [node name="Main" type="Node"]
+
+[node name="UISounds" parent="." instance=ExtResource("1_bjnoo")]
+root_path = NodePath("../CanvasLayer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

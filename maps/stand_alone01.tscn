@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cxiydhpiqae88"]
+[gd_scene load_steps=14 format=3 uid="uid://cxiydhpiqae88"]
 
 [ext_resource type="Texture2D" uid="uid://cneuuahph6r34" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="1_c8mjx"]
 [ext_resource type="PackedScene" uid="uid://ckvysroefrhwm" path="res://prefabs/prototyping/orange_grid_cube.tscn" id="2_7dnay"]
 [ext_resource type="PackedScene" uid="uid://00mbiccm7nu6" path="res://prefabs/prototyping/gray_grid_cube.tscn" id="3_0rs31"]
 [ext_resource type="PackedScene" uid="uid://dk81jqfpbp5ww" path="res://prefabs/enemy01/enemy.tscn" id="4_h5ug8"]
-[ext_resource type="PackedScene" uid="uid://cvd25ncte1k5q" path="res://prefabs/prototype/vehicle01/vehicle01.tscn" id="5_8ibp6"]
+[ext_resource type="PackedScene" uid="uid://dhpg7408tcwtm" path="res://prefabs/player00/player0.tscn" id="5_wp7bu"]
+[ext_resource type="PackedScene" uid="uid://cf5dpb81bcl2v" path="res://prefabs/prototype/turret01/turret_01.tscn" id="6_r5puo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0swlo"]
 size = Vector3(100, 1, 100)
@@ -64,6 +65,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -7)
 [node name="GrayCubeStaticBody3D5" parent="." instance=ExtResource("3_0rs31")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -7)
 
+[node name="GrayCubeStaticBody3D6" parent="." instance=ExtResource("3_0rs31")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, -7)
+
+[node name="GrayCubeStaticBody3D7" parent="." instance=ExtResource("3_0rs31")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.5, -7)
+
+[node name="GrayCubeStaticBody3D8" parent="." instance=ExtResource("3_0rs31")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 13.5, -7)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6ide3")
 
@@ -77,5 +87,37 @@ replication_config = SubResource("SceneReplicationConfig_fvto5")
 [node name="enemy" parent="." instance=ExtResource("4_h5ug8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57054, 1.14027, -2.36042)
 
-[node name="vehicle01" parent="." instance=ExtResource("5_8ibp6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.76379, 1.2814, -1.2639)
+[node name="Player" parent="." instance=ExtResource("5_wp7bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51953, 0, -0.031239)
+
+[node name="turret01" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_r5puo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.95947, 0, -0.0627425)
+target = NodePath("../Player")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1

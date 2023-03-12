@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk81jqfpbp5ww"]
+[gd_scene load_steps=6 format=3 uid="uid://dk81jqfpbp5ww"]
 
 [ext_resource type="Script" path="res://prefabs/enemy01/enemy01.gd" id="1_o6h3i"]
 [ext_resource type="PackedScene" uid="uid://8a5x3f7xc6s8" path="res://prefabs/healthbar3d/health_bar_3d.tscn" id="1_vt6js"]
@@ -6,6 +6,14 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2j6rg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tjw3l"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_d650b"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
 
 [node name="enemy" type="CharacterBody3D"]
 script = ExtResource("1_o6h3i")
@@ -18,3 +26,6 @@ mesh = SubResource("CapsuleMesh_tjw3l")
 
 [node name="HealthBar3D" parent="." instance=ExtResource("1_vt6js")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2296, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_d650b")

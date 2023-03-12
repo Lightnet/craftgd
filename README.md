@@ -4,9 +4,8 @@
  * Godot 4 Stable
 
 # Status:
- * unstable
- * prototyping
- * Lobby builds
+ * Unstable
+ * Prototyping
 
 # Information:
  Working on toward craft build with some simple first person view.
@@ -19,54 +18,33 @@
 
 # Design Plans:
  * [ ] Build world with blocks and other types.
- * [ ] Simple combat
+ * [ ] Simple combat / movements
   * [ ] fist
 	* [ ] knock out
 	* [ ] wall jump
 	* [ ] wall climb
+	* [x] grappling hook
 
-	* [ ] protype items
-		* [ ] build tool to place blocks and delete (wip)
-		* [ ] melee (wip)
-		* [ ] projectile ( n/a )
+	* [ ] prototype items
+		* [x] build tool to place blocks and delete (wip)
+		* [x] melee (wip)
+		* [x] projectile (wip)
 		* [ ] storage menu ( n/a )
 		* [ ] npc menu ( n/a )
+		* [ ] interact ( n/a )
+	* props
+		* [ ] out of bounds ( n/a )
+		* [ ] damage area ( n/a )
+		* [ ] health area ( n/a )
+		* [ ] teleport ( n/a )
 
- * [ ] Basic weapons for melee
-	* [ ] dagger
-	* [ ] sword
-	* [ ] spear
-	* [ ] shield
-	* [ ] long sword
-	* [ ] axe
-	* [ ] pickaxe
-	* [ ] hoe
-	* [ ] sabare
-	* [ ] rapier
-	* [ ] hammer
-	* [ ] bayonet
-	* [ ] polearms
-	* [ ] blunt weapons
- * [ ] simple projectile
-	* [ ] bow
-	* [ ] crossbow
-	* [ ] gun
-	* [ ] dart
- * [ ] interact props
-	* [ ] damage
-	* [ ] health
- * [ ] build mode
-	* [ ] deployable
-	* [ ] create
-	* [ ] destory
-	* [ ] logic script or blocks
- * [ ] mobs
-	* [ ] puppets
-	* [ ] training doll
-
-
+ * vehicle
+	*	[x] simple car ( wip )
 
 # Features / To Do List:
+ - [ ] key binding
+	-	[x] keyboard (wip / still need work on)
+	- [ ] mouse ( n/a )
  - [ ] config
 	 - [x] save and load (testing)
  - [x] main menu
@@ -85,25 +63,26 @@
 		- [ ] options
  - [ ] Network (wip)
 	- [ ] server (wip)
-	  - [ ] handle disconnect
-	  - [ ] handle connect
+	  - [x] handle disconnect
+	  - [x] handle connect
 	- [ ] client (wip)
-	  - [ ] handle disconnect
-	  - [ ] handle connect
+	  - [x] handle disconnect
+	  - [x] handle connect
   
  * Player
 	* [x] Simple Capsule
-	* [ ] Melee weapon (wip)
-	* [ ] Hit scan weapon (wip)
-	* [ ] Build blocks ( n/a )
+	* [x] Melee weapon (wip)
+	* [x] Hit scan weapon (wip)
+	* [x] Build blocks ( n/a )
 	* [ ] Inventory UI
 	* [ ] Hot Bar
 	* [ ] Build mode
  * Map
-	* [ ] Prototype Test01
-	* [ ] Training Area
-	* [ ] Prototype Quick Test
-	* [ ] Prototype Offline Test
+	* [x] Prototype Test01 (wip)
+	* [ ] Training Area (wip)
+	* [x] Prototype Quick Test (wip)
+	* [x] Prototype Offline Test (wip)
+	* [x] Vehicle Test Areas (wip)
 
 # To Do List:
  * Player model

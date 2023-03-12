@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6m5ri5jky3ya"]
+
+[ext_resource type="Script" path="res://prefabs/prototype/grapplinghook/grapplinghook01.gd" id="1_0ioyp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u22dy"]
+size = Vector3(0.1, 0.1, 0.3)
+
+[node name="grapplinghook" type="Node3D"]
+script = ExtResource("1_0ioyp")
+
+[node name="handle" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="handle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0839677)
+mesh = SubResource("BoxMesh_u22dy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+process_mode = 4
+public_visibility = false
+
+[node name="RayCast3D" type="RayCast3D" parent="."]

@@ -1,0 +1,102 @@
+[gd_scene load_steps=13 format=3 uid="uid://c1dnrkcaywtfh"]
+
+[ext_resource type="Texture2D" uid="uid://cneuuahph6r34" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="1_vxde3"]
+[ext_resource type="PackedScene" uid="uid://ckvysroefrhwm" path="res://prefabs/prototyping/orange_grid_cube.tscn" id="2_jnytq"]
+[ext_resource type="PackedScene" uid="uid://00mbiccm7nu6" path="res://prefabs/prototyping/gray_grid_cube.tscn" id="3_7ua8q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0swlo"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xtr8"]
+albedo_texture = ExtResource("1_vxde3")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_tiugy"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_8d6au"]
+sky_material = SubResource("ProceduralSkyMaterial_tfswl")
+
+[sub_resource type="Environment" id="Environment_6ide3"]
+background_mode = 2
+sky = SubResource("Sky_8d6au")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fvto5"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x6bjc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_c6jso"]
+
+[node name="Prototype01" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_0swlo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_overlay = SubResource("StandardMaterial3D_4xtr8")
+mesh = SubResource("BoxMesh_tiugy")
+
+[node name="OrangeCubeStaticBody3D" parent="." instance=ExtResource("2_jnytq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
+
+[node name="OrangeCubeStaticBody3D2" parent="." instance=ExtResource("2_jnytq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 8)
+
+[node name="GrayCubeStaticBody3D" parent="." instance=ExtResource("3_7ua8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -7)
+
+[node name="GrayCubeStaticBody3D4" parent="." instance=ExtResource("3_7ua8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -7)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6ide3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_fvto5")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.925236, 0.379392, 0, -0.379392, 0.925236, 0, 2.62468, 0)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Node3D"]
+transform = Transform3D(0.816591, -0.577216, 0, 0.577216, 0.816591, 0, 0, 0, 1, -0.306531, 3.11589, -2.59586)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/RigidBody3D"]
+shape = SubResource("BoxShape3D_x6bjc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/RigidBody3D"]
+mesh = SubResource("BoxMesh_c6jso")
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85454, -2.59586)
+node_a = NodePath("../RigidBody3D")
+node_b = NodePath("../RigidBody3D2")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="Node3D"]
+transform = Transform3D(0.816591, -0.577216, 0, 0.577216, 0.816591, 0, 0, 0, 1, 0.306531, 2.24859, -2.59586)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/RigidBody3D2"]
+shape = SubResource("BoxShape3D_x6bjc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/RigidBody3D2"]
+mesh = SubResource("BoxMesh_c6jso")
