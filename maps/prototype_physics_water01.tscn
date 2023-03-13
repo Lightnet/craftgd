@@ -1,0 +1,90 @@
+[gd_scene load_steps=15 format=3 uid="uid://b5mu6ufp3anbj"]
+
+[ext_resource type="Texture2D" uid="uid://cneuuahph6r34" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="1_2hy6v"]
+[ext_resource type="Script" path="res://prefabs/water01/water01.gd" id="3_1iafy"]
+[ext_resource type="Script" path="res://prefabs/prototype/water_float01/object_float01.gd" id="4_ufl8k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0swlo"]
+size = Vector3(32, 1, 32)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xtr8"]
+albedo_texture = ExtResource("1_2hy6v")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_tiugy"]
+size = Vector3(32, 1, 32)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_8d6au"]
+sky_material = SubResource("ProceduralSkyMaterial_tfswl")
+
+[sub_resource type="Environment" id="Environment_6ide3"]
+background_mode = 2
+sky = SubResource("Sky_8d6au")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fvto5"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x6bjc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_c6jso"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cs633"]
+transparency = 1
+albedo_color = Color(0.0156863, 0.0156863, 0.0156863, 0.807843)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l5n3x"]
+size = Vector2(32, 32)
+
+[node name="Prototype01" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_0swlo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_overlay = SubResource("StandardMaterial3D_4xtr8")
+mesh = SubResource("BoxMesh_tiugy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6ide3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_fvto5")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.925236, 0.379392, 0, -0.379392, 0.925236, 0, 2.62468, 4.28878)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("4_ufl8k")
+float_force = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/RigidBody3D"]
+shape = SubResource("BoxShape3D_x6bjc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/RigidBody3D"]
+mesh = SubResource("BoxMesh_c6jso")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_cs633")
+mesh = SubResource("PlaneMesh_l5n3x")
+script = ExtResource("3_1iafy")

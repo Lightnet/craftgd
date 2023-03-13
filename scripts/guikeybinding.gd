@@ -30,7 +30,7 @@ func _ready():
 
 func load_keys():
 	if FileAccess.file_exists(file_name):
-		print("EXIST")
+		#print("EXIST")
 		delete_old_keys()
 		var file = FileAccess.open(file_name, FileAccess.READ)
 		var data = JSON.parse_string(file.get_as_text())
@@ -41,7 +41,7 @@ func load_keys():
 		else:
 			printerr("Corrupted Data!")
 	else:
-		print("NOT EXIST")
+		#print("NOT EXIST")
 		save_keys()
 	pass
 
@@ -57,15 +57,15 @@ func setup_keys():
 	pass
 
 func delete_old_keys():
-	print("DELETE KEYS")
+	#print("DELETE KEYS")
 	#remove old keys
 	for i in key_dict:
 		var oldkey = InputEventKey.new()
 		#oldkey.scancode
 		oldkey.set_physical_keycode(key_dict[i])
-		print("=======")
-		print("KEY:", i , " CODE:", key_dict[i])
-		print("KEY>>: ",  OS.get_keycode_string(key_dict[i]))
+		#print("=======")
+		#print("KEY:", i , " CODE:", key_dict[i])
+		#print("KEY>>: ",  OS.get_keycode_string(key_dict[i]))
 		InputMap.action_erase_event(i, oldkey)
 	pass
 
