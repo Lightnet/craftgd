@@ -1,18 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://b5mu6ufp3anbj"]
+[gd_scene load_steps=12 format=3 uid="uid://b5mu6ufp3anbj"]
 
-[ext_resource type="Texture2D" uid="uid://cneuuahph6r34" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="1_2hy6v"]
 [ext_resource type="Script" path="res://prefabs/water01/water01.gd" id="3_1iafy"]
+[ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="3_5slnk"]
 [ext_resource type="Script" path="res://prefabs/prototype/water_float01/object_float01.gd" id="4_ufl8k"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0swlo"]
-size = Vector3(32, 1, 32)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xtr8"]
-albedo_texture = ExtResource("1_2hy6v")
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_tiugy"]
-size = Vector3(32, 1, 32)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -48,16 +38,6 @@ size = Vector2(32, 32)
 
 [node name="Prototype01" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_0swlo")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-material_overlay = SubResource("StandardMaterial3D_4xtr8")
-mesh = SubResource("BoxMesh_tiugy")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6ide3")
 
@@ -74,7 +54,7 @@ transform = Transform3D(1, 0, 0, 0, 0.925236, 0.379392, 0, -0.379392, 0.925236, 
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85464, 0)
 script = ExtResource("4_ufl8k")
 float_force = 3.0
 
@@ -88,3 +68,11 @@ mesh = SubResource("BoxMesh_c6jso")
 material_override = SubResource("StandardMaterial3D_cs633")
 mesh = SubResource("PlaneMesh_l5n3x")
 script = ExtResource("3_1iafy")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(32, 1, 32)
+material = ExtResource("3_5slnk")

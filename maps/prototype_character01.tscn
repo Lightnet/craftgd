@@ -1,18 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dqidajhurfhqo"]
+[gd_scene load_steps=8 format=3 uid="uid://dqidajhurfhqo"]
 
-[ext_resource type="Texture2D" uid="uid://cneuuahph6r34" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="1_hrvn0"]
-[ext_resource type="PackedScene" uid="uid://ckvysroefrhwm" path="res://prefabs/prototyping/orange_grid_cube.tscn" id="2_6n0bq"]
-[ext_resource type="PackedScene" uid="uid://00mbiccm7nu6" path="res://prefabs/prototyping/gray_grid_cube.tscn" id="3_yun2q"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0swlo"]
-size = Vector3(100, 1, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xtr8"]
-albedo_texture = ExtResource("1_hrvn0")
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_tiugy"]
-size = Vector3(100, 1, 100)
+[ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_d3jx8"]
+[ext_resource type="PackedScene" uid="uid://dhpg7408tcwtm" path="res://prefabs/player00/player0.tscn" id="2_50w7p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -39,31 +28,6 @@ properties/1/sync = true
 
 [node name="Prototype01" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_0swlo")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-material_overlay = SubResource("StandardMaterial3D_4xtr8")
-mesh = SubResource("BoxMesh_tiugy")
-
-[node name="OrangeCubeStaticBody3D" parent="." instance=ExtResource("2_6n0bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
-
-[node name="OrangeCubeStaticBody3D3" parent="." instance=ExtResource("2_6n0bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -4)
-
-[node name="OrangeCubeStaticBody3D2" parent="." instance=ExtResource("2_6n0bq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 8)
-
-[node name="GrayCubeStaticBody3D" parent="." instance=ExtResource("3_yun2q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -7)
-
-[node name="GrayCubeStaticBody3D4" parent="." instance=ExtResource("3_yun2q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -7)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6ide3")
 
@@ -74,14 +38,21 @@ shadow_enabled = true
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_fvto5")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.925236, 0.379392, 0, -0.379392, 0.925236, 0, 1.661, -2.473)
-
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.516754, -3)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_xf4il")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(32, 1, 32)
+material = ExtResource("1_d3jx8")
+
+[node name="Player" parent="." instance=ExtResource("2_50w7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)

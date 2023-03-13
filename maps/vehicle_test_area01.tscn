@@ -1,20 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://y5ikxj75mlre"]
+[gd_scene load_steps=9 format=3 uid="uid://y5ikxj75mlre"]
 
-[ext_resource type="Texture2D" uid="uid://cneuuahph6r34" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="1_45h3h"]
-[ext_resource type="PackedScene" uid="uid://ckvysroefrhwm" path="res://prefabs/prototyping/orange_grid_cube.tscn" id="2_y1k8y"]
-[ext_resource type="PackedScene" uid="uid://00mbiccm7nu6" path="res://prefabs/prototyping/gray_grid_cube.tscn" id="3_ee1aw"]
+[ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="3_3leuh"]
+[ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="4_muhrq"]
 [ext_resource type="PackedScene" uid="uid://dk81jqfpbp5ww" path="res://prefabs/enemy01/enemy.tscn" id="4_v8uuh"]
 [ext_resource type="PackedScene" uid="uid://cvd25ncte1k5q" path="res://prefabs/prototype/vehicle01/vehicle01.tscn" id="5_nexyy"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0swlo"]
-size = Vector3(100, 1, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xtr8"]
-albedo_texture = ExtResource("1_45h3h")
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_tiugy"]
-size = Vector3(100, 1, 100)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -39,31 +28,6 @@ properties/1/sync = true
 
 [node name="Prototype02" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_0swlo")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-material_overlay = SubResource("StandardMaterial3D_4xtr8")
-mesh = SubResource("BoxMesh_tiugy")
-
-[node name="OrangeCubeStaticBody3D" parent="." instance=ExtResource("2_y1k8y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
-
-[node name="OrangeCubeStaticBody3D2" parent="." instance=ExtResource("2_y1k8y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 8)
-
-[node name="GrayCubeStaticBody3D" parent="." instance=ExtResource("3_ee1aw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -7)
-
-[node name="GrayCubeStaticBody3D4" parent="." instance=ExtResource("3_ee1aw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -7)
-
-[node name="GrayCubeStaticBody3D5" parent="." instance=ExtResource("3_ee1aw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -7)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6ide3")
 
@@ -75,7 +39,34 @@ shadow_enabled = true
 replication_config = SubResource("SceneReplicationConfig_fvto5")
 
 [node name="enemy" parent="." instance=ExtResource("4_v8uuh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57054, 1.14027, -2.36042)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97054, 1.54027, -2.36042)
 
 [node name="vehicle01" parent="." instance=ExtResource("5_nexyy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.76379, 1.2814, -1.2639)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D_ground" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(32, 1, 32)
+material = ExtResource("3_3leuh")
+
+[node name="CSGB3D_Block" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+material = ExtResource("4_muhrq")
+
+[node name="CSGB3D_Block7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4)
+material = ExtResource("4_muhrq")
+
+[node name="CSGB3D_Block2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -4)
+material = ExtResource("4_muhrq")
+
+[node name="CSGB3D_Block3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -4)
+material = ExtResource("4_muhrq")
+
+[node name="CSGB3D_Block4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4, -4)
+material = ExtResource("4_muhrq")

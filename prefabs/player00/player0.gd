@@ -18,7 +18,7 @@ signal health_change(health_value)
 #@onready var isMove:bool = false
 var isMove:bool = false
 
-var enable_fall = false
+@export var enable_fall = true
 
 @export var SPEED = 10.0
 @export var aceel = 10
