@@ -97,6 +97,11 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	#if not is_multiplayer_authority(): return
 	
+	#if camera:
+		#print("camera y:",camera.rotation_degrees.x)
+		# postive for look up
+		# negtive for look down
+	
 	# LADDER
 	if current_state == State.LADDER:
 		velocity.y = 0
@@ -105,16 +110,21 @@ func _physics_process(delta):
 		#var h_rot = global_transform.basis.get_euler().x
 		#var h_rot = global_transform.basis.y
 		#print("h_rot: ", rad_to_deg(h_rot))
-		print("h_rot: ", h_rot)
-		#var f_input = Input.get_action_strength("back") - Input.get_action_strength("forward")
-		#var h_input = Input.get_action_strength("right") - Input.get_action_strength("left")
-		#direction = Vector3(h_input, 0.0, f_input).rotated(Vector3.UP,h_rot).normalized()
-		var input_dir = Input.get_vector("left", "right", "up", "down")
-		direction = (transform.basis * Vector3(0, input_dir.y * -1, 0)).normalized()
+		#print("h_rot: ", h_rot)
+		var f_input = Input.get_action_strength("back") - Input.get_action_strength("forward")
+		var h_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+		direction = Vector3(h_input, 0.0, f_input).rotated(Vector3.UP,h_rot).normalized()
+		#var input_dir = Input.get_vector("left", "right", "up", "down")
+		#direction = (transform.basis * Vector3(0, input_dir.y * -1, 0)).normalized()
+		if f_input: #make sure the there movement for going up or down.
+			if camera.rotation_degrees.x > 0:
+				direction.y = 1
+			else:
+				direction.y = -1
 		velocity = direction * CLIMB_SPEED
-		print("POS Y:",input_dir.y)
-		if  input_dir.y > 0 and is_on_floor(): #check if player touch ground and exit
-			current_state = State.NORMAL
+		#print("POS Y:",input_dir.y)
+		#if  input_dir.y > 0 and is_on_floor(): #check if player touch ground and exit
+			#current_state = State.NORMAL
 		if Input.is_action_just_pressed("jump"): #exit to normal
 			current_state = State.NORMAL
 		
