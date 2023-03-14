@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgvjt0rnuiw3h"]
+
+[ext_resource type="Script" path="res://prefabs/transition/testing_scene_change01.gd" id="1_wsb7i"]
+
+[node name="testing_scene_change01" type="Node"]
+script = ExtResource("1_wsb7i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="btnChangeScene" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Change Scene Test"
+
+[connection signal="pressed" from="CanvasLayer/Control/btnChangeScene" to="." method="_on_btn_change_scene_pressed"]

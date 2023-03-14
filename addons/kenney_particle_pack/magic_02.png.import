@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/magic_02.png-51877ebbba815e8906a81974ec3f6964
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

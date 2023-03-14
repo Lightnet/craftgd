@@ -21,6 +21,7 @@ Network="*res://scripts/network.gd"
 PlayerSettings="*res://scripts/player_settings.gd"
 Helper="*res://scripts/helper.gd"
 Guikeybinding="*res://scripts/guikeybinding.gd"
+SceneTransition="*res://prefabs/transition/scene_transition.tscn"
 
 [input]
 

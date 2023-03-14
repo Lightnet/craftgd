@@ -14,11 +14,8 @@ properties/0/sync = true
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/sync = true
-properties/2/path = NodePath("Camera3D:rotation")
-properties/2/spawn = true
-properties/2/sync = true
 
-[node name="Player" type="CharacterBody3D" groups=["Enemy"]]
+[node name="Player0" type="CharacterBody3D" groups=["Enemy"]]
 editor_description = "Player pawn."
 collision_layer = 2
 script = ExtResource("1_v2k5i")

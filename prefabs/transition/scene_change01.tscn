@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b6crm351xa141"]
+
+[node name="TestingSceneChange" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="btnSceneFade" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Hello"
+
+[connection signal="pressed" from="CanvasLayer/Control/btnSceneFade" to="." method="_on_btn_scene_fade_pressed"]

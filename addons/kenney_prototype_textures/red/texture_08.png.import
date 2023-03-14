@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/texture_08.png-add0c08e78cde6ad4eaac64e7b9a92
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

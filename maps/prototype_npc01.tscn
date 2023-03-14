@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://2qktdyp8upw5"]
+
+[ext_resource type="PackedScene" uid="uid://qhhpxocby1wx" path="res://prefabs/npc00/cb3d_npc.tscn" id="1_gcjm6"]
+[ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_y24bd"]
+[ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="2_x0wpr"]
+[ext_resource type="PackedScene" uid="uid://dhpg7408tcwtm" path="res://prefabs/player00/player0.tscn" id="3_li0b8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_8d6au"]
+sky_material = SubResource("ProceduralSkyMaterial_tfswl")
+
+[sub_resource type="Environment" id="Environment_6ide3"]
+background_mode = 2
+sky = SubResource("Sky_8d6au")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fvto5"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+
+[node name="Prototype01" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6ide3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_fvto5")
+
+[node name="CB3D_npc" parent="." instance=ExtResource("1_gcjm6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.51675, -3)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(32, 1, 32)
+material = ExtResource("1_y24bd")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
+material = ExtResource("2_x0wpr")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -5)
+material = ExtResource("2_x0wpr")
+
+[node name="Player" parent="." instance=ExtResource("3_li0b8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)

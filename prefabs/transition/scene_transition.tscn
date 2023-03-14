@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsosmbti684yy"]
+
+[ext_resource type="Script" path="res://prefabs/transition/scene_transition.gd" id="1_v7ca4"]
+
+[sub_resource type="Animation" id="Animation_8bcbn"]
+resource_name = "RESET"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dissolve_rect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8o8pb"]
+resource_name = "dissolve"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dissolve_rect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xq04i"]
+_data = {
+"RESET": SubResource("Animation_8bcbn"),
+"dissolve": SubResource("Animation_8o8pb")
+}
+
+[node name="scene_transition" type="CanvasLayer"]
+script = ExtResource("1_v7ca4")
+
+[node name="dissolve_rect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0980392, 0.129412, 0.160784, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+libraries = {
+"": SubResource("AnimationLibrary_xq04i")
+}
