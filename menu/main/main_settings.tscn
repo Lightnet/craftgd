@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scripts/guikeybinding.gd" id="2_q4jqx"]
 
 [node name="MainSettings" type="MarginContainer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,54 +29,49 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer/Panel"]
-layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 578.0
-size_flags_vertical = 3
-tab_alignment = 1
-
-[node name="Game" type="TabBar" parent="VBoxContainer/Panel/TabContainer"]
-visible = false
-layout_mode = 2
-tab_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/TabContainer/Game"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 3
+tab_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Game/VBoxContainer"]
+[node name="Game" type="TabBar" parent="VBoxContainer/Panel/TabContainer"]
 layout_mode = 2
-size_flags_vertical = 4
-alignment = 1
+tab_alignment = 1
 
-[node name="LLanguage" type="Label" parent="VBoxContainer/Panel/TabContainer/Game/VBoxContainer/HBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Panel/TabContainer/Game"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.5
+offset_right = 96.5
+offset_bottom = 66.0
+grow_horizontal = 2
+columns = 2
+
+[node name="LLanguage" type="Label" parent="VBoxContainer/Panel/TabContainer/Game/GridContainer"]
 layout_mode = 2
 text = "Languages:"
 
-[node name="MenuButton" type="MenuButton" parent="VBoxContainer/Panel/TabContainer/Game/VBoxContainer/HBoxContainer"]
+[node name="OB_Languages" type="OptionButton" parent="VBoxContainer/Panel/TabContainer/Game/GridContainer"]
 layout_mode = 2
-text = "English"
 item_count = 1
+selected = 0
 popup/item_0/text = "English"
 popup/item_0/id = 0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Game/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-alignment = 1
-
-[node name="LDifficult" type="Label" parent="VBoxContainer/Panel/TabContainer/Game/VBoxContainer/HBoxContainer2"]
+[node name="LDifficult" type="Label" parent="VBoxContainer/Panel/TabContainer/Game/GridContainer"]
 layout_mode = 2
 text = "Difficult:"
 
-[node name="MenuButton" type="MenuButton" parent="VBoxContainer/Panel/TabContainer/Game/VBoxContainer/HBoxContainer2"]
+[node name="OB_Diffcult" type="OptionButton" parent="VBoxContainer/Panel/TabContainer/Game/GridContainer"]
 layout_mode = 2
-text = "Normanl"
 item_count = 3
+selected = 0
 popup/item_0/text = "Easy"
 popup/item_0/id = 0
 popup/item_1/text = "Normal"
@@ -84,6 +80,7 @@ popup/item_2/text = "Hard"
 popup/item_2/id = 2
 
 [node name="Key Binding" type="TabBar" parent="VBoxContainer/Panel/TabContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("2_q4jqx")
 
@@ -216,244 +213,214 @@ action_name = "melee"
 visible = false
 layout_mode = 2
 
-[node name="SC_graphic" type="ScrollContainer" parent="VBoxContainer/Panel/TabContainer/Graphic"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Panel/TabContainer/Graphic"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -15.5
+offset_right = 95.0
+offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
+columns = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HBC_Window" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer/HBC_Window"]
+[node name="LWindowMode" type="Label" parent="VBoxContainer/Panel/TabContainer/Graphic/GridContainer"]
 layout_mode = 2
 text = "Window Mode:"
 
-[node name="MenuButton" type="MenuButton" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer/HBC_Window"]
+[node name="OB_WindowModes" type="OptionButton" parent="VBoxContainer/Panel/TabContainer/Graphic/GridContainer"]
 layout_mode = 2
-text = "Window"
-item_count = 2
+item_count = 3
+selected = 0
 popup/item_0/text = "Window"
-popup/item_0/checked = true
 popup/item_0/id = 0
-popup/item_1/text = "FullScreen"
+popup/item_1/text = "Full Screen"
 popup/item_1/id = 1
+popup/item_2/text = "Full Screen Borderless"
+popup/item_2/id = 2
 
-[node name="HBC_Screen" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer/HBC_Screen"]
+[node name="LScreen" type="Label" parent="VBoxContainer/Panel/TabContainer/Graphic/GridContainer"]
 layout_mode = 2
 text = "Screen"
 
-[node name="btnScreenSize" type="Button" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer/HBC_Screen"]
+[node name="btnScreenSize" type="Button" parent="VBoxContainer/Panel/TabContainer/Graphic/GridContainer"]
 layout_mode = 2
 text = "Check Size"
 
-[node name="HBC_Vync" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer/HBC_Vync"]
+[node name="LVsync" type="Label" parent="VBoxContainer/Panel/TabContainer/Graphic/GridContainer"]
 layout_mode = 2
 text = "V Sync"
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer/HBC_Vync"]
+[node name="CB_Vsync" type="CheckButton" parent="VBoxContainer/Panel/TabContainer/Graphic/GridContainer"]
 layout_mode = 2
 
-[node name="HBC_FPS" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="LFPS" type="Label" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer/HBC_FPS"]
+[node name="LFPS" type="Label" parent="VBoxContainer/Panel/TabContainer/Graphic/GridContainer"]
 layout_mode = 2
 text = "Frame Per Seconds: "
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer/HBC_FPS"]
+[node name="SpinB_FPS" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Graphic/GridContainer"]
 layout_mode = 2
 tooltip_text = "0 = Default Uncap frame."
 max_value = 240.0
+
+[node name="LCurrentFPS" type="Label" parent="VBoxContainer/Panel/TabContainer/Graphic/GridContainer"]
+layout_mode = 2
+text = "Current FPS:"
+
+[node name="LCurrent_FPS" type="Label" parent="VBoxContainer/Panel/TabContainer/Graphic/GridContainer"]
+layout_mode = 2
+text = "0"
 
 [node name="Audio" type="TabBar" parent="VBoxContainer/Panel/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/TabContainer/Audio"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Panel/TabContainer/Audio"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_right = 192.0
+offset_bottom = 136.0
 grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
+columns = 3
 
-[node name="HBC_Master" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="LMaster" type="Label" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer/HBC_Master"]
+[node name="LMasterVolume" type="Label" parent="VBoxContainer/Panel/TabContainer/Audio/GridContainer"]
 layout_mode = 2
 text = "Master Volume:"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer/HBC_Master"]
+[node name="HMasterVolume" type="HSlider" parent="VBoxContainer/Panel/TabContainer/Audio/GridContainer"]
 custom_minimum_size = Vector2(128, 10)
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer/HBC_Master"]
+[node name="SB_MasterVolume" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Audio/GridContainer"]
 layout_mode = 2
 
-[node name="HBC_Sound" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="LSound" type="Label" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer/HBC_Sound"]
+[node name="L_SoundEffect" type="Label" parent="VBoxContainer/Panel/TabContainer/Audio/GridContainer"]
 layout_mode = 2
 text = "Sound Effect Volume:"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer/HBC_Sound"]
+[node name="HS_SoundEffect" type="HSlider" parent="VBoxContainer/Panel/TabContainer/Audio/GridContainer"]
 custom_minimum_size = Vector2(128, 10)
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer/HBC_Sound"]
+[node name="SB_SoundEffect" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Audio/GridContainer"]
 layout_mode = 2
 
-[node name="HBC_Menu" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="LMenu" type="Label" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer/HBC_Menu"]
+[node name="L_MenuEffects" type="Label" parent="VBoxContainer/Panel/TabContainer/Audio/GridContainer"]
 layout_mode = 2
 text = "Menu Volume:"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer/HBC_Menu"]
+[node name="HS_MenuEffects" type="HSlider" parent="VBoxContainer/Panel/TabContainer/Audio/GridContainer"]
 custom_minimum_size = Vector2(128, 10)
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer/HBC_Menu"]
+[node name="SB_MenuEffects" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Audio/GridContainer"]
 layout_mode = 2
 
-[node name="HBC_Voice" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="LVoice" type="Label" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer/HBC_Voice"]
+[node name="L_Voice" type="Label" parent="VBoxContainer/Panel/TabContainer/Audio/GridContainer"]
 layout_mode = 2
 text = "Voice Volume:"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer/HBC_Voice"]
+[node name="HS_Voice" type="HSlider" parent="VBoxContainer/Panel/TabContainer/Audio/GridContainer"]
 custom_minimum_size = Vector2(128, 10)
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Audio/VBoxContainer/HBC_Voice"]
+[node name="SB_Voice" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Audio/GridContainer"]
 layout_mode = 2
 
 [node name="Network" type="TabBar" parent="VBoxContainer/Panel/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/TabContainer/Network"]
-layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 547.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Panel/TabContainer/Network"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.0
+offset_right = 171.0
+offset_bottom = 221.0
+grow_horizontal = 2
+columns = 2
 
-[node name="HBC_Address" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_Address"]
+[node name="Label" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 text = "IP Adress:"
+horizontal_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_Address"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "localhost"
 placeholder_text = "IP Address"
-
-[node name="HBC_Port" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer"]
-layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_Port"]
+[node name="Label2" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 text = "Port:"
+horizontal_alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_Port"]
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 max_value = 65353.0
 value = 9999.0
-
-[node name="HBC_NetworkID" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer"]
-layout_mode = 2
 alignment = 1
 
-[node name="LNetworkID" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_NetworkID"]
+[node name="LNetworkID" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 text = "Peer ID:"
+horizontal_alignment = 1
 
-[node name="LID" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_NetworkID"]
+[node name="LPeerID" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="HBC_BandwidthUp" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="LBandwidth" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_BandwidthUp"]
+[node name="LBandwidthUp" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 text = "Bandwidth Up:"
+horizontal_alignment = 1
 
-[node name="LID" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_BandwidthUp"]
+[node name="LBandwidth_Up" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="HBC_BandwidthDown" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="LBandwidth" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_BandwidthDown"]
+[node name="LBandwidthDown" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 text = "Bandwidth Down:"
+horizontal_alignment = 1
 
-[node name="LID" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_BandwidthDown"]
+[node name="LBandwidth_Down" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="HBC_NetworkType" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="LNT" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_NetworkType"]
+[node name="LNetworkType" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 text = "Network Type:"
+horizontal_alignment = 1
 
-[node name="LID" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_NetworkType"]
+[node name="LNetwork_Type" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 text = "None"
+horizontal_alignment = 1
 
-[node name="HBC_PlayerCount" type="HBoxContainer" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="LPlayers" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_PlayerCount"]
+[node name="LPlayers" type="Label" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 text = "Player Limit(s):"
+horizontal_alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Network/VBoxContainer/HBC_PlayerCount"]
+[node name="SB_PlayerCount" type="SpinBox" parent="VBoxContainer/Panel/TabContainer/Network/GridContainer"]
 layout_mode = 2
 max_value = 256.0
+alignment = 1
 
 [node name="HBC_Bottom" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -472,4 +439,7 @@ layout_mode = 2
 text = "Default"
 
 [connection signal="pressed" from="VBoxContainer/HBC_Top/btnBack" to="." method="_on_btn_back_pressed"]
-[connection signal="pressed" from="VBoxContainer/Panel/TabContainer/Graphic/SC_graphic/VBoxContainer/HBC_Screen/btnScreenSize" to="." method="_on_btn_screen_size_pressed"]
+[connection signal="item_selected" from="VBoxContainer/Panel/TabContainer/Graphic/GridContainer/OB_WindowModes" to="." method="_on_ob_window_modes_item_selected"]
+[connection signal="pressed" from="VBoxContainer/Panel/TabContainer/Graphic/GridContainer/btnScreenSize" to="." method="_on_btn_screen_size_pressed"]
+[connection signal="toggled" from="VBoxContainer/Panel/TabContainer/Graphic/GridContainer/CB_Vsync" to="." method="_on_cb_vsync_toggled"]
+[connection signal="value_changed" from="VBoxContainer/Panel/TabContainer/Graphic/GridContainer/SpinB_FPS" to="." method="_on_spin_b_fps_value_changed"]
