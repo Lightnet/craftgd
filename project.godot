@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="craftgd"
-run/main_scene="res://maps/stand_alone01.tscn"
+run/main_scene="res://maps/test01.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 

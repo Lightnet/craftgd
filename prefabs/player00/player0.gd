@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+# https://github.com/brannotaylor/3D-Ladder-Tutorial
 signal health_change(health_value)
 
 @onready var camera = $Camera3D
@@ -21,12 +21,21 @@ var isMove:bool = false
 @export var enable_fall = true
 
 @export var SPEED = 10.0
+@export var CLIMB_SPEED = 4.0
 @export var aceel = 10
 @export var JUMP_VELOCITY = 10.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = 20
+
+var ladder_array = []
+
+enum State {
+	NORMAL,
+	LADDER,
+}
+var current_state = State.NORMAL
 
 #@rpc("call_remote")
 @rpc("call_local")
@@ -88,35 +97,58 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	#if not is_multiplayer_authority(): return
 	
-	# Add the gravity.
-	if not is_on_floor():
-		if enable_fall:
-			velocity.y -= gravity * delta
-
-	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	# LADDER
+	if current_state == State.LADDER:
+		velocity.y = 0
+		var direction  = Vector3.ZERO
+		var h_rot = global_transform.basis.get_euler().y
+		#var h_rot = global_transform.basis.get_euler().x
+		#var h_rot = global_transform.basis.y
+		#print("h_rot: ", rad_to_deg(h_rot))
+		print("h_rot: ", h_rot)
+		#var f_input = Input.get_action_strength("back") - Input.get_action_strength("forward")
+		#var h_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+		#direction = Vector3(h_input, 0.0, f_input).rotated(Vector3.UP,h_rot).normalized()
+		var input_dir = Input.get_vector("left", "right", "up", "down")
+		direction = (transform.basis * Vector3(0, input_dir.y * -1, 0)).normalized()
+		velocity = direction * CLIMB_SPEED
+		print("POS Y:",input_dir.y)
+		if  input_dir.y > 0 and is_on_floor(): #check if player touch ground and exit
+			current_state = State.NORMAL
+		if Input.is_action_just_pressed("jump"): #exit to normal
+			current_state = State.NORMAL
+		
+		#if not is_on_floor():
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("left", "right", "up", "down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		#velocity.x = direction.x * SPEED
-		#velocity.z = direction.z * SPEED
-		velocity.x = lerp(velocity.x, direction.x * SPEED, aceel * delta)
-		velocity.z = lerp(velocity.z, direction.z * SPEED, aceel * delta)
-		
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-		
-	if input_dir != Vector2.ZERO and is_on_floor():
-		isMove = true
-	else:
-		isMove = false
+	if current_state == State.NORMAL:
+		# Add the gravity.
+		if not is_on_floor():
+			if enable_fall:
+				velocity.y -= gravity * delta	
+		# Handle Jump.
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+		var input_dir = Input.get_vector("left", "right", "up", "down")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			#starting speed
+			velocity.x = lerp(velocity.x, direction.x * SPEED, aceel * delta)
+			velocity.z = lerp(velocity.z, direction.z * SPEED, aceel * delta)
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
+			
+		if input_dir != Vector2.ZERO and is_on_floor():
+			isMove = true
+		else:
+			isMove = false
 
 	move_and_slide()
+	#Exit Game
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
 	
 @rpc("any_peer")
 func receive_damage():
@@ -126,3 +158,4 @@ func receive_damage():
 		position = Vector3.ZERO;
 	health_change.emit(health)
 	
+

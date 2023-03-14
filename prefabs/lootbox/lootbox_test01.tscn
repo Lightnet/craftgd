@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://0adnkexmilhi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_joitf"]
+
+[sub_resource type="Environment" id="Environment_pt6b8"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_qoplw"]
+
+[node name="Node" type="Node"]
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.907558, 0.419927, 0, -0.419927, 0.907558, 0, 1.20219, 2.02155)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("BoxMesh_joitf")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Node3D"]
+environment = SubResource("Environment_pt6b8")
+camera_attributes = SubResource("CameraAttributesPractical_qoplw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.875186, 0.483787, 0, -0.483787, 0.875186, 0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -15.5
+offset_right = 25.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Open"

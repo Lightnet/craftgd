@@ -3,6 +3,7 @@
 [ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_wwoii"]
 [ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="2_gbr8v"]
 [ext_resource type="PackedScene" uid="uid://dhpg7408tcwtm" path="res://prefabs/player00/player0.tscn" id="3_c1hd0"]
+[ext_resource type="PackedScene" uid="uid://dyyjwr1tjguq0" path="res://prefabs/ladder/ladder01.tscn" id="4_8iw02"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -25,8 +26,6 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/sync = true
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xf4il"]
-
 [node name="Prototype01" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -39,15 +38,6 @@ shadow_enabled = true
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_fvto5")
 
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3)
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/CharacterBody3D"]
-shape = SubResource("CapsuleShape3D_xf4il")
-
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
 
@@ -56,11 +46,11 @@ size = Vector3(32, 1, 32)
 material = ExtResource("1_wwoii")
 
 [node name="CSGB3D_Block" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -4)
 material = ExtResource("2_gbr8v")
 
 [node name="CSGB3D_Block7" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
 material = ExtResource("2_gbr8v")
 
 [node name="CSGB3D_Block2" type="CSGBox3D" parent="CSGCombiner3D"]
@@ -71,17 +61,27 @@ material = ExtResource("2_gbr8v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -4)
 material = ExtResource("2_gbr8v")
 
-[node name="CSGB3D_Block4" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4, -4)
-material = ExtResource("2_gbr8v")
-
 [node name="CSGB3D_Block5" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 4, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -5)
 material = ExtResource("2_gbr8v")
 
 [node name="CSGB3D_Block6" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 13, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -5)
+material = ExtResource("2_gbr8v")
+
+[node name="CSGB3D_Block8" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -4)
+material = ExtResource("2_gbr8v")
+
+[node name="CSGB3D_Block4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, -4)
 material = ExtResource("2_gbr8v")
 
 [node name="Player" parent="." instance=ExtResource("3_c1hd0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.139196, 0.5, 1.44548)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129617, 0.513278, 1.43237)
+
+[node name="Ladder" parent="." instance=ExtResource("4_8iw02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -3.4)
+
+[node name="Ladder2" parent="." instance=ExtResource("4_8iw02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -3.4)
