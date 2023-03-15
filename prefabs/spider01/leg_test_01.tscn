@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2he8o6nogkyc"]
+
+[ext_resource type="PackedScene" uid="uid://c4i4aoqijjnoo" path="res://prefabs/spider01/leg_test_01.glb" id="1_x6xmb"]
+[ext_resource type="Script" path="res://prefabs/spider01/leg_test_01.gd" id="2_tak1i"]
+[ext_resource type="Script" path="res://prefabs/spider01/target00.gd" id="3_jtggi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3jsg4"]
+albedo_color = Color(0.635294, 0.00784314, 0.0705882, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_b8bnp"]
+material = SubResource("StandardMaterial3D_3jsg4")
+radius = 0.2
+height = 0.4
+
+[node name="leg_test_01" instance=ExtResource("1_x6xmb")]
+script = ExtResource("2_tak1i")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/2/position = Vector3(0.000474975, 2.24948, 0.000474975)
+
+[node name="LegIK" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="1"]
+process_priority = 1
+root_bone = &"leg01"
+tip_bone = &"leg04"
+override_tip_basis = false
+target_node = NodePath("../../../LegHandle/Target")
+max_iterations = 4
+
+[node name="LegHandle" type="Marker3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38776, 4.04877, -0.132961)
+metadata/_edit_group_ = true
+
+[node name="Target" type="Marker3D" parent="LegHandle" index="0"]
+script = ExtResource("3_jtggi")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LegHandle/Target" index="0"]
+mesh = SubResource("SphereMesh_b8bnp")
+skeleton = NodePath("")
+metadata/_edit_group_ = true
