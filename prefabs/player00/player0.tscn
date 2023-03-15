@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhpg7408tcwtm"]
+[gd_scene load_steps=5 format=3 uid="uid://dhpg7408tcwtm"]
 
 [ext_resource type="Script" path="res://prefabs/player00/player0.gd" id="1_v2k5i"]
-[ext_resource type="PackedScene" uid="uid://b6m5ri5jky3ya" path="res://prefabs/prototype/grapplinghook/grapplinghook01.tscn" id="2_g8x28"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_82yuq"]
 
@@ -32,17 +31,17 @@ shape = SubResource("CapsuleShape3D_ls172")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50613, 0)
 
 [node name="RayCast3D2" type="RayCast3D" parent="Camera3D"]
+enabled = false
 target_position = Vector3(0, 0, -50)
 collision_mask = 3
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+enabled = false
 target_position = Vector3(0, 0, -50)
 collision_mask = 2
 
 [node name="RightHand" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
-
-[node name="grapplinghook" parent="Camera3D/RightHand" instance=ExtResource("2_g8x28")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_yejnr")

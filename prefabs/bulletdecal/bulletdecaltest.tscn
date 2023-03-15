@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg4e2hl0qehne"]
+
+[ext_resource type="Script" path="res://prefabs/bulletdecal/bulletdecaltest01.gd" id="1_0qmcf"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_e21py"]
+albedo_color = Color(0.27451, 0.27451, 0.27451, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_o6evv"]
+material = SubResource("ORMMaterial3D_e21py")
+size = Vector2(0.1, 0.1)
+
+[node name="bulletdecaltest" type="Node3D"]
+script = ExtResource("1_0qmcf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.02)
+gi_mode = 0
+mesh = SubResource("QuadMesh_o6evv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

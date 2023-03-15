@@ -9,7 +9,9 @@ signal health_change(health_value)
 
 @onready var RightHand = $Camera3D/RightHand
 #@onready var IPlaceHolder = preload("res://prefabs/prototype_build/build_tool.tscn")
-@onready var IPlaceHolder = preload("res://prefabs/prototype_projectile/prototype_gun_01.tscn")
+#@onready var IPlaceHolder = preload("res://prefabs/prototype_projectile/prototype_gun_01.tscn")
+@export var IPlaceHolder:PackedScene
+@export var preloadtool:bool = false
 
 @export var health = 3
 @export var max_health = 3
@@ -58,7 +60,7 @@ func _ready():
 	#print("HELL INPUT?")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true;
-	#local_spawn_tool()
+	local_spawn_tool()
 	pass
 	
 func my_spawn_tool():

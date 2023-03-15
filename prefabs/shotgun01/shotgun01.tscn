@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://i2hag5qtkfe8"]
+
+[ext_resource type="Script" path="res://prefabs/shotgun01/shotgun01.gd" id="1_25612"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icaki"]
+albedo_color = Color(0.686275, 0.231373, 0.113725, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u22dy"]
+material = SubResource("StandardMaterial3D_icaki")
+size = Vector3(0.1, 0.1, 0.3)
+
+[node name="shotgun01" type="Node3D"]
+script = ExtResource("1_25612")
+
+[node name="handle" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="handle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0839677)
+mesh = SubResource("BoxMesh_u22dy")
+
+[node name="firepoint" type="Node3D" parent="handle/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.159861)
+
+[node name="raycontainer" type="Node3D" parent="handle/MeshInstance3D/firepoint"]
+
+[node name="RayCast3D" type="RayCast3D" parent="handle/MeshInstance3D/firepoint/raycontainer"]
+target_position = Vector3(0, 0, -100)
+
+[node name="RayCast3D2" type="RayCast3D" parent="handle/MeshInstance3D/firepoint/raycontainer"]
+target_position = Vector3(0, 0, -100)
+
+[node name="RayCast3D3" type="RayCast3D" parent="handle/MeshInstance3D/firepoint/raycontainer"]
+target_position = Vector3(0, 0, -100)
+
+[node name="RayCast3D4" type="RayCast3D" parent="handle/MeshInstance3D/firepoint/raycontainer"]
+target_position = Vector3(0, 0, -100)
+
+[node name="RayCast3D5" type="RayCast3D" parent="handle/MeshInstance3D/firepoint/raycontainer"]
+target_position = Vector3(0, 0, -100)
+
+[node name="RayCast3D6" type="RayCast3D" parent="handle/MeshInstance3D/firepoint/raycontainer"]
+target_position = Vector3(0, 0, -100)
+
+[node name="RayCast3D7" type="RayCast3D" parent="handle/MeshInstance3D/firepoint/raycontainer"]
+target_position = Vector3(0, 0, -100)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+process_mode = 4
+public_visibility = false
+
+[node name="ShotTimer" type="Timer" parent="."]

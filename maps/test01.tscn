@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_wwoii"]
 [ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="2_gbr8v"]
 [ext_resource type="PackedScene" uid="uid://dhpg7408tcwtm" path="res://prefabs/player00/player0.tscn" id="3_c1hd0"]
-[ext_resource type="PackedScene" uid="uid://c2he8o6nogkyc" path="res://prefabs/spider01/leg_test_01.tscn" id="4_bxqlt"]
+[ext_resource type="PackedScene" uid="uid://i2hag5qtkfe8" path="res://prefabs/shotgun01/shotgun01.tscn" id="4_g3j28"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -76,6 +76,4 @@ material = ExtResource("2_gbr8v")
 
 [node name="Player" parent="." instance=ExtResource("3_c1hd0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129617, 0.513278, 1.43237)
-
-[node name="leg_test_01" parent="." instance=ExtResource("4_bxqlt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7055, 0.5, -2.47515)
+IPlaceHolder = ExtResource("4_g3j28")
