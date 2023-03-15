@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://di8drnm0xbkdb"]
+
+[ext_resource type="Script" path="res://prefabs/spider01/spider01.gd" id="1_he1j5"]
+[ext_resource type="PackedScene" uid="uid://c2he8o6nogkyc" path="res://prefabs/spider01/leg_test_01.tscn" id="2_apthn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vrua0"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8cbuf"]
+
+[node name="spider01" type="CharacterBody3D"]
+script = ExtResource("1_he1j5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_vrua0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_8cbuf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.948876, 0.315649, 0, -0.315649, 0.948876, -1.37476, 2.26981, 3.25545)
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+
+[node name="leg_test_01" parent="." instance=ExtResource("2_apthn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00551534, 0.00688577, -0.0021286)
