@@ -28,7 +28,7 @@ func fire_shotgun():
 				get_node("/root").add_child(b)
 				b.global_transform.origin = r.get_collision_point()
 				
-				b.look_at(r.get_collision_point() + r.get_collision_normal(), Vector3.UP)
+				#b.look_at(r.get_collision_point() + r.get_collision_normal(), Vector3.UP)
 				
 				if r.get_collider().is_in_group("Enemy"):
 					r.get_collider().health -= damage

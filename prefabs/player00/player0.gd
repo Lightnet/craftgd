@@ -64,24 +64,27 @@ func _ready():
 	pass
 	
 func my_spawn_tool():
-	var mytool = IPlaceHolder.instantiate()
-	#var name_id = mytool.name +"_"+ Helper.generate_random_numbers()
-	#mytool.name = 
-	#mytool.set_multiplayer_authority(str(name).to_int())
-	RightHand.add_child(mytool)
+	if IPlaceHolder:
+		var mytool = IPlaceHolder.instantiate()
+		#var name_id = mytool.name +"_"+ Helper.generate_random_numbers()
+		#mytool.name = 
+		#mytool.set_multiplayer_authority(str(name).to_int())
+		RightHand.add_child(mytool)
 	pass
 	
 @rpc("call_local")
 func local_spawn_tool():
-	var mytool = IPlaceHolder.instantiate()
-	RightHand.add_child(mytool)
+	if IPlaceHolder:
+		var mytool = IPlaceHolder.instantiate()
+		RightHand.add_child(mytool)
 	pass
 	
 # https://docs.godotengine.org/en/stable/classes/class_nodepath.html
 @rpc("any_peer")
 func spawn_tool():
-	var mytool = IPlaceHolder.instantiate()
-	RightHand.add_child(mytool)
+	if IPlaceHolder:
+		var mytool = IPlaceHolder.instantiate()
+		RightHand.add_child(mytool)
 	pass
 
 func _unhandled_input(event):

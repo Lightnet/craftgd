@@ -1,0 +1,151 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvuuckgklyl3l"]
+
+[ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_ttxqn"]
+[ext_resource type="Script" path="res://menu/online/menu_online01.gd" id="1_yhfbq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e25cs"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_8d6au"]
+sky_material = SubResource("ProceduralSkyMaterial_e25cs")
+
+[sub_resource type="Environment" id="Environment_ewn5y"]
+background_mode = 2
+sky = SubResource("Sky_8d6au")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="menu_online" type="Node"]
+script = ExtResource("1_yhfbq")
+
+[node name="world" type="Node3D" parent="."]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="world"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="world/CSGCombiner3D"]
+size = Vector3(32, 1, 32)
+material = ExtResource("1_ttxqn")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="world/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 3.5, 0)
+size = Vector3(1, 6, 24)
+material = ExtResource("1_ttxqn")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="world/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -13)
+size = Vector3(32, 6, 1)
+material = ExtResource("1_ttxqn")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="world/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 3.5, 0)
+size = Vector3(1, 6, 24)
+material = ExtResource("1_ttxqn")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="world/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="world/CSGCombiner3D2"]
+size = Vector3(32, 1, 32)
+material = ExtResource("1_ttxqn")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="world/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 3.5, 0)
+size = Vector3(1, 6, 24)
+material = ExtResource("1_ttxqn")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="world/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -13)
+size = Vector3(32, 6, 1)
+material = ExtResource("1_ttxqn")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="world/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 3.5, 0)
+size = Vector3(1, 6, 24)
+material = ExtResource("1_ttxqn")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="world/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="world/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 0.683987, 0.729494, 0, -0.729494, 0.683987, 0, 4.73031, 0)
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="world"]
+environment = SubResource("Environment_ewn5y")
+
+[node name="Node3D" type="Node3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44035, 0)
+
+[node name="SubViewport" type="SubViewport" parent="world/Node3D"]
+size = Vector2i(128, 128)
+
+[node name="Label" type="Label" parent="world/Node3D/SubViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Lobby"
+
+[node name="M3D_Lobby" type="Marker3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 10)
+
+[node name="M3D_Loadouts" type="Marker3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.2389, 4, 10)
+
+[node name="CameraLobby" type="Camera3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 0.960279, 0.279041, 0, -0.279041, 0.960279, 0, 4.66977, 9.99936)
+
+[node name="CameraLoadouts" type="Camera3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 0.960279, 0.279041, 0, -0.279041, 0.960279, 34, 4.66977, 9.99936)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="btnBack" type="Button" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="btnLobby" type="Button" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Lobby"
+
+[node name="btnLoadouts" type="Button" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Loadouts"
+
+[node name="btnWareHouse" type="Button" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Warehouse"
+
+[node name="btnCrafting" type="Button" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Crafting"
+
+[node name="btnResearch" type="Button" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Research"
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/HBoxContainer/btnLobby" to="." method="_on_btn_lobby_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/HBoxContainer/btnLoadouts" to="." method="_on_btn_loadouts_pressed"]

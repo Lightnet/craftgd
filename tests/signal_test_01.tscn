@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy348brqk2qkr"]
+
+[ext_resource type="Script" path="res://tests/signal_test_01.gd" id="1_4e3xl"]
+
+[node name="signal_test01" type="Node"]
+script = ExtResource("1_4e3xl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="btn_set_mode1" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 140.0
+offset_bottom = 31.0
+text = "set Mode test"
+
+[node name="btn_set_mode2" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 1.0
+offset_right = 320.0
+offset_bottom = 32.0
+text = "set Mode creative"
+
+[node name="btn_get_mode" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 39.0
+offset_right = 90.0
+offset_bottom = 70.0
+text = "get Mode"
+
+[connection signal="pressed" from="CanvasLayer/Control/btn_set_mode1" to="." method="_on_btn_set_mode_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/btn_set_mode2" to="." method="_on_btn_set_mode_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/btn_get_mode" to="." method="_on_btn_get_mode_pressed"]

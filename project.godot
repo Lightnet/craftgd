@@ -12,7 +12,7 @@ config_version=5
 
 config/name="craftgd"
 config/description="There simple game modes and testing map builds."
-run/main_scene="res://maps/test01.tscn"
+run/main_scene="res://maps/inventory_test01.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,8 @@ PlayerSettings="*res://scripts/player_settings.gd"
 Helper="*res://scripts/helper.gd"
 Guikeybinding="*res://scripts/guikeybinding.gd"
 SceneTransition="*res://prefabs/transition/scene_transition.tscn"
+Game="*res://scripts/game.gd"
+GameMangement="*res://scripts/game_mangement.gd"
 
 [input]
 

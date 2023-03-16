@@ -1,20 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxs0mf46vamxi"]
+[gd_scene load_steps=10 format=3 uid="uid://dxs0mf46vamxi"]
 
 [ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_qrkv2"]
 [ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="2_p7fqy"]
 [ext_resource type="PackedScene" uid="uid://dhpg7408tcwtm" path="res://prefabs/player00/player0.tscn" id="3_wp2js"]
-[ext_resource type="PackedScene" uid="uid://i2hag5qtkfe8" path="res://prefabs/shotgun01/shotgun01.tscn" id="4_uojhs"]
+[ext_resource type="PackedScene" uid="uid://dncx3a4rr36wk" path="res://prefabs/tool_decal01/tool_decal01.tscn" id="4_480rq"]
+[ext_resource type="PackedScene" uid="uid://dasuqcyshytx6" path="res://inventory/inventory.tscn" id="5_tegqj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_8d6au"]
+[sub_resource type="Sky" id="Sky_hjrds"]
 sky_material = SubResource("ProceduralSkyMaterial_tfswl")
 
 [sub_resource type="Environment" id="Environment_6ide3"]
 background_mode = 2
-sky = SubResource("Sky_8d6au")
+sky = SubResource("Sky_hjrds")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -76,4 +77,22 @@ material = ExtResource("2_p7fqy")
 
 [node name="Player" parent="." instance=ExtResource("3_wp2js")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129617, 0.513278, 1.43237)
-IPlaceHolder = ExtResource("4_uojhs")
+IPlaceHolder = ExtResource("4_480rq")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryInterface" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("5_tegqj")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 50.0
