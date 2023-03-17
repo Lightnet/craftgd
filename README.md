@@ -98,6 +98,14 @@
 	* One area need for is handling the multiple servers connecting to each other for multiple hub network.
 	* 
 
+# Add ons:
+ * panku_console
+ * kenney_ui_audio
+ * kenney_prototype_textures
+ * kenney_particle_pack
+ * dialogue_manager
+ * 
+
 
 # Bugs: 
  * Note this project is work in progress. It subject change in dev builds.

@@ -10,12 +10,12 @@ extends Node
 
 #var mode = "none"
 
-signal mode(name)
+signal mode(_name)
 var current_mode:String = "none"
 
-func set_mode(name):
-	print("MODE: ",name)
-	current_mode = name
+func set_mode(_name):
+	print("MODE: ",_name)
+	current_mode = _name
 	pass
 
 func get_mode():
