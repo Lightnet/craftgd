@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhpg7408tcwtm"]
+[gd_scene load_steps=6 format=3 uid="uid://dhpg7408tcwtm"]
 
 [ext_resource type="Script" path="res://prefabs/player00/player0.gd" id="1_v2k5i"]
+[ext_resource type="Resource" uid="uid://dx38m3eaytnu8" path="res://tests/test_inventory.tres" id="2_3igk6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_82yuq"]
 
@@ -18,6 +19,7 @@ properties/1/sync = true
 editor_description = "Player pawn."
 collision_layer = 2
 script = ExtResource("1_v2k5i")
+inventory_data = ExtResource("2_3igk6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

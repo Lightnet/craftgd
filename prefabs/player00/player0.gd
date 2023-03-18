@@ -2,6 +2,13 @@ extends CharacterBody3D
 # https://github.com/brannotaylor/3D-Ladder-Tutorial
 signal health_change(health_value)
 
+#inventory stuff
+@export var inventory_data: InventoryData
+signal toggle_inventory()
+
+
+## ===========
+
 @onready var camera = $Camera3D
 #@onready var anim_player = $AnimationPlayer
 #@onready var muzzle_flash = $Camera3D/gun/MuzzleFlash
@@ -92,6 +99,9 @@ func _unhandled_input(event):
 	
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+	
+	if Input.is_action_just_pressed("inventory"):
+		toggle_inventory.emit()
 
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * 0.005)
