@@ -5,6 +5,7 @@ signal health_change(health_value)
 #inventory stuff
 @export var inventory_data: InventoryData
 signal toggle_inventory()
+@onready var interact_ray = $Camera3D/InteractRay
 
 
 ## ===========
@@ -102,12 +103,21 @@ func _unhandled_input(event):
 	
 	if Input.is_action_just_pressed("inventory"):
 		toggle_inventory.emit()
+		
+	if Input.is_action_just_pressed("interact"):
+		interact()
+		pass
 
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * 0.005)
 		camera.rotate_x(-event.relative.y * 0.005)
 		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
 		#camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+
+func interact()->void:
+	if interact_ray.is_colliding():
+		print("interact with ", interact_ray.get_collider())
+	pass
 
 func _physics_process(delta):
 	#if not is_multiplayer_authority(): return
