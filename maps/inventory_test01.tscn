@@ -14,12 +14,12 @@
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_hjrds"]
+[sub_resource type="Sky" id="Sky_16356"]
 sky_material = SubResource("ProceduralSkyMaterial_tfswl")
 
 [sub_resource type="Environment" id="Environment_6ide3"]
 background_mode = 2
-sky = SubResource("Sky_hjrds")
+sky = SubResource("Sky_16356")
 tonemap_mode = 2
 glow_enabled = true
 
