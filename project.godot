@@ -27,6 +27,7 @@ Game="*res://scripts/game.gd"
 GameMangement="*res://scripts/game_mangement.gd"
 Console="*res://addons/panku_console/console.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+PlayerManager="*res://scripts/player_manager.gd"
 
 [editor_plugins]
 

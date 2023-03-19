@@ -7,7 +7,6 @@ signal health_change(health_value)
 signal toggle_inventory()
 @onready var interact_ray = $Camera3D/InteractRay
 
-
 ## ===========
 
 @onready var camera = $Camera3D
@@ -21,8 +20,8 @@ signal toggle_inventory()
 @export var IPlaceHolder:PackedScene
 @export var preloadtool:bool = false
 
-@export var health = 3
-@export var max_health = 3
+@export var health = 4
+@export var max_health = 4
 #editor
 #@export var isMove:bool = false
 #@onready var isMove:bool = false
@@ -64,6 +63,8 @@ func _enter_tree():
 	pass
 	
 func _ready():
+	PlayerManager.player = self
+	
 	#if not is_multiplayer_authority(): return
 	#print("HELL INPUT?")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -200,4 +201,6 @@ func receive_damage():
 		position = Vector3.ZERO;
 	health_change.emit(health)
 	
-
+func heal(health_value)->void:
+	health += health_value
+	pass
