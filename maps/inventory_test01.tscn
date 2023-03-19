@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dxs0mf46vamxi"]
+[gd_scene load_steps=19 format=3 uid="uid://dxs0mf46vamxi"]
 
 [ext_resource type="Script" path="res://tests/inventory_test01.gd" id="1_74v4i"]
 [ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_qrkv2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://inventory/inventory_interface.gd" id="6_m6wav"]
 [ext_resource type="PackedScene" uid="uid://ekb2mkpdc710" path="res://inventory/slot.tscn" id="8_i7q1w"]
 [ext_resource type="PackedScene" uid="uid://bh2v3fk0wfams" path="res://interactable/chest.tscn" id="9_d3q2o"]
+[ext_resource type="PackedScene" uid="uid://ws1an7gq6g26" path="res://inventory/hot_bar_inventory.tscn" id="9_tqu5v"]
 [ext_resource type="PackedScene" uid="uid://bywy1gy8bosf1" path="res://item/pick_up/pickup.tscn" id="9_y6cks"]
 [ext_resource type="Resource" uid="uid://dww5hfatfjiw" path="res://item/items/apple.tres" id="11_7ogt6"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="12_1yvt2"]
@@ -140,6 +141,12 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="HotBarInventory" parent="UI" instance=ExtResource("9_tqu5v")]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 430.0
+offset_bottom = 90.0
 
 [node name="chest" parent="." instance=ExtResource("9_d3q2o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1)
