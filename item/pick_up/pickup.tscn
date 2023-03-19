@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bywy1gy8bosf1"]
+
+[ext_resource type="Script" path="res://item/pick_up/pickup01.gd" id="1_1gm4u"]
+[ext_resource type="Texture2D" uid="uid://dhcv4toup1eiu" path="res://item/item_atlas_texture.tres" id="1_o051y"]
+[ext_resource type="Resource" uid="uid://w81flohuscy6" path="res://item/items/blue_book.tres" id="2_thny8"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_02myv"]
+
+[sub_resource type="Resource" id="Resource_gq6on"]
+script = ExtResource("3_02myv")
+item_data = ExtResource("2_thny8")
+quantity = 1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xpsdi"]
+
+[node name="Pickup" type="RigidBody3D"]
+collision_layer = 0
+lock_rotation = true
+script = ExtResource("1_1gm4u")
+slot_data = SubResource("Resource_gq6on")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+texture_filter = 0
+texture = ExtResource("1_o051y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.696, 0, 0, 0, 0.696, 0, 0, 0, 0.696, 0, 0, 0)
+shape = SubResource("SphereShape3D_xpsdi")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.696, 0, 0, 0, 0.696, 0, 0, 0, 0.696, 0, 0, 0)
+shape = SubResource("SphereShape3D_xpsdi")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
