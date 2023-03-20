@@ -129,4 +129,11 @@
  * https://godotengine.org
  
 # Credits:
- * https://www.youtube.com/@DevLogLogan FPS set up.
+ * First Person Shooter set up.
+ 	* https://www.youtube.com/@DevLogLogan 
+ * Chart
+   * https://github.com/nathanhoad/godot_puzzle_dependencies
+ * Godot 4 - RPG Inventory System From Scratch
+   * https://www.youtube.com/watch?v=V79YabQZC1s
+ * Godot Class
+   * https://www.youtube.com/watch?v=HbRFjTmcVJo
