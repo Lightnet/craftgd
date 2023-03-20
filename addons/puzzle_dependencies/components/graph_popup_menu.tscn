@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca2q63vovtsh2"]
+
+[ext_resource type="Script" path="res://addons/puzzle_dependencies/components/graph_popup_menu.gd" id="1_2sgqw"]
+
+[node name="GraphPopupMenu" type="PopupMenu"]
+visible = true
+script = ExtResource("1_2sgqw")
+
+[connection signal="about_to_popup" from="." to="." method="_on_graph_popup_menu_about_to_popup"]
+[connection signal="id_pressed" from="." to="." method="_on_graph_popup_menu_id_pressed"]

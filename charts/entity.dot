@@ -1,0 +1,8 @@
+strict graph {
+"f60d209c98" [label="Entity", shape=Mrecord, style=filled, fillcolor="#000000", fontcolor="#ffffff"]
+"a04500926b" [label="Head
+", shape=Mrecord, style=filled, fillcolor="#bd93f9", fontcolor="#000000"]
+"f458e8a5ad" [label="", shape=Mrecord, style=filled, fillcolor="#bd93f9", fontcolor="#000000"]
+"f60d209c98" -- "a04500926b"
+"f60d209c98" -- "f458e8a5ad"
+}

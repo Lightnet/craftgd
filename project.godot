@@ -26,12 +26,10 @@ SceneTransition="*res://prefabs/transition/scene_transition.tscn"
 Game="*res://scripts/game.gd"
 GameMangement="*res://scripts/game_mangement.gd"
 PlayerManager="*res://scripts/player_manager.gd"
-Console="*res://addons/panku_console/console.tscn"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/panku_console/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/panku_console/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/puzzle_dependencies/plugin.cfg")
 
 [input]
 
@@ -154,16 +152,78 @@ melee={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"echo":false,"script":null)
 ]
 }
-toggle_console={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":96,"key_label":0,"unicode":0,"echo":false,"script":null)
-]
-}
 
 [internationalization]
 
 locale/translations_pot_files=PackedStringArray("res://tests/test.dialogue")
 
-[panku]
+[puzzle_dependencies]
 
-toggle_console_action="toggle_console"
+types={
+0: {
+"color": Color(0, 0, 0, 1),
+"id": 0,
+"label": "Entity"
+},
+1: {
+"color": Color(1, 0.470588, 0.419608, 1),
+"id": 1,
+"label": "Weapon"
+},
+2: {
+"color": Color(0.741176, 0.576471, 0.976471, 1),
+"id": 2,
+"label": "Equip"
+},
+3: {
+"color": Color(0.45098, 0.94902, 0.501961, 1),
+"id": 3,
+"label": "Item"
+},
+4: {
+"color": Color(1, 0.870588, 0.4, 1),
+"id": 4,
+"label": "Used"
+}
+}
+boards={
+"64c822a721": {
+"connections": [{
+"from": &"f60d209c98",
+"to": &"a04500926b"
+}, {
+"from": &"f60d209c98",
+"to": &"f458e8a5ad"
+}],
+"id": "64c822a721",
+"label": "entity",
+"scroll_offset": Vector2(1573.37, -144.191),
+"things": [{
+"id": &"f60d209c98",
+"position_offset": Vector2(2140, 140),
+"size": Vector2(150, 80.0001),
+"text": "Entity",
+"type": 0
+}, {
+"id": &"a04500926b",
+"position_offset": Vector2(2400, 80),
+"size": Vector2(150, 80),
+"text": "Head
+",
+"type": 2
+}, {
+"id": &"f458e8a5ad",
+"position_offset": Vector2(2400, 200),
+"size": Vector2(150, 80.0001),
+"text": "",
+"type": 2
+}],
+"zoom": 0.802888
+}
+}
+minimap_enabled=true
+minimap_size=Vector2(200, 150)
+use_snap=true
+snap_distance=20
+current_board_id="64c822a721"
+last_export_path="res://charts/entity.dot"

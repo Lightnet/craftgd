@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bolrscxt8k8lu"]
+
+[ext_resource type="Script" path="res://addons/puzzle_dependencies/components/board.gd" id="1_agvjw"]
+[ext_resource type="PackedScene" uid="uid://ca2q63vovtsh2" path="res://addons/puzzle_dependencies/components/graph_popup_menu.tscn" id="2_68c53"]
+[ext_resource type="PackedScene" uid="uid://qnehtcwxu23d" path="res://addons/puzzle_dependencies/components/thing_popup_menu.tscn" id="3_gai80"]
+
+[node name="Board" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_agvjw")
+
+[node name="Graph" type="GraphEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+show_zoom_label = true
+minimap_size = Vector2(200, 150)
+
+[node name="GraphPopupMenu" parent="." instance=ExtResource("2_68c53")]
+visible = false
+
+[node name="ThingPopupMenu" parent="." instance=ExtResource("3_gai80")]
+
+[connection signal="connection_from_empty" from="Graph" to="." method="_on_graph_connection_from_empty"]
+[connection signal="connection_request" from="Graph" to="." method="_on_graph_connection_request"]
+[connection signal="connection_to_empty" from="Graph" to="." method="_on_graph_connection_to_empty"]
+[connection signal="gui_input" from="Graph" to="." method="_on_graph_gui_input"]
+[connection signal="popup_request" from="Graph" to="." method="_on_graph_popup_request"]
+[connection signal="add_thing" from="GraphPopupMenu" to="." method="_on_graph_popup_menu_add_thing"]

@@ -29,9 +29,13 @@
 		* [x] build tool to place blocks and delete (wip)
 		* [x] melee (wip)
 		* [x] projectile (wip)
-		* [ ] storage menu ( n/a )
+		* [x] storage menu ( wip )
 		* [ ] npc menu ( n/a )
-		* [ ] interact ( n/a )
+		* [ ] interact ( wip )
+			*	[x] chest
+			*	[x] pick up auto
+			* [ ] pick up manual
+
 	* props
 		* [ ] out of bounds ( n/a )
 		* [ ] damage area ( n/a )
@@ -40,6 +44,14 @@
 
  * vehicle
 	*	[x] simple car ( wip )
+
+# Design state machine:
+	Work in progress. Thinking of state module system. One reason is to keep the script simple for logic system for movements.
+
+	As well npc and mobs logic by GQuest idea.
+
+##	Note:
+
 
 # Features / To Do List:
  - [ ] key binding
@@ -105,7 +117,6 @@
  * kenney_particle_pack
  * dialogue_manager
  * 
-
 
 # Bugs: 
  * Note this project is work in progress. It subject change in dev builds.

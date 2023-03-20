@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://qnehtcwxu23d"]
+
+[ext_resource type="Script" path="res://addons/puzzle_dependencies/components/thing_popup_menu.gd" id="1_jhu0y"]
+
+[node name="ThingPopupMenu" type="PopupMenu"]
+script = ExtResource("1_jhu0y")
+
+[node name="DisconnectionsMenu" type="PopupMenu" parent="."]
+
+[connection signal="about_to_popup" from="." to="." method="_on_thing_popup_menu_about_to_popup"]
+[connection signal="id_pressed" from="." to="." method="_on_thing_popup_menu_id_pressed"]
+[connection signal="id_pressed" from="DisconnectionsMenu" to="." method="_on_disconnections_menu_id_pressed"]
