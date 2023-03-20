@@ -1,23 +1,31 @@
 extends Control
 
 signal drop_slot_data(slot_data:SlotData)
-
+signal force_close
 var grabbed_slot_data: SlotData
 var external_inventory_owner
 
 @onready var player_inventory = $PlayerInventory
 @onready var grabbed_slot = $GrabbedSlot
 @onready var external_inventory = $ExternalInventory
+@onready var equp_inventory = $EqupInventory
 
 func _physics_process(_delta):
 	if grabbed_slot.visible:
 		grabbed_slot.global_position = get_global_mouse_position() + Vector2(5, 5)
 		pass
-
+	if external_inventory_owner \
+			and external_inventory_owner.global_position.distance_to(PlayerManager.get_global_position()) > 4:
+		force_close.emit()
 func set_player_inventory_data(inventory_data:InventoryData)->void:
 	inventory_data.inventory_interact.connect(on_inventory_interact)
 	player_inventory.set_inventory_data(inventory_data)
 	pass
+
+func set_equip_inventory_data(inventory_data:InventoryData)->void:
+	inventory_data.inventory_interact.connect(on_inventory_interact)
+	equp_inventory.set_inventory_data(inventory_data)
+	#pass
 
 func set_external_inventory(_external_inventory_owner):
 	#print(_external_inventory_owner)

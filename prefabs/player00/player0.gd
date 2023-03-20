@@ -4,6 +4,7 @@ signal health_change(health_value)
 
 #inventory stuff
 @export var inventory_data: InventoryData
+@export var equip_inventory_data:InventoryDataEquip
 signal toggle_inventory()
 @onready var interact_ray = $Camera3D/InteractRay
 

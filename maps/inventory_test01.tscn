@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://dxs0mf46vamxi"]
+[gd_scene load_steps=21 format=3 uid="uid://dxs0mf46vamxi"]
 
 [ext_resource type="Script" path="res://tests/inventory_test01.gd" id="1_74v4i"]
 [ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_qrkv2"]
 [ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="2_p7fqy"]
 [ext_resource type="PackedScene" uid="uid://dhpg7408tcwtm" path="res://prefabs/player00/player0.tscn" id="3_wp2js"]
 [ext_resource type="PackedScene" uid="uid://dncx3a4rr36wk" path="res://prefabs/tool_decal01/tool_decal01.tscn" id="4_480rq"]
+[ext_resource type="Script" path="res://inventory/inventory_data_equip.gd" id="5_2kjyq"]
 [ext_resource type="PackedScene" uid="uid://dasuqcyshytx6" path="res://inventory/inventory.tscn" id="5_tegqj"]
 [ext_resource type="Script" path="res://inventory/inventory_interface.gd" id="6_m6wav"]
 [ext_resource type="PackedScene" uid="uid://ekb2mkpdc710" path="res://inventory/slot.tscn" id="8_i7q1w"]
@@ -34,6 +35,10 @@ properties/0/sync = true
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/sync = true
+
+[sub_resource type="Resource" id="Resource_feetn"]
+script = ExtResource("5_2kjyq")
+slot_datas = Array[ExtResource("12_1yvt2")]([null])
 
 [sub_resource type="Resource" id="Resource_0vbq5"]
 script = ExtResource("12_1yvt2")
@@ -91,6 +96,7 @@ material = ExtResource("2_p7fqy")
 
 [node name="Player" parent="." instance=ExtResource("3_wp2js")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129617, 0.513278, 1.43237)
+equip_inventory_data = SubResource("Resource_feetn")
 IPlaceHolder = ExtResource("4_480rq")
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -110,6 +116,13 @@ layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 50.0
+offset_bottom = 50.0
+
+[node name="EqupInventory" parent="UI/InventoryInterface" instance=ExtResource("5_tegqj")]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 10.0
+offset_right = 490.0
 offset_bottom = 50.0
 
 [node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("5_tegqj")]
