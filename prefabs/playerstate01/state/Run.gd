@@ -1,6 +1,15 @@
 # Run.gd
 extends PlayerState
 
+#func enter(msg := {}) -> void:
+	#print("STATE: ", name)
+
+func handle_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("jump"):
+		print("JUMP>>")
+		state_machine.transition_to("Air", {do_jump = true})
+	pass
+
 func physics_update(delta: float) -> void:
 	# Notice how we have some code duplication between states. That's inherent to the pattern,
 	# although in production, your states will tend to be more complex and duplicate code
@@ -17,13 +26,9 @@ func physics_update(delta: float) -> void:
 		- Input.get_action_strength("left")
 	)
 	player.velocity.x = player.SPEED * input_direction_x
-	player.velocity.y += player.gravity * delta
+	player.velocity.y -= player.gravity * delta
 	
 	#player.velocity = player.move_and_slide(player.velocity, Vector3.UP)
-
-	if Input.is_action_just_pressed("jump"):
-		print("JUMP")
-		state_machine.transition_to("Air", {do_jump = true})
-	elif is_equal_approx(input_direction_x, 0.0):
+	if is_equal_approx(input_direction_x, 0.0):
 		state_machine.transition_to("Idle")
 	player.move_and_slide()

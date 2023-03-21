@@ -3,6 +3,7 @@ extends PlayerState
 
 # If we get a message asking us to jump, we jump.
 func enter(msg := {}) -> void:
+	print("STATE: ", name)
 	if msg.has("do_jump"):
 		player.velocity.y = player.JUMP_VELOCITY
 
@@ -19,11 +20,13 @@ func physics_update(delta: float) -> void:
 	
 	# Vertical movement.
 	player.velocity.y -= player.gravity * delta
-	player.move_and_slide() #need this to update pos
+	
+	print("input_direction_x: ", input_direction_x)
+	
 	# Landing.
 	if player.is_on_floor():
 		if is_equal_approx(player.velocity.x, 0.0):
 			state_machine.transition_to("Idle")
 		else:
 			state_machine.transition_to("Run")
-	
+	player.move_and_slide() #need this to update pos
