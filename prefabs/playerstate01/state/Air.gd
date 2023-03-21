@@ -21,7 +21,7 @@ func physics_update(delta: float) -> void:
 	# Vertical movement.
 	player.velocity.y -= player.gravity * delta
 	
-	print("input_direction_x: ", input_direction_x)
+	#print("input_direction_x: ", input_direction_x)
 	
 	# Landing.
 	if player.is_on_floor():

@@ -8,13 +8,44 @@
  * Prototyping
 
 # Information:
- Working on toward craft build with some simple first person view.
+ Working on toward craft build with some simple first person view and sandbox world for test each components for able to handle entity components.
 
- Will have some element of shooter, farming, buildings and other prototype builds.
+ Idea base on minecraft, shooter games, farming, open world and other prototype builds.
 
- Idea base on minecraft, shooter games, open world and other things.
+ Working toward module components to handle inventory, item, weapon, equipement, state machine and to handle entity nodes branches.
 
- Working on sandbox world.
+## Layout Entity:
+	* CharacterBody3D (player)
+		* Script
+			*	inventory
+			* equip inventory
+		* Collision
+		* skeleton mesh
+		* animation player
+		* animation tree 
+	  * State Machine [Script]
+			*	Idle [Script]
+			*	Run [Script]
+			*	Jump [Script]
+		* Weapon / Handle [Script]
+			*	Sword [Script]
+		* Equip [Script]
+			* Head [Script]
+			* Chest [Script]
+			* Foot [Script]
+			* Hand [Script]
+		* Skills [Script]?
+			* regan [Script]
+			* fireball [Script]
+
+	Reason that Godot 4.0 any things can be editable that use class base that filter out components. They are subject to changes.
+
+ There is video guide about the class_name and resource object.
+
+
+* https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html
+* https://docs.godotengine.org/en/stable/tutorials/scripting/resources.html
+
 
 # Design Plans:
  * [ ] Build world with blocks and other types.
@@ -26,15 +57,16 @@
 	* [x] grappling hook
 
 	* [ ] prototype items
-		* [x] build tool to place blocks and delete (wip)
-		* [x] melee (wip)
+		* [x] Build tool to place blocks and delete (wip)
+		* [x] Melee (wip)
+		* [x] Simple Turret (wip)
 		* [x] projectile (wip)
 		* [x] storage menu ( wip )
-		* [ ] npc menu ( n/a )
-		* [ ] interact ( wip )
-			*	[x] chest
-			*	[x] pick up auto
-			* [ ] pick up manual
+		* [ ] NPC menu ( n/a )
+		* [ ] Interact ( wip )
+			*	[x] Chest Box
+			*	[x] Pick up auto
+			* [ ] Pick up manual
 
 	* props
 		* [ ] out of bounds ( n/a )
@@ -50,7 +82,7 @@
 
 	As well npc and mobs logic by GQuest idea.
 
-##	Note:
+## Notes:
 
 
 # Features / To Do List:
@@ -86,8 +118,8 @@
 	* [x] Melee weapon (wip)
 	* [x] Hit scan weapon (wip)
 	* [x] Build blocks ( n/a )
-	* [ ] Inventory UI
-	* [ ] Hot Bar
+	* [x] Inventory UI
+	* [x] Hot Bar
 	* [ ] Build mode
  * Map
 	* [x] Prototype Test01 (wip)
@@ -116,12 +148,12 @@
  * kenney_prototype_textures
  * kenney_particle_pack
  * dialogue_manager
- * 
+ * puzzle_dependencies
 
 # Bugs: 
  * Note this project is work in progress. It subject change in dev builds.
- * Host Input Pause when start game if clicked.
- * Host HealthBar not reduce only client works.
+ * Host Input Pause when start game if clicked. Incorrect coding in auth pass ID.
+ * Host HealthBar not reduce only client works.  Incorrect coding.
 
 # Links:
  * https://www.youtube.com/watch?v=n8D3vEx7NAE
