@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="SVGRoot"
+   sodipodi:docname="turret01.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   inkscape:export-filename="..\..\projects\craftgd\icon\icon00.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview2499"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="17.987029"
+     inkscape:cx="17.7628"
+     inkscape:cy="12.620206"
+     inkscape:window-width="1350"
+     inkscape:window-height="955"
+     inkscape:window-x="547"
+     inkscape:window-y="15"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer2">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2505" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2494" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <rect
+       style="fill:#00ffff;stroke-width:0.152554"
+       id="rect2644"
+       width="32"
+       height="32"
+       x="0"
+       y="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="object"
+     transform="translate(-1.612273)">
+    <path
+       style="fill:#aa0000"
+       d="M 4.8924145,2.1126335 V 25.907559 H 30.07723 V 1.9458467 H 24.906837 V 21.96027 H 9.8404246 V 2.0570379 Z"
+       id="path305"
+       sodipodi:nodetypes="ccccccccc" />
+    <circle
+       style="fill:#aa0000"
+       id="path359"
+       cx="17.540419"
+       cy="12.481216"
+       r="6.3656983" />
+    <rect
+       style="fill:#aa0000"
+       id="rect634"
+       width="25.018028"
+       height="2.5018029"
+       x="5.0036058"
+       y="28.29817" />
+  </g>
+</svg>

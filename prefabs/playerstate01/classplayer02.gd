@@ -3,10 +3,14 @@ extends CharacterBody3D
 class_name Player
 
 # An enum allows us to keep track of valid states.
-enum States {ON_GROUND, IN_AIR, GLIDING}
+enum States {
+	ON_GROUND, 
+	IN_AIR, 
+	GLIDING
+}
 
 # With a variable that keeps track of the current state, we don't need to add more booleans.
-var _state : int = States.ON_GROUND
+var state: int = States.ON_GROUND
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -14,8 +18,12 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Add the gravity.
+	#if not is_on_floor():
+		#velocity.y -= gravity * _delta
+	#move_and_slide()# need this
+	"""
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -35,3 +43,5 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	"""
+	pass

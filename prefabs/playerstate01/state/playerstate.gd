@@ -1,11 +1,10 @@
 # Boilerplate class to get full autocompletion and type checks for the `player` when coding the player's states.
 # Without this, we have to run the game to see typos and other errors the compiler could otherwise catch while scripting.
-class_name PlayerState
 extends State
+class_name PlayerState
 
 # Typed reference to the player node.
 var player: Player
-
 
 func _ready() -> void:
 	# The states are children of the `Player` node so their `_ready()` callback will execute first.
@@ -19,3 +18,17 @@ func _ready() -> void:
 	# in a scene other than `Player.tscn`, which would be unintended. This can
 	# help prevent some bugs that are difficult to understand.
 	assert(player != null)
+
+func enter(_msg := {}) -> void:
+	#player.velocity = Vector3.ZERO
+	pass
+
+func physics_update(_delta: float) -> void:
+	if not player.is_on_floor():
+		state_machine.transition_to("Air")
+		return
+
+	if Input.is_action_just_pressed("jump"):
+		state_machine.transition_to("Air", {do_jump = true})
+	elif Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+		state_machine.transition_to("Run")
