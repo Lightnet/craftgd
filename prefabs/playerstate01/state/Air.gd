@@ -6,6 +6,7 @@ func enter(msg := {}) -> void:
 	print("STATE: ", name)
 	if msg.has("do_jump"):
 		player.velocity.y = player.JUMP_VELOCITY
+		player.move_and_slide() #need this to update pos
 
 func physics_update(delta: float) -> void:
 	# Horizontal movement.

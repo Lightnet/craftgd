@@ -169,3 +169,6 @@
    * https://www.youtube.com/watch?v=V79YabQZC1s
  * Godot Class
    * https://www.youtube.com/watch?v=HbRFjTmcVJo
+ * State Machine
+	  * https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine/
+		* https://gdscript.com/solutions/godot-state-machine/
