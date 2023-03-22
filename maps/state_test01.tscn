@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_ms3oh"]
 [ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="2_hjb7w"]
-[ext_resource type="PackedScene" uid="uid://brocjncke3gg7" path="res://prefabs/playerstate01/classplayer.tscn" id="3_3g6jo"]
+[ext_resource type="PackedScene" uid="uid://qhys8mc1bdf7" path="res://prefabs/playerstate01/classplayer.tscn" id="3_3g6jo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

@@ -1,17 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://brocjncke3gg7"]
+[gd_scene load_steps=8 format=3 uid="uid://qhys8mc1bdf7"]
 
-[ext_resource type="Script" path="res://prefabs/playerstate01/classplayer02.gd" id="1_kql8m"]
+[ext_resource type="Script" path="res://prefabs/playerstate01/classplayer01.gd" id="1_d1k3k"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/state/statemachine.gd" id="2_3aens"]
-[ext_resource type="Script" path="res://prefabs/playerstate01/state/Idle.gd" id="3_bti4y"]
-[ext_resource type="Script" path="res://prefabs/playerstate01/state/Run.gd" id="4_fjor0"]
-[ext_resource type="Script" path="res://prefabs/playerstate01/state/Air.gd" id="5_ifbx2"]
+[ext_resource type="Script" path="res://prefabs/playerstate01/state/state_idle.gd" id="3_j6rv3"]
+[ext_resource type="Script" path="res://prefabs/playerstate01/state/state_run.gd" id="4_fyrfo"]
+[ext_resource type="Script" path="res://prefabs/playerstate01/state/state_air.gd" id="5_rfswu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_clcbs"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_q5er1"]
 
 [node name="classplayer" type="CharacterBody3D"]
-script = ExtResource("1_kql8m")
+script = ExtResource("1_d1k3k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_clcbs")
@@ -27,10 +27,10 @@ script = ExtResource("2_3aens")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("3_bti4y")
+script = ExtResource("3_j6rv3")
 
 [node name="Run" type="Node" parent="StateMachine"]
-script = ExtResource("4_fjor0")
+script = ExtResource("4_fyrfo")
 
 [node name="Air" type="Node" parent="StateMachine"]
-script = ExtResource("5_ifbx2")
+script = ExtResource("5_rfswu")

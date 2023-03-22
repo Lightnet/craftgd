@@ -20,9 +20,9 @@ func _ready() -> void:
 	await owner.ready #4.0 ?
 	# The state machine assigns itself to the State objects' state_machine property.
 	for child in get_children():
-		print("STATE NAME: ", child.name)
+		#print("STATE NAME: ", child.name)
 		child.state_machine = self
-	print(">> STATE NAME: ", state.name)
+	#print(">> STATE NAME: ", state.name)
 	state.enter()
 
 # The state machine subscribes to node callbacks and delegates them to the state objects.

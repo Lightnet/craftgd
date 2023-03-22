@@ -12,11 +12,19 @@ enum States {
 # With a variable that keeps track of the current state, we don't need to add more booleans.
 var state: int = States.ON_GROUND
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+@export var SPEED = 5.0
+@export var aceel = 10
+@export var JUMP_VELOCITY = 4.5
+
+@onready var camera = $Camera3D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	pass
+
 
 func _physics_process(_delta):
 	# Add the gravity.
@@ -44,4 +52,9 @@ func _physics_process(_delta):
 
 	move_and_slide()
 	"""
+	pass
+
+func _move_toward():
+	velocity.x = move_toward(velocity.x, 0, SPEED)
+	velocity.z = move_toward(velocity.z, 0, SPEED)
 	pass
