@@ -208,7 +208,7 @@ boards={
 }],
 "id": "64c822a721",
 "label": "entity",
-"scroll_offset": Vector2(1282.36, -144.191),
+"scroll_offset": Vector2(1282.36, -33),
 "things": [{
 "id": &"f60d209c98",
 "position_offset": Vector2(2140, 140),
