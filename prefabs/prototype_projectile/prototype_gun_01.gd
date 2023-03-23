@@ -3,7 +3,7 @@ extends Node3D
 # https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d
 
 @export var bullet:PackedScene
-var can_shoot:bool = true
+@export var can_shoot:bool = true
 @onready var firepoint = $Node3D/MeshInstance3D/firepoint
 
 # Called when the node enters the scene tree for the first time.

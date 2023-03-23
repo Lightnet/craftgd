@@ -18,20 +18,11 @@ func handle_input(event: InputEvent) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	# Horizontal movement.
-	#print("UPDATE")
-	#var input_direction_x: float = (
-		#Input.get_action_strength("right")
-		#- Input.get_action_strength("left")
-	#)
-	
-	#player.velocity.x = player.speed * input_direction_x
-	#player.velocity.x = player.SPEED * input_direction_x
 	#print("player: ", player)
 	if player.state == player.States.LADDER:
 		state_machine.transition_to("Ladder")
 		return
-	
+	# Horizontal movement
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -46,7 +37,6 @@ func physics_update(delta: float) -> void:
 	
 	# Vertical gravity.
 	player.velocity.y -= player.gravity * delta
-	
 	#print("input_direction_x: ", input_direction_x)
 	
 	# Landing.

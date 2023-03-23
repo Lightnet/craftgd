@@ -5,9 +5,6 @@ extends PlayerState
 # Upon entering the state, we set the Player node's velocity to zero.
 func enter(_msg := {}) -> void:
 	print("ENTER STATE: ", name)
-	#player.state = player.States.LADDER
-	#print("ENTER IDLE STATE")
-	#print("_msg: ",_msg)
 	# We must declare all the properties we access through `owner` in the `Player.gd` script.
 	owner.velocity = Vector3.ZERO
 
@@ -19,7 +16,6 @@ func handle_input(event):
 		player.camera.rotation.x = clamp(player.camera.rotation.x, -PI/2, PI/2)
 
 func update(_delta: float) -> void:
-	#player.velocity.y = 0
 	#print("LADDER UPDATE...")
 	#if ladder count is zero return to air to check fall
 	if player.ladder_array.size() == 0:
@@ -34,8 +30,6 @@ func update(_delta: float) -> void:
 	var f_input = Input.get_action_strength("back") - Input.get_action_strength("forward")
 	var h_input = Input.get_action_strength("right") - Input.get_action_strength("left")
 	direction = Vector3(h_input, 0.0, f_input).rotated(Vector3.UP,h_rot).normalized()
-	#var input_dir = Input.get_vector("left", "right", "up", "down")
-	#direction = (transform.basis * Vector3(0, input_dir.y * -1, 0)).normalized()
 	if f_input: #make sure the there movement for going up or down.
 		if player.camera.rotation_degrees.x > 0:
 			direction.y = 1
@@ -43,14 +37,13 @@ func update(_delta: float) -> void:
 			direction.y = -1
 	player.velocity = direction * player.CLIMB_SPEED
 	#print("POS Y:",input_dir.y)
-	print("direction: ", direction)
+	#print("direction: ", direction)
+	#enter and exit when point down
 	if direction.y < 0 and player.is_on_floor(): #check if player touch ground and exit
 		state_machine.transition_to("Idle")
-		#current_state = State.NORMAL
-		print("HELLO>?FLOOR")
+		#print("FLOOR!")
 		pass
-	#if Input.is_action_just_pressed("jump"): #exit to normal
-		#state_machine.transition_to("Air")
-		#current_state = State.NORMAL
+	if Input.is_action_just_pressed("jump"): #exit to normal
+		state_machine.transition_to("Air")
 	player.move_and_slide()
 	pass

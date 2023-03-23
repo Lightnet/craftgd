@@ -4,11 +4,11 @@ class_name Player
 
 # An enum allows us to keep track of valid states.
 enum States {
-	IDLE,
-	ON_GROUND, 
-	IN_AIR, 
+	IDLE, #use
+	ON_GROUND, #use
+	IN_AIR, #use
 	GLIDING,
-	LADDER,
+	LADDER, #use
 	FLY,
 }
 

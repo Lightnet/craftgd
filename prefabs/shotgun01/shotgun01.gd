@@ -19,6 +19,7 @@ func _process(_delta):
 
 func fire_shotgun():
 	if Input.is_action_pressed("fire"):
+		#print("FIRE")
 		for r in raycontrainer.get_children():
 			r.target_position.x = randf_range(spread,-spread)
 			r.target_position.y = randf_range(spread,-spread)
