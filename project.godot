@@ -12,7 +12,7 @@ config_version=5
 
 config/name="craftgd"
 config/description="There simple game modes and testing map builds."
-run/main_scene="res://maps/state_test01.tscn"
+run/main_scene="res://maps/inventory_test02.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -26,6 +26,7 @@ SceneTransition="*res://prefabs/transition/scene_transition.tscn"
 Game="*res://scripts/game.gd"
 GameMangement="*res://scripts/game_mangement.gd"
 PlayerManager="*res://scripts/player_manager.gd"
+Networkweb="*res://scripts/networkweb.gd"
 
 [editor_plugins]
 
@@ -202,7 +203,7 @@ boards={
 }],
 "id": "64c822a721",
 "label": "entity",
-"scroll_offset": Vector2(1388.36, -144.191),
+"scroll_offset": Vector2(1282.36, -33),
 "things": [{
 "id": &"f60d209c98",
 "position_offset": Vector2(2140, 140),

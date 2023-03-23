@@ -7,6 +7,9 @@
  * 3.4.0 animation broken 
  * 3.4.1 animation broken 
 
+## notes:
+  * for some reason that my pc does not work while dev say it works.
+
 # ref:
  * https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/escn_exporter/animation.html
  * 

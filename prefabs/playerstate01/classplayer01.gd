@@ -6,12 +6,21 @@ class_name Player
 enum States {
 	ON_GROUND, 
 	IN_AIR, 
-	GLIDING
+	GLIDING,
+	LADDER,
+	FLY,
 }
 
 # With a variable that keeps track of the current state, we don't need to add more booleans.
 var state: int = States.ON_GROUND
 
+#inventory stuff
+@export var inventory_data: InventoryData
+@export var equip_inventory_data:InventoryDataEquip
+signal toggle_inventory()
+#@onready var interact_ray = $Camera3D/InteractRay
+
+#character movement settings
 @export var SPEED = 5.0
 @export var aceel = 10
 @export var JUMP_VELOCITY = 4.5
@@ -22,16 +31,19 @@ var state: int = States.ON_GROUND
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
+	
+	PlayerManager.player = self
+	#need to check stuff
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	pass
 
-
 func _physics_process(_delta):
+	"""
 	# Add the gravity.
 	#if not is_on_floor():
 		#velocity.y -= gravity * _delta
-	#move_and_slide()# need this
-	"""
+	#move_and_slide()# need this to update
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -54,6 +66,19 @@ func _physics_process(_delta):
 	"""
 	pass
 
+func _unhandled_input(_event):
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
+	
+	if Input.is_action_just_pressed("inventory"):
+		toggle_inventory.emit()
+		
+func get_drop_position()->Vector3:
+	var direction = -camera.global_transform.basis.z
+	return camera.global_position + direction
+	#pass
+
+#need this for state else player.move_toward error not found v4.0.1
 func _move_toward():
 	velocity.x = move_toward(velocity.x, 0, SPEED)
 	velocity.z = move_toward(velocity.z, 0, SPEED)

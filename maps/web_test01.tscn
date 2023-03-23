@@ -55,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -4)
 material = ExtResource("2_3r1vq")
 
 [node name="Player" parent="." instance=ExtResource("3_n55wc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129617, 0.513278, -5.56763)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129617, 0.513278, 3.43237)
 IPlaceHolder = ExtResource("4_jbklk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -81,3 +81,12 @@ offset_top = 36.0
 offset_right = 95.0
 offset_bottom = 67.0
 text = "Connect 01"
+
+[node name="btnHttpRequest" type="Button" parent="CanvasLayer/webtest01"]
+layout_mode = 0
+offset_top = 73.0
+offset_right = 95.0
+offset_bottom = 104.0
+text = "Request"
+
+[connection signal="pressed" from="CanvasLayer/webtest01/btnHttpRequest" to="CanvasLayer/webtest01" method="_on_btn_http_request_pressed"]

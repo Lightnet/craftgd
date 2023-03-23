@@ -1,8 +1,8 @@
 # Run.gd
 extends PlayerState
 
-#func enter(msg := {}) -> void:
-	#print("STATE: ", name)
+func enter(_msg := {}) -> void:
+	player.state = player.States.ON_GROUND
 
 func handle_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("jump"):

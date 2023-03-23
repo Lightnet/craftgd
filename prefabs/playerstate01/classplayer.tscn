@@ -1,16 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://qhys8mc1bdf7"]
+[gd_scene load_steps=10 format=3 uid="uid://qhys8mc1bdf7"]
 
 [ext_resource type="Script" path="res://prefabs/playerstate01/classplayer01.gd" id="1_d1k3k"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/state/statemachine.gd" id="2_3aens"]
+[ext_resource type="Script" path="res://prefabs/playerstate01/state/state_ladder.gd" id="3_10ehb"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/state/state_idle.gd" id="3_j6rv3"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/state/state_run.gd" id="4_fyrfo"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/state/state_air.gd" id="5_rfswu"]
+[ext_resource type="Script" path="res://prefabs/playerstate01/InteractInventory.gd" id="6_psv0x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_clcbs"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_q5er1"]
 
 [node name="classplayer" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_d1k3k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -21,6 +24,10 @@ mesh = SubResource("CapsuleMesh_q5er1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="InteractRay" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 4
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_3aens")
@@ -34,3 +41,13 @@ script = ExtResource("4_fyrfo")
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("5_rfswu")
+
+[node name="Ladder" type="Node" parent="StateMachine"]
+script = ExtResource("3_10ehb")
+
+[node name="Actions" type="Node" parent="."]
+
+[node name="InteractInventory" type="Node" parent="Actions"]
+script = ExtResource("6_psv0x")
+
+[node name="Eqiups" type="Node" parent="."]
