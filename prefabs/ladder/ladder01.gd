@@ -12,11 +12,11 @@ extends Area3D
 
 func _on_body_entered(body):
 	print("ENTER LADDER")
-	print("GROUPS:", body.get_groups())
+	#print("GROUPS:", body.get_groups())
 	if body.is_in_group("Player"):
-		print("PLAYER ENTER LADDER")
+		#print("PLAYER ENTER LADDER")
 		body.ladder_array.append(self)
-		body.current_state = body.State.LADDER
+		body.state = body.States.LADDER
 	pass
 
 func _on_body_exited(body):
@@ -24,5 +24,5 @@ func _on_body_exited(body):
 	if body.is_in_group("Player"):
 		body.ladder_array.erase(self)
 		if body.ladder_array.size() == 0:
-			body.current_state = body.State.NORMAL
+			body.state = body.States.IDLE
 	pass

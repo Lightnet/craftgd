@@ -3,7 +3,7 @@ extends PlayerState
 
 # If we get a message asking us to jump, we jump.
 func enter(msg := {}) -> void:
-	#print("STATE: ", name)
+	print("ENTER STATE: ", name)
 	player.state = player.States.IN_AIR
 	if msg.has("do_jump"):
 		player.velocity.y = player.JUMP_VELOCITY
@@ -28,6 +28,9 @@ func physics_update(delta: float) -> void:
 	#player.velocity.x = player.speed * input_direction_x
 	#player.velocity.x = player.SPEED * input_direction_x
 	#print("player: ", player)
+	if player.state == player.States.LADDER:
+		state_machine.transition_to("Ladder")
+		return
 	
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

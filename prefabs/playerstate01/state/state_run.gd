@@ -2,6 +2,7 @@
 extends PlayerState
 
 func enter(_msg := {}) -> void:
+	print("ENTER STATE: ", name)
 	player.state = player.States.ON_GROUND
 
 func handle_input(event: InputEvent) -> void:
@@ -15,6 +16,11 @@ func handle_input(event: InputEvent) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
+	
+	if player.state == player.States.LADDER:
+		state_machine.transition_to("Ladder")
+		return
+	
 	# Notice how we have some code duplication between states. That's inherent to the pattern,
 	# although in production, your states will tend to be more complex and duplicate code
 	# much more rare.

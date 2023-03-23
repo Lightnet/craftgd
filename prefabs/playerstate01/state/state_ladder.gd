@@ -4,7 +4,8 @@ extends PlayerState
 
 # Upon entering the state, we set the Player node's velocity to zero.
 func enter(_msg := {}) -> void:
-	player.state = player.States.LADDER
+	print("ENTER STATE: ", name)
+	#player.state = player.States.LADDER
 	#print("ENTER IDLE STATE")
 	#print("_msg: ",_msg)
 	# We must declare all the properties we access through `owner` in the `Player.gd` script.
@@ -18,25 +19,38 @@ func handle_input(event):
 		player.camera.rotation.x = clamp(player.camera.rotation.x, -PI/2, PI/2)
 
 func update(_delta: float) -> void:
-	# If you have platforms that break when standing on them, you need that check for 
-	# the character to fall.
-	#print("owner: ", owner)
-	#if not owner.is_on_floor():
+	#player.velocity.y = 0
+	#print("LADDER UPDATE...")
+	#if ladder count is zero return to air to check fall
+	if player.ladder_array.size() == 0:
+		state_machine.transition_to("Air")
+		return
+	var direction  = Vector3.ZERO
+	var h_rot = player.global_transform.basis.get_euler().y
+	#var h_rot = global_transform.basis.get_euler().x
+	#var h_rot = global_transform.basis.y
+	#print("h_rot: ", rad_to_deg(h_rot))
+	#print("h_rot: ", h_rot)
+	var f_input = Input.get_action_strength("back") - Input.get_action_strength("forward")
+	var h_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+	direction = Vector3(h_input, 0.0, f_input).rotated(Vector3.UP,h_rot).normalized()
+	#var input_dir = Input.get_vector("left", "right", "up", "down")
+	#direction = (transform.basis * Vector3(0, input_dir.y * -1, 0)).normalized()
+	if f_input: #make sure the there movement for going up or down.
+		if player.camera.rotation_degrees.x > 0:
+			direction.y = 1
+		else:
+			direction.y = -1
+	player.velocity = direction * player.CLIMB_SPEED
+	#print("POS Y:",input_dir.y)
+	print("direction: ", direction)
+	if direction.y < 0 and player.is_on_floor(): #check if player touch ground and exit
+		state_machine.transition_to("Idle")
+		#current_state = State.NORMAL
+		print("HELLO>?FLOOR")
+		pass
+	#if Input.is_action_just_pressed("jump"): #exit to normal
 		#state_machine.transition_to("Air")
-		#return
-
-	#if Input.is_action_just_pressed("jump"):
-		# As we'll only have one air state for both jump and fall, we use the `msg` dictionary 
-		# to tell the next state that we want to jump.
-		#print("JUMP?")
-		#state_machine.transition_to("Air", {do_jump = true})
-		
-	#elif Input.is_action_pressed("left")	\
-		#or Input.is_action_pressed("right") \
-		#or Input.is_action_pressed("forward") \
-		#or Input.is_action_pressed("back"):
-		#print("MOVE?")
-		#state_machine.transition_to("Run")
-		
-		
+		#current_state = State.NORMAL
+	player.move_and_slide()
 	pass

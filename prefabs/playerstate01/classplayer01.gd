@@ -4,6 +4,7 @@ class_name Player
 
 # An enum allows us to keep track of valid states.
 enum States {
+	IDLE,
 	ON_GROUND, 
 	IN_AIR, 
 	GLIDING,
@@ -24,6 +25,9 @@ signal toggle_inventory()
 @export var SPEED = 5.0
 @export var aceel = 10
 @export var JUMP_VELOCITY = 4.5
+@export var CLIMB_SPEED = 4.0
+
+var ladder_array = []
 
 @onready var camera = $Camera3D
 
