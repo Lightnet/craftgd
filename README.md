@@ -14,6 +14,9 @@
 
  Working toward module components to handle inventory, item, weapon, equipement, state machine and to handle entity nodes branches.
 
+## Notes:
+ * work in progress.
+
 ## Layout Entity:
 	* CharacterBody3D (player)
 		* Script
@@ -27,7 +30,7 @@
 			*	Idle [Script]
 			*	Run [Script]
 			*	Jump [Script]
-		* Weapon / Handle [Script]
+		* Tool / Weapon / Handle [Script]
 			*	Sword [Script]
 		* Equip [Script]
 			* Head [Script]
@@ -42,96 +45,90 @@
 
  There is video guide about the class_name and resource object.
 
-
 * https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html
 * https://docs.godotengine.org/en/stable/tutorials/scripting/resources.html
 
+# Design state machine:
 
-# Design Plans:
+	Work in progress. Thinking of state module system. One reason is to keep the script simple for logic system for movements.
+
+	As well npc and mobs. Idea base on logic by GQuest idea.
+
+# Design / Features / To Do List:
+
  * [ ] Build world with blocks and other types.
  * [ ] Simple combat / movements
-  * [ ] fist
-	* [ ] knock out
-	* [ ] wall jump
-	* [ ] wall climb
-	* [x] grappling hook
-
-	* [ ] prototype items
-		* [x] Build tool to place blocks and delete (wip)
-		* [x] Melee (wip)
-		* [x] Simple Turret (wip)
-		* [x] projectile (wip)
-		* [x] storage menu ( wip )
-		* [ ] NPC menu ( n/a )
-		* [ ] Interact ( wip )
-			*	[x] Chest Box
-			*	[x] Pick up auto
-			* [ ] Pick up manual
-
-	* props
-		* [ ] out of bounds ( n/a )
-		* [ ] damage area ( n/a )
-		* [ ] health area ( n/a )
-		* [ ] teleport ( n/a )
+	* [ ] fist
+	* [ ] Knock out
+	* [ ] Wall jump
+	* [ ] Wall climb
+	* [x] Grappling hook
+ * [ ] prototype items
+   * [x] Build tool to place blocks and delete (wip)
+   * [x] Melee (wip)
+   * [x] Simple Turret (wip)
+   * [x] projectile (wip)
+   * [ ] storage menu ( wip )
+	   * [x] Chest
+   * [ ] NPC menu ( n/a )
+   * [ ] Interact ( wip )
+     * [x] Chest Box
+     * [x] Pick up auto
+     * [ ] Pick up manual
+	* [ ] Props
+    * [ ] out of bounds ( n/a )
+    * [ ] Damage area ( n/a )
+    * [ ] Health area ( n/a )
+    * [ ] Teleport ( n/a )
 
  * vehicle
 	*	[x] simple car ( wip )
-
-# Design state machine:
-	Work in progress. Thinking of state module system. One reason is to keep the script simple for logic system for movements.
-
-	As well npc and mobs logic by GQuest idea.
-
-## Notes:
-
-
-# Features / To Do List:
- - [ ] key binding
-	-	[x] keyboard (wip / still need work on)
-	- [ ] mouse ( n/a )
- - [ ] config
-	 - [x] save and load (testing)
- - [x] main menu
- 		- [x] Host
-		- [x] Join
-		- [x] Port
-		- [x] IP Address
-		- [x] upnp (not tested)
- - [ ] Lobby (wip)
- 		- [x] Chat Message
-		- [x] Player List
+ * [ ] key binding
+	*	[x] keyboard (wip / still need work on)
+	* [ ] mouse ( n/a )
+ * [ ] config
+	 * [x] save and load (testing)
+ * [x] main menu
+	 * [x] Host
+	 * [x] Join
+	 * [x] Port
+	 * [x] IP Address
+	 * [x] upnp (not tested)
+ * [ ] Lobby (wip)
+	 * [x] Chat Message
+	 * [x] Player List
 				- [x] kick
 				- [ ] pm
-		- [x] start game (simple load map and players)
-		- [ ] game settings
-		- [ ] options
- - [ ] Network (wip)
-	- [ ] server (wip)
-	  - [x] handle disconnect
-	  - [x] handle connect
-	- [ ] client (wip)
-	  - [x] handle disconnect
-	  - [x] handle connect
+	 * [x] start game (simple load map and players)
+	 * [ ] game settings
+	 * [ ] options
+ * [ ] Network (wip)
+   * [ ] Headless server and host server for what ever need to config it.
+   * [ ] server (wip)
+     * [x] handle disconnect
+     * [x] handle connect
+   * [ ] client (wip)
+     * [x] handle disconnect
+     * [x] handle connect
   
- * Player
-	* [x] Simple Capsule
-	* [x] Melee weapon (wip)
-	* [x] Hit scan weapon (wip)
-	* [x] Build blocks ( n/a )
-	* [x] Inventory UI
-	* [x] Hot Bar
-	* [ ] Build mode
+ * [ ] Player
+   * model
+	   * male
+	   * female
+   * [x] Simple Capsule / Collision
+   * [x] Melee weapon (wip)
+   * [x] Hit scan weapon (wip)
+   * [x] Build blocks ( n/a )
+   * [x] Inventory UI
+   * [x] Hot Bar
+   * [ ] Build mode
  * Map
-	* [x] Prototype Test01 (wip)
-	* [ ] Training Area (wip)
-	* [x] Prototype Quick Test (wip)
-	* [x] Prototype Offline Test (wip)
-	* [x] Vehicle Test Areas (wip)
-
-# To Do List:
- * Player model
- * Buildings
- * Headless server and host server for what ever need to config it.
+   * [x] Prototype Test01 (wip)
+   * [ ] Training Area (wip)
+   * [x] Prototype Quick Test (wip)
+   * [x] Prototype Offline Test (wip)
+   * [x] Vehicle Test Areas (wip)
+   * [x] Ladder (wip)
 
 # Server Headless:
 	Host and Headless server are both easy and hard. Required some setup permission to for hosting, players voting. As well game modes types.
