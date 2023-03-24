@@ -18,28 +18,31 @@
  * work in progress.
 
 ## Layout Entity:
-	* CharacterBody3D (player)
-		* Script
-			*	inventory
-			* equip inventory
-		* Collision
-		* skeleton mesh
-		* animation player
-		* animation tree 
-	  * State Machine [Script]
-			*	Idle [Script]
-			*	Run [Script]
-			*	Jump [Script]
-		* Tool / Weapon / Handle [Script]
-			*	Sword [Script]
-		* Equip [Script]
-			* Head [Script]
-			* Chest [Script]
-			* Foot [Script]
-			* Hand [Script]
-		* Skills [Script]?
-			* regan [Script]
-			* fireball [Script]
+
+ * CharacterBody3D (player)
+   * Script
+     * inventory
+     * equip inventory
+   * Collision
+   * Node3D
+     * skeleton mesh
+     * animation player
+     * animation tree 
+   * State Machine [Script]
+     *	Idle [Script]
+     *	Run [Script]
+     *	Air [Script]
+     *	Ladder [Script]
+   * Tool / Weapon / Handle [Script]
+     *	Sword [Script]
+   * Equip [Script]
+     * Head [Script]
+     * Chest [Script]
+     * Foot [Script]
+     * Hand [Script]
+   * Skills [Script]?
+     * regan [Script]
+     * fireball [Script]
 
 	Reason that Godot 4.0 any things can be editable that use class base that filter out components. They are subject to changes.
 
@@ -59,11 +62,12 @@
  * [ ] Build world with blocks and other types.
  * [ ] Simple combat / movements
 	* [ ] fist
+	* [ ] melee
 	* [ ] Knock out
 	* [ ] Wall jump
 	* [ ] Wall climb
 	* [x] Grappling hook
- * [ ] prototype items
+ * Prototype items
    * [x] Build tool to place blocks and delete (wip)
    * [x] Melee (wip)
    * [x] Simple Turret (wip)
@@ -81,9 +85,9 @@
     * [ ] Health area ( n/a )
     * [ ] Teleport ( n/a )
 
- * vehicle
+ * Vehicle
 	*	[x] simple car ( wip )
- * [ ] key binding
+ * Key Binding
 	*	[x] keyboard (wip / still need work on)
 	* [ ] mouse ( n/a )
  * [ ] config
@@ -104,10 +108,10 @@
 	 * [ ] options
  * [ ] Network (wip)
    * [ ] Headless server and host server for what ever need to config it.
-   * [ ] server (wip)
+   * Server (wip)
      * [x] handle disconnect
      * [x] handle connect
-   * [ ] client (wip)
+   * Client (wip)
      * [x] handle disconnect
      * [x] handle connect
   
@@ -129,15 +133,6 @@
    * [x] Prototype Offline Test (wip)
    * [x] Vehicle Test Areas (wip)
    * [x] Ladder (wip)
-
-# Server Headless:
-	Host and Headless server are both easy and hard. Required some setup permission to for hosting, players voting. As well game modes types.
-
-	Still required admin login to able to kick player or ban them.
-
-## Design plans:
-	* One area need for is handling the multiple servers connecting to each other for multiple hub network.
-	* 
 
 # Add ons:
  * panku_console
