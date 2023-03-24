@@ -1,0 +1,42 @@
+# https://docs.godotengine.org/en/stable/tutorials/plugins/running_code_in_the_editor.html
+@tool
+extends Node3D
+
+@onready var hand = $Hand
+#@export var target:Node3D
+@onready var target:Node3D = $"../Target"
+
+@export var pos : Vector3 =Vector3.ZERO :
+	set(vec):
+		pos = vec
+		if hand:
+			if target:
+				#print("updat post?")
+				hand.look_at(target.global_position)
+			else:
+				hand.look_at(vec)
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if Engine.is_editor_hint():
+		print("editor?")
+		pass
+	pass # Replace with function body.
+
+func _process(_delta):
+	if Engine.is_editor_hint():
+		if hand:
+			#print("HAND?..", target)
+			if target:
+				hand.look_at(target.global_position)
+				#print("HAND?")
+		#print("hint")
+	if hand:
+		if target:
+			hand.look_at(target.global_position)
+	pass
+
+func _physics_process(_delta):
+	#if hand:
+		#if target:
+			#hand.look_at(target.global_position)
+	pass

@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnq3rxsbq0rkh"]
+[gd_scene load_steps=13 format=3 uid="uid://bcfw58bj1fwue"]
 
-[ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_wwoii"]
-[ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="2_gbr8v"]
+[ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_1a053"]
+[ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="2_dxu62"]
+[ext_resource type="Script" path="res://tests/test_target01.gd" id="3_tgj5n"]
+[ext_resource type="PackedScene" uid="uid://qhys8mc1bdf7" path="res://prefabs/playerstate01/classplayer.tscn" id="4_nippx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -27,6 +29,16 @@ properties/1/sync = true
 [sub_resource type="BoxMesh" id="BoxMesh_1qxrv"]
 size = Vector3(0.1, 0.1, 0.1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_fdb7i"]
+size = Vector3(0.1, 0.1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucnmc"]
+albedo_color = Color(0.803922, 0, 0.12549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uqipr"]
+material = SubResource("StandardMaterial3D_ucnmc")
+size = Vector3(0.1, 0.1, 0.1)
+
 [node name="Prototype01" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -44,31 +56,48 @@ use_collision = true
 
 [node name="CSGBox3D_ground" type="CSGBox3D" parent="CSGCombiner3D"]
 size = Vector3(32, 1, 32)
-material = ExtResource("1_wwoii")
+material = ExtResource("1_1a053")
 
 [node name="CSGB3D_Block" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -4)
-material = ExtResource("2_gbr8v")
+material = ExtResource("2_dxu62")
 
 [node name="CSGB3D_Block7" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
-material = ExtResource("2_gbr8v")
+material = ExtResource("2_dxu62")
 
 [node name="CSGB3D_Block2" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -4)
-material = ExtResource("2_gbr8v")
+material = ExtResource("2_dxu62")
 
 [node name="CSGB3D_Block3" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99512, 2, -3.99167)
-material = ExtResource("2_gbr8v")
+material = ExtResource("2_dxu62")
 
 [node name="CSGB3D_Block10" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99512, 1, -6.49167)
 size = Vector3(4, 1, 4)
-material = ExtResource("2_gbr8v")
+material = ExtResource("2_dxu62")
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("3_tgj5n")
+pos = Vector3(21.96, 16.443, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
 mesh = SubResource("BoxMesh_1qxrv")
+
+[node name="Hand" type="Node3D" parent="Node3D"]
+transform = Transform3D(0.792912, -0.17179, -0.584619, 0, 0.959435, -0.281929, 0.609336, 0.223545, 0.760748, 0, 0, -0.4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Hand"]
+mesh = SubResource("BoxMesh_fdb7i")
+
+[node name="classplayer" parent="." instance=ExtResource("4_nippx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 1)
+
+[node name="Target" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22957, 2.59295, -2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Target"]
+mesh = SubResource("BoxMesh_uqipr")
