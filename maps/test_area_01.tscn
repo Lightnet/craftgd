@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmcdoc5ii1oh7"]
+[gd_scene load_steps=10 format=3 uid="uid://dwtenxc4e4qee"]
 
-[ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_ms3oh"]
-[ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="2_hjb7w"]
-[ext_resource type="PackedScene" uid="uid://qhys8mc1bdf7" path="res://prefabs/playerstate01/classplayer.tscn" id="3_3g6jo"]
+[ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_bi11v"]
+[ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="2_a0ec5"]
+[ext_resource type="PackedScene" uid="uid://balyfeunnd6qe" path="res://prefabs/text2dto3d/text_3d.tscn" id="3_ckle7"]
+[ext_resource type="PackedScene" uid="uid://qhys8mc1bdf7" path="res://prefabs/playerstate01/classplayer.tscn" id="4_e07nj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -25,6 +26,8 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/sync = true
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_1wtxh"]
+
 [node name="Prototype01" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -42,29 +45,32 @@ use_collision = true
 
 [node name="CSGBox3D_ground" type="CSGBox3D" parent="CSGCombiner3D"]
 size = Vector3(32, 1, 32)
-material = ExtResource("1_ms3oh")
+material = ExtResource("1_bi11v")
 
 [node name="CSGB3D_Block" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, -4)
-size = Vector3(2, 2, 2)
-material = ExtResource("2_hjb7w")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -4)
+material = ExtResource("2_a0ec5")
+
+[node name="CSGB3D_Block7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -4)
+material = ExtResource("2_a0ec5")
 
 [node name="CSGB3D_Block2" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -4)
-material = ExtResource("2_hjb7w")
+material = ExtResource("2_a0ec5")
 
 [node name="CSGB3D_Block3" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99512, 2, -3.99167)
-material = ExtResource("2_hjb7w")
-
-[node name="CSGB3D_Block9" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99512, 3, -3.99167)
-material = ExtResource("2_hjb7w")
+material = ExtResource("2_a0ec5")
 
 [node name="CSGB3D_Block10" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99512, 1, -6.49167)
 size = Vector3(4, 1, 4)
-material = ExtResource("2_hjb7w")
+material = ExtResource("2_a0ec5")
 
-[node name="classplayer" parent="." instance=ExtResource("3_3g6jo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.65855, 1)
+[node name="classplayer" parent="." instance=ExtResource("4_e07nj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 3)
+
+[node name="Text3D" parent="." instance=ExtResource("3_ckle7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+texture = SubResource("ViewportTexture_1wtxh")

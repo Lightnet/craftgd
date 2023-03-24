@@ -6,7 +6,7 @@ func _ready():
 	update_tools()
 	pass
 
-func _process(delta):
+func _process(_delta):
 	
 	if Input.is_action_just_pressed("switch_tool"):
 		current_tool_index += 1

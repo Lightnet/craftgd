@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://balyfeunnd6qe"]
+
+[ext_resource type="Script" path="res://prefabs/text2dto3d/text_3d.gd" id="1_7tfa0"]
+
+[sub_resource type="World3D" id="World3D_5e8v5"]
+
+[node name="Text3D" type="Sprite3D"]
+script = ExtResource("1_7tfa0")
+text = "Hello Text Label!"
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = SubResource("World3D_5e8v5")
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="Label" type="Label" parent="SubViewport"]
+custom_minimum_size = Vector2(128, 128)
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Hello Text Label!"
+autowrap_mode = 3
+
+[node name="Marker3D" type="Marker3D" parent="."]
