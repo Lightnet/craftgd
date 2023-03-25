@@ -1,22 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://qhys8mc1bdf7"]
+[gd_scene load_steps=15 format=3 uid="uid://qhys8mc1bdf7"]
 
 [ext_resource type="Script" path="res://prefabs/playerstate01/classplayer01.gd" id="1_d1k3k"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/state/statemachine.gd" id="2_3aens"]
-[ext_resource type="Script" path="res://tool/UseableTools.gd" id="2_8vba1"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/state/state_ladder.gd" id="3_10ehb"]
 [ext_resource type="PackedScene" uid="uid://i2hag5qtkfe8" path="res://prefabs/shotgun01/shotgun01.tscn" id="3_eegge"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/state/state_idle.gd" id="3_j6rv3"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/state/state_run.gd" id="4_fyrfo"]
 [ext_resource type="PackedScene" uid="uid://b4xxbetd8c8sr" path="res://prefabs/prototype_hitscan_gun/hitscan_gun.tscn" id="4_x7hlr"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/state/state_air.gd" id="5_rfswu"]
+[ext_resource type="Script" path="res://prefabs/playerstate01/ray_aim.gd" id="5_rit52"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/InteractInventory.gd" id="6_psv0x"]
+[ext_resource type="Script" path="res://prefabs/playerstate01/playertool.gd" id="12_j2hsh"]
+[ext_resource type="PackedScene" uid="uid://blinan8ttnyql" path="res://prefabs/prototype_projectile/prototype_gun_01.tscn" id="12_q2sfj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_clcbs"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_q5er1"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_3jddx"]
-size = Vector3(0.1, 0.1, 0.1)
 
 [node name="classplayer" type="CharacterBody3D"]
 collision_layer = 2
@@ -38,16 +37,46 @@ collision_mask = 4
 [node name="RightHand" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Camera3D/RightHand"]
-visible = false
-remote_path = NodePath("../../../Tools/MeshInstance3D")
+[node name="RemoteHandle" type="RemoteTransform3D" parent="Camera3D/RightHand"]
 
-[node name="UseableTools" type="Node3D" parent="Camera3D/RightHand"]
-script = ExtResource("2_8vba1")
+[node name="RayAim" type="RayCast3D" parent="Camera3D"]
+editor_description = "Ray Cast for hit position"
+target_position = Vector3(0, 0, -100)
+script = ExtResource("5_rit52")
 
-[node name="shotgun01" parent="Camera3D/RightHand/UseableTools" instance=ExtResource("3_eegge")]
+[node name="Marker3D" type="Marker3D" parent="Camera3D/RayAim"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+gizmo_extents = 0.66
 
-[node name="hitscan_gun" parent="Camera3D/RightHand/UseableTools" instance=ExtResource("4_x7hlr")]
+[node name="Control" type="Control" parent="Camera3D"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Camera3D/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_3aens")
@@ -72,11 +101,14 @@ process_mode = 4
 script = ExtResource("6_psv0x")
 
 [node name="Tools" type="Node" parent="."]
+script = ExtResource("12_j2hsh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Tools"]
+[node name="shotgun01" parent="Tools" instance=ExtResource("3_eegge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, -0.5)
-visible = false
-mesh = SubResource("BoxMesh_3jddx")
-skeleton = NodePath("../../Camera3D/RightHand")
+
+[node name="hitscan_gun" parent="Tools" instance=ExtResource("4_x7hlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, -0.5)
+
+[node name="prototype_gun01" parent="Tools" instance=ExtResource("12_q2sfj")]
 
 [node name="Eqiups" type="Node" parent="."]

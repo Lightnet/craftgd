@@ -2,11 +2,17 @@
 
 [ext_resource type="Script" path="res://prefabs/prototype_projectile/projectile01.gd" id="1_o42hn"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_4171f"]
-size = Vector3(0.5, 0.5, 0.5)
+[sub_resource type="CylinderMesh" id="CylinderMesh_v3lyw"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.4
+radial_segments = 8
 
-[sub_resource type="PrismMesh" id="PrismMesh_vxhcr"]
-size = Vector3(0.2, 0.5, 0.5)
+[sub_resource type="SphereMesh" id="SphereMesh_ulxes"]
+radius = 0.1
+height = 0.2
+radial_segments = 8
+rings = 8
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5x80v"]
 
@@ -14,11 +20,12 @@ size = Vector3(0.2, 0.5, 0.5)
 script = ExtResource("1_o42hn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_4171f")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_v3lyw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.496191)
-mesh = SubResource("PrismMesh_vxhcr")
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, -0.200019, 0.00380901)
+mesh = SubResource("SphereMesh_ulxes")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_5x80v")

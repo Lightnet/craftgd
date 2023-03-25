@@ -1,3 +1,4 @@
+@tool #note in editor it need to reload if script edit
 extends Node3D
 
 func _ready():

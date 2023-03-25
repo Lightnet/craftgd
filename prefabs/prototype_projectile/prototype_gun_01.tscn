@@ -17,7 +17,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0977371)
 mesh = SubResource("BoxMesh_sjmc7")
 
 [node name="firepoint" type="Node3D" parent="Node3D/MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.211426)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.356572)
 
 [node name="shoot_timer" type="Timer" parent="."]
 wait_time = 0.1

@@ -22,7 +22,7 @@ func shoot():
 	can_shoot = false
 	$shoot_timer.start()
 	var b = bullet.instantiate()
-	get_node("/root/Main").add_child(b)#depend on the order else error
+	get_node("/root").add_child(b)#depend on the order else error
 	#b.set_global_transform(firepoint.global_transform)
 	b.set_global_rotation(firepoint.global_rotation)
 	b.dir = firepoint.global_transform.basis.z    #fwd dir of weapon model

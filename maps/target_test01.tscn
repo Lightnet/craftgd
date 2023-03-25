@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bcfw58bj1fwue"]
+[gd_scene load_steps=17 format=3 uid="uid://bcfw58bj1fwue"]
 
 [ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="1_1a053"]
 [ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="2_dxu62"]
@@ -32,12 +32,22 @@ size = Vector3(0.1, 0.1, 0.1)
 [sub_resource type="BoxMesh" id="BoxMesh_fdb7i"]
 size = Vector3(0.1, 0.1, 0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fvby4"]
+albedo_color = Color(0, 0.552941, 0.270588, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8yygl"]
+material = SubResource("StandardMaterial3D_fvby4")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucnmc"]
 albedo_color = Color(0.803922, 0, 0.12549, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_uqipr"]
 material = SubResource("StandardMaterial3D_ucnmc")
 size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2m2xl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4u5yc"]
 
 [node name="Prototype01" type="Node3D"]
 
@@ -74,13 +84,17 @@ material = ExtResource("2_dxu62")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99512, 2, -3.99167)
 material = ExtResource("2_dxu62")
 
+[node name="CSGB3D_Block4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 5.99512, 2, -3.99167)
+material = ExtResource("2_dxu62")
+
 [node name="CSGB3D_Block10" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99512, 1, -6.49167)
 size = Vector3(4, 1, 4)
 material = ExtResource("2_dxu62")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(0.996342, 0, -0.0854514, 0, 1, 0, 0.0854514, 0, 0.996342, 0, 2, 0)
 script = ExtResource("3_tgj5n")
 pos = Vector3(21.96, 16.443, 0)
 
@@ -88,10 +102,18 @@ pos = Vector3(21.96, 16.443, 0)
 mesh = SubResource("BoxMesh_1qxrv")
 
 [node name="Hand" type="Node3D" parent="Node3D"]
-transform = Transform3D(0.792912, -0.17179, -0.584619, 0, 0.959435, -0.281929, 0.609336, 0.223545, 0.760748, 0, 0, -0.4)
+transform = Transform3D(0.913008, -0.145355, -0.381166, 0, 0.934367, -0.356313, 0.40794, 0.325317, 0.853085, 0.295615, -0.116146, -0.400036)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Hand"]
 mesh = SubResource("BoxMesh_fdb7i")
+
+[node name="RayCast3D" type="RayCast3D" parent="Node3D"]
+transform = Transform3D(0.999396, 0, 0.03476, 0, 1, 0, -0.03476, 0, 0.999396, 0, 0, -0.0770306)
+target_position = Vector3(0, 0, -20)
+
+[node name="ContactPoint" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("SphereMesh_8yygl")
 
 [node name="classplayer" parent="." instance=ExtResource("4_nippx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 1)
@@ -101,3 +123,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22957, 2.59295, -2)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Target"]
 mesh = SubResource("BoxMesh_uqipr")
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D2"]
+mesh = SubResource("BoxMesh_2m2xl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_4u5yc")

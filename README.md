@@ -154,7 +154,7 @@
  
 # Credits:
  * First Person Shooter set up.
- 	* https://www.youtube.com/@DevLogLogan 
+   * https://www.youtube.com/@DevLogLogan 
  * Chart
    * https://github.com/nathanhoad/godot_puzzle_dependencies
  * Godot 4 - RPG Inventory System From Scratch
@@ -162,5 +162,5 @@
  * Godot Class
    * https://www.youtube.com/watch?v=HbRFjTmcVJo
  * State Machine
-	  * https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine/
-		* https://gdscript.com/solutions/godot-state-machine/
+   * https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine/
+   * https://gdscript.com/solutions/godot-state-machine/
