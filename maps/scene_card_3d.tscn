@@ -34,13 +34,13 @@ void fragment() {
 }
 "
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_a4ge7"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_64td2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2lkr6"]
 resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_mncdh")
-shader_parameter/view_tex = SubResource("ViewportTexture_a4ge7")
+shader_parameter/view_tex = SubResource("ViewportTexture_64td2")
 
 [sub_resource type="QuadMesh" id="QuadMesh_nwoj8"]
 material = SubResource("ShaderMaterial_2lkr6")
@@ -84,6 +84,7 @@ render_layer = 1024
 [node name="WindowView" type="SubViewport" parent="card/window"]
 own_world_3d = true
 world_3d = SubResource("World3D_04i3u")
+size = Vector2i(1011, 657)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="card/window/WindowView"]

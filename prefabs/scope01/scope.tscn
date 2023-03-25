@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlmx0xq7tl4yy"]
+
+[ext_resource type="Script" path="res://prefabs/scope01/scope01.gd" id="1_6tsu2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwjbt"]
+resource_local_to_scene = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oi64b"]
+material = SubResource("StandardMaterial3D_lwjbt")
+
+[node name="scope" type="Node3D"]
+script = ExtResource("1_6tsu2")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("PlaneMesh_oi64b")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(64, 64)
+
+[node name="Label" type="Label" parent="SubViewport"]
+offset_right = 40.0
+offset_bottom = 26.0
+text = "TEST"
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+fov = 34.4
