@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1vdcqjads6hf"]
+
+[ext_resource type="PackedScene" uid="uid://sos3bovobm7j" path="res://prefabs/fracture01/cube_01.glb" id="1_vwc2m"]
+[ext_resource type="Script" path="res://addons/destruction/destruction.gd" id="2_efkyc"]
+[ext_resource type="PackedScene" uid="uid://chnx4u2vf4ptu" path="res://prefabs/fracture01/cube_fracture_01.tscn" id="3_n2cty"]
+
+[node name="cube_01" instance=ExtResource("1_vwc2m")]
+
+[node name="Destruction" type="Node" parent="." index="1"]
+script = ExtResource("2_efkyc")
+shard_scene = ExtResource("3_n2cty")

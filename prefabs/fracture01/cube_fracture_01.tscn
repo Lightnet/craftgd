@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://chnx4u2vf4ptu"]
+
+[ext_resource type="PackedScene" uid="uid://cwc13bptln7gm" path="res://prefabs/fracture01/cube_fracture_01.glb" id="1_pb662"]
+
+[node name="cube_fracture_01" instance=ExtResource("1_pb662")]
