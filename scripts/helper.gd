@@ -17,7 +17,7 @@ func generate_word(chars, length):
 		word += chars[randi()% n_char]
 	return word
 
-func generate_random_name(_len):
+func generate_random_name(_len=11):
 	if _len == null:
 		_len = 11
 	return generate_word(characters, _len)

@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://copvsy5ee03vg" path="res://addons/kenney_prototype_textures/light/texture_02.png" id="1_kmor0"]
 
 [resource]
+resource_local_to_scene = true
 render_priority = 1
+transparency = 1
 albedo_texture = ExtResource("1_kmor0")
 uv1_triplanar = true

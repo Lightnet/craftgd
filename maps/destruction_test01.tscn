@@ -82,4 +82,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51541, 2.15352, 2.42667)
 
+[node name="Label" type="Label" parent="."]
+offset_left = 6.0
+offset_top = 37.0
+offset_right = 247.0
+offset_bottom = 63.0
+text = "Enter Key to start Destroy Test!"
+
 [editable path="cube_01"]

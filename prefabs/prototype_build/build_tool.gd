@@ -1,14 +1,20 @@
 extends Node3D
 
-@onready var raycast = $"../../RayCast3D2"
+#@onready var raycast = $"../../RayCast3D2"
 @onready var preplaceholder = preload("res://prefabs/prototyping/placeholders/ph_light_cube.tscn")
-@onready var prebuild_obj = preload("res://prefabs/prototyping/light_grid_cube.tscn")
+#@onready var preplaceholder = preload("res://prefabs/prototyping/placeholders/placeholder.tscn")
 
-@onready var blocks = $"/root/Main/world/blocks"
+@onready var prebuild_obj = preload("res://prefabs/prototyping/light_grid_cube.tscn")
+#@onready var prebuild_obj = preload("res://prefabs/prototyping/placeholders/placeholder.tscn")
+@onready var raycast = $RayCast3D
+
+#@onready var blocks = $"/root/Main/world/blocks"
+@onready var blocks = $"/root/main"
+@export var rootpath = "/main/entities"
 
 var placeholder = null
 var snap_grid = 1 #32 = 1
-var offset = Vector3(0,0.5,0)
+var offset = Vector3(0,1,0)
 var place_location = Vector3.ZERO
 var select_block = null
 var count = 100
@@ -19,43 +25,29 @@ func _ready():
 	#rpc("local_ph_spawn")
 	
 	#if not is_multiplayer_authority(): return
-	#local_ph_spawn()
+	local_ph_spawn()
 	pass 
+	
+func _exit_tree():
+	if placeholder:
+		placeholder.queue_free()
+	pass
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if not is_multiplayer_authority(): return
 	#print("Hello Test ID AUTH: ", get_multiplayer_authority())
-	if Input.is_action_just_pressed("BuildBlock") and event.is_pressed():
-		print("is_server", multiplayer.is_server())
-		print("REMOTE PEER ID :", multiplayer.get_remote_sender_id())
-		print("PEER ID :", multiplayer.get_unique_id())
-		print("AUTH PEER ID :", get_multiplayer_authority())
-		pass
+	#if Input.is_action_just_pressed("BuildBlock") and event.is_pressed():
+		#print("is_server", multiplayer.is_server())
+		#print("REMOTE PEER ID :", multiplayer.get_remote_sender_id())
+		#print("PEER ID :", multiplayer.get_unique_id())
+		#print("AUTH PEER ID :", get_multiplayer_authority())
+		#pass
 	if Input.is_action_just_pressed("ClearTest"):
 		print("....")
-		pass	
-	"""
-	if Input.is_action_just_pressed("BuildBlock"):
-		count+=1
-		var mybuild = prebuild_obj.instantiate()
-		var block_id = mybuild.name + Helper.generate_random_name()
-		mybuild.name = block_id
-		mybuild.global_transform.origin = place_location
-		get_node("/root/Main/world/blocks").add_child(mybuild)
-		#get_node( ).add_child(mybuild)
-		#place_block.rpc()
-		rpc("place_block",block_id, place_location )
-		#print("CLICK PLACE?")
-		#pass
-	if Input.is_action_just_pressed("DestroyBlock"):
-		if select_block:
-			select_block.queue_free()
-			select_block = null
 		pass
-	"""
 	pass
 	
-func _process(_delta):
+func _physics_process(_delta):
 	#print("hit_obj", raycast)
 	if raycast !=null:
 		#print("is_colliding", raycast.is_colliding())
@@ -74,8 +66,30 @@ func _process(_delta):
 				place_location = point
 				placeholder.global_transform.origin = point
 			#hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
-			pass
-	pass
+			#pass
+	if Input.is_action_just_pressed("BuildBlock"):
+		count+=1
+		var mybuild = prebuild_obj.instantiate()
+		var block_id = mybuild.name + "_" + Helper.generate_random_name()
+		mybuild.name = block_id
+		get_tree().root.add_child(mybuild)
+		
+		
+		mybuild.global_transform.origin = place_location
+		#get_node("/root/Main/world/blocks").add_child(mybuild)
+		
+		#rpc("place_block",block_id, place_location )
+		
+		#get_node( ).add_child(mybuild)
+		#place_block.rpc()
+		#print("CLICK PLACE?")
+		#pass
+	if Input.is_action_just_pressed("DestroyBlock"):
+		if select_block:
+			select_block.queue_free()
+			select_block = null
+		#pass
+	#pass
 
 @rpc("call_remote")
 func place_block(block_id, pos):
@@ -100,7 +114,7 @@ func local_ph_spawn():
 	#placeholder.name = block_id
 	var block_id = placeholder.name + "_" + Helper.generate_random_numbers()
 	placeholder.name = block_id
-	get_node("/root/Main").add_child(placeholder)
+	get_tree().root.add_child.call_deferred(placeholder)
 	
 	#rpc("ph_spawn", block_id)
 	pass
@@ -109,5 +123,5 @@ func local_ph_spawn():
 func ph_spawn(block_id):
 	placeholder = preplaceholder.instantiate()
 	placeholder.name = block_id
-	get_node("/root/Main").add_child(placeholder)
+	get_node("/root/main").add_child(placeholder)
 	pass

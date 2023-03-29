@@ -1,39 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2migynbhvsr0"]
+[gd_scene load_steps=4 format=3 uid="uid://b2migynbhvsr0"]
 
-[ext_resource type="Texture2D" uid="uid://copvsy5ee03vg" path="res://addons/kenney_prototype_textures/light/texture_02.png" id="1_mw60i"]
-[ext_resource type="Texture2D" uid="uid://cneuuahph6r34" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="2_2fxg0"]
+[ext_resource type="Material" uid="uid://da6du1nxti0o" path="res://prefabs/prototyping/light_grid_material.tres" id="1_13cb7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v2kdo"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujyfd"]
-render_priority = 1
-albedo_texture = ExtResource("1_mw60i")
-uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xtr8"]
-albedo_texture = ExtResource("2_2fxg0")
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_sn8nv"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3vo1e"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/sync = true
+[sub_resource type="BoxMesh" id="BoxMesh_0m147"]
+material = ExtResource("1_13cb7")
 
 [node name="SB3D_Cube_Light" type="StaticBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_v2kdo")
 
-[node name="MeshCube" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_ujyfd")
-material_overlay = SubResource("StandardMaterial3D_4xtr8")
-mesh = SubResource("BoxMesh_sn8nv")
-skeleton = NodePath("../../StaticBody3D/MeshInstance3D")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_3vo1e")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_0m147")
