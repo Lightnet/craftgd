@@ -32,6 +32,7 @@ mesh = SubResource("CapsuleMesh_q5er1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
+visible = false
 target_position = Vector3(0, 0, -2.5)
 collision_mask = 4
 
@@ -42,6 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.25, -0.5)
 
 [node name="RayAim" type="RayCast3D" parent="Camera3D"]
 editor_description = "Ray Cast for hit position"
+visible = false
 target_position = Vector3(0, 0, -100)
 script = ExtResource("5_rit52")
 

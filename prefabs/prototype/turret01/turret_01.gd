@@ -4,30 +4,70 @@ extends Node3D
 @onready var base = $base
 @onready var pitch = $base/MeshInstance3D/MeshInstance3D/Node3D
 @onready var firepoint = $base/MeshInstance3D/MeshInstance3D/Node3D/pitchmesh/MeshInstance3D/firepoint
+@onready var projectile = preload("res://prefabs/projectile/projectile01.tscn")
 
 @export var target = Node3D
+@export var isTarget:bool = false
+@onready var area_3d = $Area3D
 
 @export var rotation_speed = 0.1
+@onready var fire_timer = $FireTimer
+@export var bFire:bool = true
+
+@export var filter_targets = [
+	"Player",
+	#"Enemy",
+]
+
 
 func _ready():
 	pass # Replace with function body.
 
-func _process(_delta):
+func _physics_process(_delta):
+	
+	if isTarget:
+		#print("fire_timer.is_stopped(): ", fire_timer.is_stopped())
+		if bFire:
+			fireProjectile()
+			print("FIRE??")
+		pass
 	
 	#if target:
 		#var dir = target.global_position - global_position
 		#var difference:Vector3 = dir.angle() - rotation
 		#print("dir: ",dir)
-		
 		#look_at(target, Vector3.UP)
-		
 		#self.rotation_degrees.x = clamp(rotation_degrees.x, -5, 80)
 		#self.rotation_degrees.y = clamp(rotation_degrees.x, -5, 80)
-		
-		
 		#if difference != Vector3.ZERO:
 			#rotation = lerp(rotation, dir.angle(), rotation_speed)
 			#rotation = rotation + (difference / abs(difference) * rotation_speed)
 		#pass
+	pass
 	
+func fireProjectile():
+	bFire = false
+	fire_timer.start()
+	var p = projectile.instantiate()
+	get_node("/root").add_child(p)#depend on the order else error
+	p.set_global_rotation(firepoint.global_rotation)
+	p.set_global_position(firepoint.global_position)
+	p.dir = firepoint.global_transform.basis.z  
+	#(firepoint.global_position - target.global_position).nor
+
+func _on_area_3d_body_entered(body):
+	#print("ENTER TARGET: ",body)
+	if body.is_in_group("Player"):
+		target = body
+		isTarget=true
+	pass
+
+func _on_area_3d_body_exited(body):
+	if body == target:
+		isTarget=false
+		target = null
+	pass
+
+func _on_fire_timer_timeout():
+	bFire = true
 	pass

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbk11t5ajitat"]
+
+[ext_resource type="Script" path="res://prefabs/prototype_projectile/projectile01.gd" id="1_vcfbi"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v3lyw"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.4
+radial_segments = 8
+
+[sub_resource type="SphereMesh" id="SphereMesh_ulxes"]
+radius = 0.1
+height = 0.2
+radial_segments = 8
+rings = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5x80v"]
+radius = 0.3
+
+[node name="projectile" type="Area3D"]
+script = ExtResource("1_vcfbi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_v3lyw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, -0.200019, 0.00380901)
+mesh = SubResource("SphereMesh_ulxes")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5x80v")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

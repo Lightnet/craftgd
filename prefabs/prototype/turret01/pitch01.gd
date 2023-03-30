@@ -5,15 +5,14 @@ extends Node3D
 func _ready():
 	pass 
 
-
 func _process(_delta):
 	
-	if base.target:
+	if base.isTarget:
 		var target = base.target
 		#var dir = target.global_position - global_position
 		#var difference:Vector3 = dir.angle() - rotation
 		#print("dir: ",dir)
-		
+		#if not target:
 		look_at(target.global_position, Vector3.UP)
 		
 		self.rotation_degrees.x = clamp(rotation_degrees.x, -5, 80) #ptich

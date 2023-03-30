@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://8gotxupt124v"]
+[gd_scene load_steps=18 format=3 uid="uid://8gotxupt124v"]
 
 [ext_resource type="Script" path="res://tests/inventory_test01.gd" id="1_nqwta"]
 [ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="2_vpq0h"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ekb2mkpdc710" path="res://inventory/slot.tscn" id="6_g0rk3"]
 [ext_resource type="PackedScene" uid="uid://ws1an7gq6g26" path="res://inventory/hot_bar_inventory.tscn" id="7_yfr30"]
 [ext_resource type="PackedScene" uid="uid://bh2v3fk0wfams" path="res://interactable/chest.tscn" id="8_ng2yd"]
+[ext_resource type="PackedScene" uid="uid://cf5dpb81bcl2v" path="res://prefabs/prototype/turret01/turret_01.tscn" id="12_f00lh"]
 [ext_resource type="PackedScene" uid="uid://qhys8mc1bdf7" path="res://prefabs/playerstate01/classplayer.tscn" id="12_n72mk"]
 [ext_resource type="Resource" uid="uid://dx38m3eaytnu8" path="res://tests/test_inventory.tres" id="13_inx8u"]
 [ext_resource type="Script" path="res://inventory/inventory_data_equip.gd" id="14_hkiw6"]
@@ -147,12 +148,15 @@ offset_bottom = 90.0
 [node name="chest" parent="." instance=ExtResource("8_ng2yd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1)
 
-[node name="Player" parent="." instance=ExtResource("12_n72mk")]
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("12_n72mk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 5)
 inventory_data = ExtResource("13_inx8u")
 equip_inventory_data = SubResource("Resource_ytqyt")
 
 [node name="entities" type="Node" parent="."]
+
+[node name="turret01" parent="." instance=ExtResource("12_f00lh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.71744, 0.5, -0.197227)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
