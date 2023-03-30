@@ -15,6 +15,9 @@ func enter(_msg := {}) -> void:
 
 func handle_input(event):
 	#print("event")
+	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		return
+	
 	if event is InputEventMouseMotion:
 		player.rotate_y(-event.relative.x * 0.005)
 		player.camera.rotate_x(-event.relative.y * 0.005)

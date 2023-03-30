@@ -29,7 +29,7 @@ func _physics_process(_delta):
 		#print("fire_timer.is_stopped(): ", fire_timer.is_stopped())
 		if bFire:
 			fireProjectile()
-			print("FIRE??")
+			#print("FIRE??")
 		pass
 	
 	#if target:

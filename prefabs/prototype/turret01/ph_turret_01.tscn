@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp36eeagx7yxh"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_73cry"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_46qcb"]
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_43nx5"]
+size = Vector3(0.2, 0.2, 0.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b80wy"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_cic33"]
+size = Vector3(0.5, 0.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wcj1d"]
+
+[node name="ph_turret01" type="Node3D"]
+
+[node name="base" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="base"]
+mesh = SubResource("CylinderMesh_73cry")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="base/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.312416, 0)
+mesh = SubResource("BoxMesh_46qcb")
+
+[node name="Node3D" type="Node3D" parent="base/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.461147, 0)
+
+[node name="pitchmesh" type="MeshInstance3D" parent="base/MeshInstance3D/MeshInstance3D/Node3D"]
+mesh = SubResource("BoxMesh_43nx5")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="base/MeshInstance3D/MeshInstance3D/Node3D/pitchmesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.351816)
+mesh = SubResource("BoxMesh_b80wy")
+
+[node name="firepoint" type="Node3D" parent="base/MeshInstance3D/MeshInstance3D/Node3D/pitchmesh/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.103535)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="base"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.195142, -0.297417)
+mesh = SubResource("PrismMesh_cic33")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_wcj1d")
