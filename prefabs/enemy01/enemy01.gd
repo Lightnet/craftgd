@@ -8,21 +8,20 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-var health = 100
-var max_health = 100
+var health = 10
+var max_health = 10
 
 func _ready():
-	HealthBar3D.update_health(10,100)
+	HealthBar3D.update_health(10,max_health)
 	pass
 
 func _process(_delta):
 	#test
-	health-=1
-	if health <= 0:
-		health = 100
-	HealthBar3D.update_health(health,100)
+	#health-=1
+	#if health <= 0:
+		#health = 100
+	HealthBar3D.update_health(health,max_health)
 	pass
-
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return

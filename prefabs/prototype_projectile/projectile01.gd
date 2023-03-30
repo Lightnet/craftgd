@@ -23,6 +23,7 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body.is_in_group("Enemy"):
+		body.health -= 1
 		#body.take_damage(25)
 		pass
 	queue_free()

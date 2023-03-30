@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://8gotxupt124v"]
+[gd_scene load_steps=19 format=3 uid="uid://8gotxupt124v"]
 
 [ext_resource type="Script" path="res://tests/inventory_test01.gd" id="1_nqwta"]
 [ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="2_vpq0h"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cf5dpb81bcl2v" path="res://prefabs/prototype/turret01/turret_01.tscn" id="12_f00lh"]
 [ext_resource type="PackedScene" uid="uid://qhys8mc1bdf7" path="res://prefabs/playerstate01/classplayer.tscn" id="12_n72mk"]
 [ext_resource type="Resource" uid="uid://dx38m3eaytnu8" path="res://tests/test_inventory.tres" id="13_inx8u"]
+[ext_resource type="PackedScene" uid="uid://dk81jqfpbp5ww" path="res://prefabs/enemy01/enemy.tscn" id="13_p63c1"]
 [ext_resource type="Script" path="res://inventory/inventory_data_equip.gd" id="14_hkiw6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
@@ -157,6 +158,9 @@ equip_inventory_data = SubResource("Resource_ytqyt")
 
 [node name="turret01" parent="." instance=ExtResource("12_f00lh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.71744, 0.5, -0.197227)
+
+[node name="enemy" parent="." instance=ExtResource("13_p63c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -5.40651)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

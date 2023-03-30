@@ -18,7 +18,7 @@ extends Node3D
 	"Player",
 	#"Enemy",
 ]
-
+@export var tagTarget = "Enemy"
 
 func _ready():
 	pass # Replace with function body.
@@ -57,7 +57,7 @@ func fireProjectile():
 
 func _on_area_3d_body_entered(body):
 	#print("ENTER TARGET: ",body)
-	if body.is_in_group("Player"):
+	if body.is_in_group(tagTarget):
 		target = body
 		isTarget=true
 	pass

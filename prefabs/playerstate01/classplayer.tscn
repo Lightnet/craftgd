@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://prefabs/playerstate01/InteractInventory.gd" id="6_psv0x"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/playertool.gd" id="12_j2hsh"]
 [ext_resource type="PackedScene" uid="uid://blinan8ttnyql" path="res://prefabs/prototype_projectile/prototype_gun_01.tscn" id="12_q2sfj"]
-[ext_resource type="PackedScene" uid="uid://cvhlxefd6ktrr" path="res://prefabs/prototype_build/build_tool.tscn" id="13_w84f6"]
+[ext_resource type="PackedScene" uid="uid://b71qakstb3c3" path="res://prefabs/contrust_tool/construct_tool.tscn" id="13_uknra"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_clcbs"]
 
@@ -114,6 +114,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, -0.5)
 
 [node name="prototype_gun01" parent="Tools" instance=ExtResource("12_q2sfj")]
 
-[node name="build_tool" parent="Tools" instance=ExtResource("13_w84f6")]
+[node name="construst_tool" parent="Tools" instance=ExtResource("13_uknra")]
 
 [node name="Eqiups" type="Node" parent="."]

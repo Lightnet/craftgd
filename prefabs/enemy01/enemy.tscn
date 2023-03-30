@@ -15,7 +15,7 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/sync = true
 
-[node name="enemy" type="CharacterBody3D"]
+[node name="enemy" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_o6h3i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
