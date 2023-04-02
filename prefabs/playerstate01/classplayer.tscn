@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://prefabs/playerstate01/InteractInventory.gd" id="6_psv0x"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/playertool.gd" id="12_j2hsh"]
 [ext_resource type="PackedScene" uid="uid://blinan8ttnyql" path="res://prefabs/prototype_projectile/prototype_gun_01.tscn" id="12_q2sfj"]
-[ext_resource type="PackedScene" uid="uid://b71qakstb3c3" path="res://prefabs/contrust_tool/construct_tool.tscn" id="13_uknra"]
+[ext_resource type="PackedScene" uid="uid://dhdxwsi3h4oyb" path="res://prefabs/contrust_tool/construct_tool.tscn" id="13_uknra"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_clcbs"]
 

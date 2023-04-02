@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk81jqfpbp5ww"]
+[gd_scene load_steps=8 format=3 uid="uid://dk81jqfpbp5ww"]
 
 [ext_resource type="Script" path="res://prefabs/enemy01/enemy01.gd" id="1_o6h3i"]
 [ext_resource type="PackedScene" uid="uid://8a5x3f7xc6s8" path="res://prefabs/healthbar3d/health_bar_3d.tscn" id="1_vt6js"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2j6rg"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpjpk"]
+albedo_color = Color(0.921569, 0.152941, 0, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tjw3l"]
+material = SubResource("StandardMaterial3D_mpjpk")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_d650b"]
 properties/0/path = NodePath(".:position")
@@ -14,6 +18,9 @@ properties/0/sync = true
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/sync = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_m5d8b"]
+size = Vector3(0.1, 0.2, 0.2)
 
 [node name="enemy" type="CharacterBody3D" groups=["Enemy"]]
 script = ExtResource("1_o6h3i")
@@ -29,3 +36,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2296, 0)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_d650b")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.531104, -0.50249)
+mesh = SubResource("BoxMesh_m5d8b")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." groups=["enemies"]]
+target_desired_distance = 2.0
+avoidance_enabled = true
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

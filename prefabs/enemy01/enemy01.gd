@@ -1,9 +1,11 @@
 extends CharacterBody3D
 
 @onready var HealthBar3D = $HealthBar3D
+@onready var navigation_agent_3d = $NavigationAgent3D
 
-const SPEED = 5.0
+const SPEED = 3.0
 const JUMP_VELOCITY = 4.5
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -26,22 +28,29 @@ func _process(_delta):
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	# Add the gravity.
+	
+	var current_location = global_transform.origin
+	var next_location = navigation_agent_3d.get_next_path_position()
+	var new_velocity = (next_location - current_location).normalized() * SPEED
+	#velocity = new_velocity
+	velocity = velocity.move_toward(new_velocity, 0.25)
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	"""
-	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	"""
 	move_and_slide()
+
+
+func update_target_location(target_location):
+	#print("target: ", target_location)
+	navigation_agent_3d.set_target_position(target_location)
+	pass
+
+
+func _on_navigation_agent_3d_target_reached():
+	print("in range")
+	pass
+
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity):
+	velocity = velocity.move_toward(safe_velocity, 0.25)
+	#move_and_slide()
+	pass # Replace with function body.
