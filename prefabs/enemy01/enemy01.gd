@@ -23,6 +23,9 @@ func _process(_delta):
 	#if health <= 0:
 		#health = 100
 	HealthBar3D.update_health(health,max_health)
+	
+	if health <= 0:
+		queue_free()
 	pass
 
 func _physics_process(delta):
@@ -44,11 +47,9 @@ func update_target_location(target_location):
 	navigation_agent_3d.set_target_position(target_location)
 	pass
 
-
 func _on_navigation_agent_3d_target_reached():
 	print("in range")
 	pass
-
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	velocity = velocity.move_toward(safe_velocity, 0.25)
