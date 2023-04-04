@@ -3,7 +3,7 @@ extends PlayerState
 
 # If we get a message asking us to jump, we jump.
 func enter(msg := {}) -> void:
-	print("ENTER STATE: ", name)
+	#print("ENTER STATE: ", name)
 	player.state = player.States.IN_AIR
 	if msg.has("do_jump"):
 		player.velocity.y = player.JUMP_VELOCITY

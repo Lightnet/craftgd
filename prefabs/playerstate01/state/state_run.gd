@@ -2,7 +2,7 @@
 extends PlayerState
 
 func enter(_msg := {}) -> void:
-	print("ENTER STATE: ", name)
+	#print("ENTER STATE: ", name)
 	player.state = player.States.ON_GROUND
 
 func handle_input(event: InputEvent) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://8gotxupt124v"]
+[gd_scene load_steps=25 format=3 uid="uid://cstrbdcqxfjmj"]
 
 [ext_resource type="Script" path="res://tests/inventory_test01.gd" id="1_nqwta"]
 [ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="2_vpq0h"]
@@ -8,14 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://ekb2mkpdc710" path="res://inventory/slot.tscn" id="6_g0rk3"]
 [ext_resource type="PackedScene" uid="uid://ws1an7gq6g26" path="res://inventory/hot_bar_inventory.tscn" id="7_yfr30"]
 [ext_resource type="PackedScene" uid="uid://bh2v3fk0wfams" path="res://interactable/chest.tscn" id="8_ng2yd"]
+[ext_resource type="Script" path="res://scripts/NavRegion3D.gd" id="11_8y2yd"]
 [ext_resource type="PackedScene" uid="uid://cf5dpb81bcl2v" path="res://prefabs/prototype/turret01/turret_01.tscn" id="12_f00lh"]
 [ext_resource type="PackedScene" uid="uid://qhys8mc1bdf7" path="res://prefabs/playerstate01/classplayer.tscn" id="12_n72mk"]
 [ext_resource type="Resource" uid="uid://dx38m3eaytnu8" path="res://tests/test_inventory.tres" id="13_inx8u"]
 [ext_resource type="PackedScene" uid="uid://dk81jqfpbp5ww" path="res://prefabs/enemy01/enemy.tscn" id="13_p63c1"]
 [ext_resource type="Script" path="res://inventory/inventory_data_equip.gd" id="14_hkiw6"]
 [ext_resource type="Script" path="res://tests/setupfollowtest01.gd" id="14_jd4jq"]
-[ext_resource type="Script" path="res://scripts/TimeSpawner.gd" id="15_xp48h"]
-[ext_resource type="Script" path="res://scripts/damage_area.gd" id="16_ed40f"]
+[ext_resource type="Script" path="res://scripts/TimerSpawn.gd" id="16_n10tp"]
+[ext_resource type="Script" path="res://scripts/MobSpawnExist.gd" id="16_uwdb4"]
+[ext_resource type="PackedScene" uid="uid://b32r12f5hp6dy" path="res://prefabs/prototype/damagearea/damage_area01.tscn" id="17_4ftg6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -43,19 +45,8 @@ script = ExtResource("14_hkiw6")
 slot_datas = Array[Resource("res://inventory/slot_data.gd")]([null])
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_c64hb"]
-vertices = PackedVector3Array(-15.5, 1, 1.25, -13, 1, 1.25, -12.75, 1, 0, -15.5, 1, -7.25, -3, 1, -4.75, -1.25, 1, -5, 0.25, 1, -5.25, 0.25, 1, -8.75, -3, 1, -4.75, 0.25, 1, -8.75, -6.5, 1, -15.5, -15.5, 1, -15.5, -15.5, 1, -7.25, -11.25, 1, 0, 0.25, 1, -8.75, 2.75, 1, -9, 2.75, 1, -15.5, -6.5, 1, -15.5, -11.25, 1, 0, -11, 1, 0.5, -3, 1, -3, -3, 1, -4.75, -15.5, 1, -7.25, -12.75, 1, 0, -11.25, 1, 0, -11, 1, 0.5, -2.5, 1, -2.75, -3, 1, -3, 2.75, 1, -15.5, 2.75, 1, -9, 5.25, 1, -9, 9, 1, -15.5, 9, 1, -15.5, 5.25, 1, -9, 5.5, 1, -6.25, 15.5, 1, -6.25, 15.5, 1, -15.5, 1.25, 2, -8, 1.25, 2, -4.75, 4.5, 2, -4.75, 4.5, 2, -8, 5.25, 1, -3.75, 4.25, 1, -3.75, 4, 1, -2.75, 2, 1, -2.75, 1, 1, -2, 1.25, 1, -0.25, 4, 1, -2.75, 7.75, 1, 15.5, 15.5, 1, 15.5, 15.5, 1, 4.5, 5.25, 1, -3.75, 4, 1, -2.75, 1.25, 1, -0.25, 15.5, 1, 4.5, 15.5, 1, -6.25, 15.5, 1, -6.25, 5.5, 1, -6.25, 5.25, 1, -3.75, 1.25, 1, -0.25, 0, 1, 0.25, 0, 1, 15.5, 7.75, 1, 15.5, 15.5, 1, 4.5, 0.25, 1, -5.25, -1.25, 1, -5, -0.75, 1, -4.75, 0.25, 1, -4, 0.25, 1, -5.25, -0.75, 1, -4.75, -0.75, 1, -3, 0, 1, 0.25, -1, 1, 0, -10.75, 1, 1.75, -15.5, 1, 8.25, -7.75, 1, 15.5, 0, 1, 15.5, 1, 1, -2, 2, 1, -2.75, 1.75, 1, -3.75, 0.25, 1, -4, -0.75, 1, -3, -1, 1, -1.75, -11.25, 1, 2.25, -12.75, 1, 2.25, -15.5, 1, 8.25, -15.5, 1, 8.25, -15.5, 1, 15.5, -7.75, 1, 15.5, -10.75, 1, 1.75, -11.25, 1, 2.25, -15.5, 1, 8.25, -1, 1, -1.75, -0.75, 1, -3, -2.5, 1, -2.75, -12.75, 1, 2.25, -13, 1, 1.25, -15.5, 1, 1.25, -15.5, 1, 8.25, -1, 1, 0, -1, 1, -1.75, -2.5, 1, -2.75, -11, 1, 0.5, -10.75, 1, 1.75)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 12), PackedInt32Array(12, 8, 13), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 21), PackedInt32Array(24, 23, 22), PackedInt32Array(27, 26, 25), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 31), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 36), PackedInt32Array(34, 36, 35), PackedInt32Array(40, 39, 37), PackedInt32Array(37, 39, 38), PackedInt32Array(43, 42, 41), PackedInt32Array(45, 44, 46), PackedInt32Array(46, 44, 47), PackedInt32Array(50, 49, 48), PackedInt32Array(52, 51, 53), PackedInt32Array(53, 51, 55), PackedInt32Array(53, 55, 54), PackedInt32Array(58, 57, 56), PackedInt32Array(60, 59, 61), PackedInt32Array(61, 59, 62), PackedInt32Array(62, 59, 63), PackedInt32Array(65, 64, 66), PackedInt32Array(68, 67, 69), PackedInt32Array(69, 67, 70), PackedInt32Array(72, 71, 73), PackedInt32Array(73, 71, 74), PackedInt32Array(74, 71, 75), PackedInt32Array(75, 71, 76), PackedInt32Array(78, 77, 79), PackedInt32Array(79, 77, 80), PackedInt32Array(80, 77, 81), PackedInt32Array(81, 77, 82), PackedInt32Array(85, 84, 83), PackedInt32Array(88, 87, 86), PackedInt32Array(91, 90, 89), PackedInt32Array(94, 93, 92), PackedInt32Array(96, 95, 97), PackedInt32Array(97, 95, 98), PackedInt32Array(100, 99, 101), PackedInt32Array(101, 99, 102), PackedInt32Array(102, 99, 103)]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_f46uv"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7bdx"]
-transparency = 1
-albedo_color = Color(0.32549, 0.32549, 0.32549, 0.607843)
-
-[sub_resource type="BoxMesh" id="BoxMesh_e8bb3"]
-material = SubResource("StandardMaterial3D_n7bdx")
-size = Vector3(2, 2, 2)
+vertices = PackedVector3Array(-38.75, 1, -15.5, -47.5, 1, -15.5, -47.5, 1, -7.75, -47.5, 1, 7.75, -47.5, 1, 15.5, -38.75, 1, 15.5, -12, 1, 15.5, -12, 1, 2.25, -13, 1, 2, -21, 1, 15.5, -29.75, 1, 15.5, -13, 1, 0.25, -29.75, 1, -15.5, -38.75, 1, -15.5, -47.5, 1, 0, -38.75, 1, 15.5, -13, 1, 0.25, -12, 1, 0, -12, 1, -15.5, -21, 1, -15.5, -21, 1, 15.5, -13, 1, 2, -13, 1, 0.25, -29.75, 1, 15.5, -13, 1, 0.25, -21, 1, -15.5, -29.75, 1, -15.5, -38.75, 1, -15.5, -47.5, 1, -7.75, -47.5, 1, 0, -47.5, 1, 0, -47.5, 1, 7.75, -38.75, 1, 15.5, -1.5, 1, -2.75, -1, 1, -1.5, -0.75, 1, -2, -0.75, 1, -3, -3, 1, -4.75, -1, 1, -5, 0.25, 1, -8.75, 1, 1, -2, 2, 1, -2.75, 1.75, 1, -3.75, 0.25, 1, -4, -0.75, 1, -3, -0.75, 1, -2, -12, 1, 0, -11.25, 1, 0, -3, 1, -3, -3, 1, -4.75, -10.75, 1, 0.75, -2.5, 1, -2.75, -3, 1, -3, -11.25, 1, 0, -3, 1, -4.75, 0.25, 1, -8.75, -4.75, 1, -15.5, -12, 1, -15.5, -12, 1, 0, -1, 1, -5, -0.75, 1, -3, 0.25, 1, -4, 0.25, 1, -8.75, 0.25, 1, -8.75, 2.75, 1, -9, 2.75, 1, -15.5, -4.75, 1, -15.5, 2.75, 1, -15.5, 2.75, 1, -9, 5.25, 1, -9, 9, 1, -15.5, 9, 1, -15.5, 5.25, 1, -9, 5.5, 1, -6.25, 15.5, 1, -6.25, 15.5, 1, -15.5, 1.25, 2, -8, 1.25, 2, -4.75, 4.5, 2, -4.75, 4.5, 2, -8, 5.25, 1, -3.75, 4.25, 1, -3.75, 4, 1, -2.75, 2, 1, -2.75, 1, 1, -2, 1.25, 1, -0.25, 4, 1, -2.75, 7.75, 1, 15.5, 15.5, 1, 15.5, 15.5, 1, 4.5, 5.25, 1, -3.75, 4, 1, -2.75, 1.25, 1, -0.25, 15.5, 1, 4.5, 15.5, 1, -6.25, 15.5, 1, -6.25, 5.5, 1, -6.25, 5.25, 1, -3.75, 1.25, 1, -0.25, 0, 1, 0.25, 0, 1, 15.5, 7.75, 1, 15.5, 15.5, 1, 4.5, -1, 1, -1.5, -1.5, 1, -2.75, -2.5, 1, -2.75, -10.75, 1, 0.75, -10.75, 1, 1.75, -1, 1, 0, 0, 1, 0.25, -1, 1, 0, -10.75, 1, 1.75, -12, 1, 2.25, -12, 1, 15.5, 0, 1, 15.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(15, 14, 10), PackedInt32Array(10, 14, 13), PackedInt32Array(10, 13, 12), PackedInt32Array(10, 12, 11), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(26, 25, 24), PackedInt32Array(29, 28, 27), PackedInt32Array(32, 31, 30), PackedInt32Array(36, 35, 33), PackedInt32Array(33, 35, 34), PackedInt32Array(39, 38, 37), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 43), PackedInt32Array(43, 40, 44), PackedInt32Array(44, 40, 45), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 49), PackedInt32Array(51, 50, 52), PackedInt32Array(52, 50, 53), PackedInt32Array(55, 54, 56), PackedInt32Array(56, 54, 57), PackedInt32Array(57, 54, 58), PackedInt32Array(60, 59, 61), PackedInt32Array(61, 59, 62), PackedInt32Array(64, 63, 65), PackedInt32Array(65, 63, 66), PackedInt32Array(68, 67, 69), PackedInt32Array(69, 67, 70), PackedInt32Array(72, 71, 73), PackedInt32Array(73, 71, 75), PackedInt32Array(73, 75, 74), PackedInt32Array(79, 78, 76), PackedInt32Array(76, 78, 77), PackedInt32Array(82, 81, 80), PackedInt32Array(84, 83, 85), PackedInt32Array(85, 83, 86), PackedInt32Array(89, 88, 87), PackedInt32Array(91, 90, 92), PackedInt32Array(92, 90, 94), PackedInt32Array(92, 94, 93), PackedInt32Array(97, 96, 95), PackedInt32Array(99, 98, 100), PackedInt32Array(100, 98, 101), PackedInt32Array(101, 98, 102), PackedInt32Array(104, 103, 105), PackedInt32Array(105, 103, 108), PackedInt32Array(105, 108, 106), PackedInt32Array(106, 108, 107), PackedInt32Array(110, 109, 111), PackedInt32Array(111, 109, 112), PackedInt32Array(112, 109, 113), PackedInt32Array(113, 109, 114)]
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_nqwta")
@@ -133,7 +124,7 @@ offset_right = 430.0
 offset_bottom = 90.0
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("12_n72mk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 1.5, 5)
 inventory_data = ExtResource("13_inx8u")
 equip_inventory_data = SubResource("Resource_ytqyt")
 
@@ -148,13 +139,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -5.40651)
 [node name="enemy2" parent="." groups=["enemies"] instance=ExtResource("13_p63c1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.47766, 2, 8.06492)
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["navmesh"]]
 navigation_mesh = SubResource("NavigationMesh_c64hb")
+script = ExtResource("11_8y2yd")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
 use_collision = true
 
 [node name="CSGBox3D_ground" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+size = Vector3(32, 1, 32)
+material = ExtResource("2_vpq0h")
+
+[node name="CSGBox3D_ground2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 0)
 size = Vector3(32, 1, 32)
 material = ExtResource("2_vpq0h")
 
@@ -194,36 +191,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1)
 process_mode = 4
 script = ExtResource("14_jd4jq")
 
-[node name="TimeSpawner" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+[node name="SpawnExist" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2053, 2.27488, 9.80062)
-script = ExtResource("15_xp48h")
+script = ExtResource("16_uwdb4")
+entity = ExtResource("13_p63c1")
+target = NodePath("../TargetPoint")
+
+[node name="Marker3D" type="Marker3D" parent="SpawnExist"]
+
+[node name="TimeSpawner" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2053, 2.27488, 9.80062)
+script = ExtResource("16_n10tp")
 entity = ExtResource("13_p63c1")
 target = NodePath("../TargetPoint")
 
 [node name="Marker3D" type="Marker3D" parent="TimeSpawner"]
+
+[node name="Timer" type="Timer" parent="TimeSpawner"]
+autostart = true
 
 [node name="TargetPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5568, 1.7879, -11.4327)
 
 [node name="Marker3D" type="Marker3D" parent="TargetPoint"]
 
-[node name="DamageArea" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1705, 2.0053, -7.09848)
-script = ExtResource("16_ed40f")
+[node name="DamageArea" parent="." instance=ExtResource("17_4ftg6")]
 
-[node name="Marker3D" type="Marker3D" parent="DamageArea"]
-
-[node name="Area3D" type="Area3D" parent="DamageArea"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea/Area3D"]
-shape = SubResource("BoxShape3D_f46uv")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DamageArea"]
-mesh = SubResource("BoxMesh_e8bb3")
+[node name="DamageArea2" parent="." instance=ExtResource("17_4ftg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1705, 1.5053, -7.09848)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
 [connection signal="visibility_changed" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_visibility_changed"]
-[connection signal="body_entered" from="DamageArea/Area3D" to="DamageArea" method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="TimeSpawner/Timer" to="TimeSpawner" method="_on_timer_timeout"]

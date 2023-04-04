@@ -4,7 +4,7 @@ extends PlayerState
 
 # Upon entering the state, we set the Player node's velocity to zero.
 func enter(_msg := {}) -> void:
-	print("ENTER STATE: ", name)
+	#print("ENTER STATE: ", name)
 	if owner.is_on_floor():
 		player.state = player.States.ON_GROUND
 	else:

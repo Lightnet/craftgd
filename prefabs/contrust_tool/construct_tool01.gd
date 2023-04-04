@@ -68,8 +68,9 @@ func place_item(pos):
 	isPlace = false
 	var item = placeitem.instantiate()
 	#get_node("/root/main").add_child.call_deferred(item)
-	get_node("/root/main").add_child(item)
+	get_node("/root/main/NavigationRegion3D").add_child(item)#note need be nav mesh to work
 	item.global_position = pos
+	get_tree().call_group("navmesh","update_navigation_mesh")
 	
 func _on_create_timer_timeout():
 	isPlace = true

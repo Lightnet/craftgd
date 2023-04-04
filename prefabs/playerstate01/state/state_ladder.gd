@@ -4,7 +4,7 @@ extends PlayerState
 
 # Upon entering the state, we set the Player node's velocity to zero.
 func enter(_msg := {}) -> void:
-	print("ENTER STATE: ", name)
+	#print("ENTER STATE: ", name)
 	# We must declare all the properties we access through `owner` in the `Player.gd` script.
 	owner.velocity = Vector3.ZERO
 
