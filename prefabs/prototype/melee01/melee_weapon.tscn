@@ -1,8 +1,6 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=11 format=3 uid="uid://bvhu3px6s12l6"]
 
-[ext_resource type="Script" path="res://prefabs/player01/melee01.gd" id="1_1364u"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1trae"]
+[ext_resource type="Script" path="res://prefabs/prototype/melee01/melee01.gd" id="1_xnnan"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n2cg8"]
 albedo_color = Color(1, 1, 0.196078, 1)
@@ -16,6 +14,9 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1lc5y"]
 material = SubResource("StandardMaterial3D_ypty4")
+size = Vector3(0.2, 0.2, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1trae"]
 size = Vector3(0.2, 0.2, 0.4)
 
 [sub_resource type="Animation" id="Animation_prprq"]
@@ -134,16 +135,10 @@ _data = {
 }
 
 [node name="Melee01" type="Node3D"]
-
-[node name="HitBox" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-shape = SubResource("BoxShape3D_1trae")
+script = ExtResource("1_xnnan")
 
 [node name="MeleeWeapon" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37296, -0.264466, -0.58789)
-script = ExtResource("1_1364u")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeleeWeapon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206183, 0)
@@ -153,7 +148,18 @@ mesh = SubResource("BoxMesh_covmj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.253983, 0)
 mesh = SubResource("BoxMesh_1lc5y")
 
+[node name="HitBox" type="Area3D" parent="MeleeWeapon/MeshInstance3D/MeshInstance3D"]
+collision_layer = 7
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeleeWeapon/MeshInstance3D/MeshInstance3D/HitBox"]
+shape = SubResource("BoxShape3D_1trae")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MeleeWeapon"]
 libraries = {
 "": SubResource("AnimationLibrary_kod7g")
 }
+
+[connection signal="area_entered" from="MeleeWeapon/MeshInstance3D/MeshInstance3D/HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="body_entered" from="MeleeWeapon/MeshInstance3D/MeshInstance3D/HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="animation_finished" from="MeleeWeapon/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://qhys8mc1bdf7"]
+[gd_scene load_steps=17 format=3 uid="uid://qhys8mc1bdf7"]
 
 [ext_resource type="Script" path="res://prefabs/playerstate01/classplayer01.gd" id="1_d1k3k"]
 [ext_resource type="Script" path="res://prefabs/playerstate01/state/statemachine.gd" id="2_3aens"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://prefabs/playerstate01/playertool.gd" id="12_j2hsh"]
 [ext_resource type="PackedScene" uid="uid://blinan8ttnyql" path="res://prefabs/prototype_projectile/prototype_gun_01.tscn" id="12_q2sfj"]
 [ext_resource type="PackedScene" uid="uid://dhdxwsi3h4oyb" path="res://prefabs/contrust_tool/construct_tool.tscn" id="13_uknra"]
+[ext_resource type="PackedScene" uid="uid://bvhu3px6s12l6" path="res://prefabs/prototype/melee01/melee_weapon.tscn" id="14_g0hg5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_clcbs"]
 
@@ -115,5 +116,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, -0.5)
 [node name="prototype_gun01" parent="Tools" instance=ExtResource("12_q2sfj")]
 
 [node name="construst_tool" parent="Tools" instance=ExtResource("13_uknra")]
+
+[node name="Melee01" parent="Tools" instance=ExtResource("14_g0hg5")]
 
 [node name="Eqiups" type="Node" parent="."]

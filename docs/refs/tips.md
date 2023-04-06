@@ -23,3 +23,5 @@ get_tree().call_group("enemies", "update_target_location", player.global_transfo
 await get_tree().create_timer(time).timeout
 ```
 
+# Collision:
+ * bug when the melee inside collision that will not trigger damage.

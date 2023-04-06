@@ -28,6 +28,7 @@ GameMangement="*res://scripts/game_mangement.gd"
 PlayerManager="*res://scripts/player_manager.gd"
 Networkweb="*res://scripts/networkweb.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+Console="*res://addons/panku_console/console.tscn"
 
 [editor_plugins]
 
@@ -174,10 +175,19 @@ build_menu={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":86,"key_label":0,"unicode":118,"echo":false,"script":null)
 ]
 }
+toggle_console={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":96,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 
 locale/translations_pot_files=PackedStringArray("res://tests/test.dialogue")
+
+[panku]
+
+toggle_console_action="toggle_console"
 
 [puzzle_dependencies]
 
@@ -219,7 +229,7 @@ boards={
 }],
 "id": "64c822a721",
 "label": "entity",
-"scroll_offset": Vector2(1282.36, -33),
+"scroll_offset": Vector2(1282.36, -144.191),
 "things": [{
 "id": &"f60d209c98",
 "position_offset": Vector2(2140, 140),
