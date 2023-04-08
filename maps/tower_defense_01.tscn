@@ -130,11 +130,11 @@ equip_inventory_data = SubResource("Resource_ytqyt")
 
 [node name="entities" type="Node" parent="."]
 
-[node name="turret01" parent="." instance=ExtResource("12_f00lh")]
+[node name="turret01" parent="." groups=["deploy"] instance=ExtResource("12_f00lh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.71744, 0.5, -0.197227)
 
 [node name="enemy" parent="." instance=ExtResource("13_p63c1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -5.40651)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -8.14606)
 
 [node name="enemy2" parent="." groups=["enemies"] instance=ExtResource("13_p63c1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.47766, 2, 8.06492)
@@ -198,6 +198,13 @@ entity = ExtResource("13_p63c1")
 target = NodePath("../TargetPoint")
 
 [node name="Marker3D" type="Marker3D" parent="SpawnExist"]
+
+[node name="SpawnExist2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.74042, 2.27488, -3.53914)
+script = ExtResource("16_uwdb4")
+entity = ExtResource("13_p63c1")
+
+[node name="Marker3D" type="Marker3D" parent="SpawnExist2"]
 
 [node name="TimeSpawner" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2053, 2.27488, 9.80062)

@@ -4,6 +4,7 @@ extends Area3D
 # https://godotengine.org/qa/136003/keyword-translation-doesnt-because-variable-should-instead
 
 var dir = Vector3()
+var damage = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,7 +24,7 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body.is_in_group("Enemy"):
-		body.health -= 1
+		body.health -= damage
 		#body.take_damage(25)
 		pass
 	queue_free()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cf5dpb81bcl2v"]
+[gd_scene load_steps=12 format=3 uid="uid://cf5dpb81bcl2v"]
 
 [ext_resource type="Script" path="res://prefabs/prototype/turret01/turret_01.gd" id="1_whrkg"]
 [ext_resource type="Script" path="res://prefabs/prototype/turret01/pitch01.gd" id="2_kp7f5"]
 [ext_resource type="Script" path="res://prefabs/prototype/turret01/base01.gd" id="2_yefga"]
+[ext_resource type="Script" path="res://prefabs/prototype/turret01/InfoData_turret01.gd" id="4_0uhlv"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_73cry"]
 top_radius = 0.4
@@ -24,7 +25,10 @@ size = Vector3(0.5, 0.2, 0.2)
 [sub_resource type="SphereShape3D" id="SphereShape3D_kxqkt"]
 radius = 5.0
 
-[node name="turret01" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ng4sx"]
+
+[node name="turret01" type="StaticBody3D"]
+collision_layer = 2
 script = ExtResource("1_whrkg")
 
 [node name="base" type="Node3D" parent="."]
@@ -57,8 +61,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.1
 mesh = SubResource("PrismMesh_cic33")
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 3
+collision_layer = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -66,6 +69,74 @@ shape = SubResource("SphereShape3D_kxqkt")
 
 [node name="FireTimer" type="Timer" parent="."]
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_ng4sx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_0uhlv")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer"]
+layout_mode = 2
+
+[node name="LName" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Item Name"
+horizontal_alignment = 1
+
+[node name="LLevel" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level: 0"
+horizontal_alignment = 1
+
+[node name="LDamage" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Damage :1"
+horizontal_alignment = 1
+
+[node name="btnInfo" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Information"
+
+[node name="btnUpgrade" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Upgrade "
+
+[node name="btnEnchant" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Enchant "
+
+[node name="btnClose" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "  Close "
+
+[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="btnSell" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Sell "
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/VBoxContainer/btnUpgrade" to="." method="_on_btn_upgrade_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/VBoxContainer/btnClose" to="." method="_on_btn_close_pressed"]

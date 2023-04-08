@@ -1,10 +1,11 @@
 extends Node3D
 
-
 @onready var base = $base
 @onready var pitch = $base/MeshInstance3D/MeshInstance3D/Node3D
 @onready var firepoint = $base/MeshInstance3D/MeshInstance3D/Node3D/pitchmesh/MeshInstance3D/firepoint
 @onready var projectile = preload("res://prefabs/projectile/projectile01.tscn")
+
+@onready var control = $CanvasLayer/Control
 
 @export var target = Node3D
 @export var isTarget:bool = false
@@ -14,6 +15,12 @@ extends Node3D
 @onready var fire_timer = $FireTimer
 @export var bFire:bool = true
 
+@onready var canvas_layer = $CanvasLayer
+
+@onready var item_name = "Base Turret"
+@onready var damage = 2
+@onready var level = 0
+
 @export var filter_targets = [
 	"Player",
 	#"Enemy",
@@ -21,7 +28,9 @@ extends Node3D
 @export var tagTarget = "Enemy"
 
 func _ready():
-	pass # Replace with function body.
+	if control:
+		control.update_name(item_name)
+	pass 
 
 func _physics_process(_delta):
 	
@@ -50,6 +59,7 @@ func fireProjectile():
 	fire_timer.start()
 	var p = projectile.instantiate()
 	get_node("/root").add_child(p)#depend on the order else error
+	p.damage = damage
 	p.set_global_rotation(firepoint.global_rotation)
 	p.set_global_position(firepoint.global_position)
 	p.dir = firepoint.global_transform.basis.z  
@@ -70,4 +80,25 @@ func _on_area_3d_body_exited(body):
 
 func _on_fire_timer_timeout():
 	bFire = true
+	pass
+
+func interact():
+	print("MENU?")
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	canvas_layer.visible = true
+	pass
+
+func close_menu():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	canvas_layer.visible = false
+	pass
+
+func _on_btn_close_pressed():
+	close_menu()
+	pass
+
+func _on_btn_upgrade_pressed():
+	damage+=5
+	level+=1
+	control.update_data(level, damage)
 	pass

@@ -27,6 +27,7 @@ public_visibility = false
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.254155)
 target_position = Vector3(0, 0, -5)
+collision_mask = 3
 
 [node name="CreateTimer" type="Timer" parent="."]
 wait_time = 0.5

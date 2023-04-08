@@ -50,17 +50,27 @@ func _input(event):
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		pass
-	pass
+		
+	#pass
 
 func _process(_delta):
+	# deploy group
 	#print("get_process_mode: ",get_process_mode())
 	if ray_cast_3d.is_colliding():
 		var pos = ray_cast_3d.get_collision_point()# global position
 		tmp_ph.global_position = pos + Vector3(0,0.5,0)
 		if Input.is_action_pressed("construct") and isPlace:
 			place_item(pos)
+		if Input.is_action_pressed("interact"):
 			
-		pass
+			var obj_interact = ray_cast_3d.get_collider()
+			#print("interact... ", obj_interact)
+			if obj_interact.is_in_group("deploy"):
+				print("building interact")
+				#obj_interact
+				obj_interact.interact()
+			pass
+		#pass
 	pass
 	
 func place_item(pos):
