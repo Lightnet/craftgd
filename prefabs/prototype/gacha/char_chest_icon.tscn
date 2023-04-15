@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://0cjjj0hkn4e3"]
+
+[ext_resource type="Texture2D" uid="uid://dijhksgy3dlq4" path="res://icon.svg" id="1_liwvq"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("1_liwvq")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Item Name"
+horizontal_alignment = 1
+vertical_alignment = 1

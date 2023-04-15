@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dtywvx8a42d30"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_jnpg5"]
+[ext_resource type="Texture2D" uid="uid://drg53cow04hjy" path="res://item/Transparent Icons.png" id="2_7noce"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wqvf"]
+atlas = ExtResource("2_7noce")
+region = Rect2(96, 192, 32, 32)
+
+[resource]
+script = ExtResource("1_jnpg5")
+name = "Archer"
+description = "Job Archer"
+stackable = false
+texture = SubResource("AtlasTexture_8wqvf")

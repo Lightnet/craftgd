@@ -1,0 +1,228 @@
+[gd_scene load_steps=25 format=3 uid="uid://tlsprtfp5ga4"]
+
+[ext_resource type="Script" path="res://scripts/random_chest01.gd" id="1_qdf53"]
+[ext_resource type="Script" path="res://inventory/inventory_data.gd" id="2_x58vr"]
+[ext_resource type="Resource" uid="uid://dtywvx8a42d30" path="res://item/items/job_archer.tres" id="3_2jeua"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="4_iqvup"]
+[ext_resource type="Resource" uid="uid://bco01pvbyxqh5" path="res://item/items/job_knight.tres" id="5_c3sdj"]
+[ext_resource type="Resource" uid="uid://camdi04nvke1l" path="res://item/items/job_mage.tres" id="6_efwm0"]
+[ext_resource type="Resource" uid="uid://777qkclavc7s" path="res://item/items/job_medic.tres" id="7_0dlym"]
+[ext_resource type="Resource" uid="uid://ctwm1i77o3lh5" path="res://item/items/job_theif.tres" id="8_o6e0w"]
+[ext_resource type="Resource" uid="uid://ctcevchk5hfx0" path="res://item/items/job_warrior.tres" id="9_6g7fo"]
+[ext_resource type="PackedScene" uid="uid://0cjjj0hkn4e3" path="res://prefabs/prototype/gacha/char_chest_icon.tscn" id="10_l6kl4"]
+
+[sub_resource type="Resource" id="Resource_mbf4y"]
+script = ExtResource("4_iqvup")
+item_data = ExtResource("9_6g7fo")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_845um"]
+script = ExtResource("4_iqvup")
+item_data = ExtResource("8_o6e0w")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_1c6m1"]
+script = ExtResource("4_iqvup")
+item_data = ExtResource("6_efwm0")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_ibyr6"]
+script = ExtResource("4_iqvup")
+item_data = ExtResource("7_0dlym")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_jvht0"]
+script = ExtResource("4_iqvup")
+item_data = ExtResource("5_c3sdj")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_4sb57"]
+script = ExtResource("4_iqvup")
+item_data = ExtResource("3_2jeua")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_soqj8"]
+script = ExtResource("2_x58vr")
+slot_datas = Array[ExtResource("4_iqvup")]([SubResource("Resource_mbf4y"), SubResource("Resource_845um"), SubResource("Resource_1c6m1"), SubResource("Resource_ibyr6"), SubResource("Resource_jvht0"), SubResource("Resource_4sb57")])
+
+[sub_resource type="Resource" id="Resource_hubt5"]
+script = ExtResource("4_iqvup")
+item_data = ExtResource("3_2jeua")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_gxo6r"]
+script = ExtResource("4_iqvup")
+item_data = ExtResource("5_c3sdj")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_i5n1s"]
+script = ExtResource("4_iqvup")
+item_data = ExtResource("6_efwm0")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_qlmc7"]
+script = ExtResource("4_iqvup")
+item_data = ExtResource("7_0dlym")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_0knye"]
+script = ExtResource("4_iqvup")
+item_data = ExtResource("8_o6e0w")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_tkjyb"]
+script = ExtResource("4_iqvup")
+item_data = ExtResource("9_6g7fo")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_octml"]
+script = ExtResource("2_x58vr")
+slot_datas = Array[ExtResource("4_iqvup")]([SubResource("Resource_hubt5"), SubResource("Resource_gxo6r"), SubResource("Resource_i5n1s"), SubResource("Resource_qlmc7"), SubResource("Resource_0knye"), SubResource("Resource_tkjyb")])
+
+[node name="random_chest" type="Node"]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qdf53")
+char_inventory_data = SubResource("Resource_soqj8")
+inventory_data = SubResource("Resource_octml")
+
+[node name="RandomUI" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/RandomUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/RandomUI/CenterContainer"]
+layout_mode = 2
+
+[node name="btnCharacterDraw" type="Button" parent="CanvasLayer/Control/RandomUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Character Draw  "
+
+[node name="btnCharacterDraw10" type="Button" parent="CanvasLayer/Control/RandomUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Character Draw 10 "
+
+[node name="btnItemDraw" type="Button" parent="CanvasLayer/Control/RandomUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Item Draw "
+
+[node name="btnItemDraw10" type="Button" parent="CanvasLayer/Control/RandomUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Item Draw 10 "
+
+[node name="ResultItem" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/ResultItem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/ResultItem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/ResultItem/CenterContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/ResultItem/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1024, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/ResultItem/CenterContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemLoot" type="HBoxContainer" parent="CanvasLayer/Control/ResultItem/CenterContainer/VBoxContainer/ScrollContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" parent="CanvasLayer/Control/ResultItem/CenterContainer/VBoxContainer/ScrollContainer/CenterContainer/ItemLoot" instance=ExtResource("10_l6kl4")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/ResultItem/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="btnClaim" type="Button" parent="CanvasLayer/Control/ResultItem/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Claim "
+
+[node name="LayerAnimation" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/LayerAnimation"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0901961, 0.137255, 0.156863, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/LayerAnimation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Unboxing..."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
+
+[connection signal="pressed" from="CanvasLayer/Control/RandomUI/CenterContainer/VBoxContainer/btnCharacterDraw" to="CanvasLayer/Control" method="_on_btn_character_draw_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/RandomUI/CenterContainer/VBoxContainer/btnCharacterDraw10" to="CanvasLayer/Control" method="_on_btn_character_draw_10_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/RandomUI/CenterContainer/VBoxContainer/btnItemDraw" to="CanvasLayer/Control" method="_on_btn_item_draw_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/RandomUI/CenterContainer/VBoxContainer/btnItemDraw10" to="CanvasLayer/Control" method="_on_btn_item_draw_10_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/ResultItem/CenterContainer/VBoxContainer/btnClaim" to="CanvasLayer/Control" method="_on_btn_claim_pressed"]

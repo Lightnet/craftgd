@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://bco01pvbyxqh5"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_bhr28"]
+[ext_resource type="Texture2D" uid="uid://drg53cow04hjy" path="res://item/Transparent Icons.png" id="2_v16en"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iig3j"]
+atlas = ExtResource("2_v16en")
+region = Rect2(32, 192, 32, 32)
+
+[resource]
+script = ExtResource("1_bhr28")
+name = "Knight"
+description = "Job Knight"
+stackable = false
+texture = SubResource("AtlasTexture_iig3j")

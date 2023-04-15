@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://ctwm1i77o3lh5"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_nmuon"]
+[ext_resource type="Texture2D" uid="uid://drg53cow04hjy" path="res://item/Transparent Icons.png" id="2_rems4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4heyr"]
+atlas = ExtResource("2_rems4")
+region = Rect2(224, 160, 32, 32)
+
+[resource]
+script = ExtResource("1_nmuon")
+name = "Thief"
+description = "Job Thief"
+stackable = false
+texture = SubResource("AtlasTexture_4heyr")
