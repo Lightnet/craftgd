@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://item/item_data.gd" id="1_nmuon"]
 [ext_resource type="Texture2D" uid="uid://drg53cow04hjy" path="res://item/Transparent Icons.png" id="2_rems4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4heyr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3ofh"]
 atlas = ExtResource("2_rems4")
 region = Rect2(224, 160, 32, 32)
 
@@ -12,4 +12,4 @@ script = ExtResource("1_nmuon")
 name = "Thief"
 description = "Job Thief"
 stackable = false
-texture = SubResource("AtlasTexture_4heyr")
+texture = SubResource("AtlasTexture_l3ofh")
