@@ -15,6 +15,8 @@ extends Control
 
 var rng = RandomNumberGenerator.new()
 
+var result_items=[]
+
 func _ready():
 	randomize()	
 	layer_animation.visible = false

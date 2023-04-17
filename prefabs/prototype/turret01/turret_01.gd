@@ -7,7 +7,7 @@ extends Node3D
 
 @onready var control = $CanvasLayer/Control
 
-@export var target = Node3D
+@export var target:Node3D = null
 @export var isTarget:bool = false
 @onready var area_3d = $Area3D
 
@@ -27,6 +27,10 @@ extends Node3D
 ]
 @export var tagTarget = "Enemy"
 
+var speed_dir = Vector3.ZERO
+var new_speed_dir = Vector3.ZERO
+var old_speed_dir = Vector3.ZERO
+
 func _ready():
 	if control:
 		control.update_name(item_name)
@@ -34,24 +38,31 @@ func _ready():
 
 func _physics_process(_delta):
 	
+	if target:
+		new_speed_dir = target.global_position
+		#FOR DIR FORWARD
+		speed_dir = old_speed_dir - new_speed_dir
+		#print("speed_dir: ", speed_dir)
+		
+		#BASE
+		base.look_at(target.global_position + (-speed_dir *  10), Vector3.UP)
+		base.rotation_degrees.x = rotation_degrees.x
+		
+		#PITCH
+		pitch.look_at(target.global_position, Vector3.UP)
+		pitch.rotation_degrees.x = clamp(pitch.rotation_degrees.x, -5, 80) #ptich
+		pitch.rotation_degrees.y = rotation_degrees.y #fixed
+		old_speed_dir = new_speed_dir
+		#pass
+	else:
+		speed_dir = Vector3.ZERO
+		
 	if isTarget:
 		#print("fire_timer.is_stopped(): ", fire_timer.is_stopped())
 		if bFire:
 			fireProjectile()
 			#print("FIRE??")
 		pass
-	
-	#if target:
-		#var dir = target.global_position - global_position
-		#var difference:Vector3 = dir.angle() - rotation
-		#print("dir: ",dir)
-		#look_at(target, Vector3.UP)
-		#self.rotation_degrees.x = clamp(rotation_degrees.x, -5, 80)
-		#self.rotation_degrees.y = clamp(rotation_degrees.x, -5, 80)
-		#if difference != Vector3.ZERO:
-			#rotation = lerp(rotation, dir.angle(), rotation_speed)
-			#rotation = rotation + (difference / abs(difference) * rotation_speed)
-		#pass
 	pass
 	
 func fireProjectile():
@@ -67,14 +78,14 @@ func fireProjectile():
 
 func _on_area_3d_body_entered(body):
 	#print("ENTER TARGET: ",body)
-	if body.is_in_group(tagTarget):
+	if body.is_in_group(tagTarget) && isTarget == false:
 		target = body
 		isTarget=true
 	pass
 
 func _on_area_3d_body_exited(body):
 	if body == target:
-		isTarget=false
+		isTarget = false
 		target = null
 	pass
 

@@ -131,7 +131,7 @@ equip_inventory_data = SubResource("Resource_ytqyt")
 [node name="entities" type="Node" parent="."]
 
 [node name="turret01" parent="." groups=["deploy"] instance=ExtResource("12_f00lh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.71744, 0.5, -0.197227)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.28256, 0.556408, -0.197227)
 
 [node name="enemy" parent="." instance=ExtResource("13_p63c1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -8.14606)

@@ -5,6 +5,7 @@ extends Area3D
 
 var dir = Vector3()
 var damage = 1
+var SPEED = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,9 +19,8 @@ func _process(delta):
 	#position -= transform.basis.x * 10 * delta
 	#position -= transform.basis.z * 10 * delta
 	if dir != Vector3.ZERO:
-		position -= dir * 10 * delta
+		position -= dir * SPEED * delta
 	pass
-
 
 func _on_body_entered(body):
 	if body.is_in_group("Enemy"):
