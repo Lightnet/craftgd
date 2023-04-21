@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResearchData" load_steps=2 format=3 uid="uid://crxjqvo8xs825"]
+
+[ext_resource type="Script" path="res://research/researchdata.gd" id="1_xgmde"]
+
+[resource]
+script = ExtResource("1_xgmde")
+name = "Light Mecha"
+description = "Type "
+points = 0
+level = 0
+requires = Array[ExtResource("1_xgmde")]([])

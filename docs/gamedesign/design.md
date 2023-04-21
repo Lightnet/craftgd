@@ -1,6 +1,13 @@
 # Information:
   Work in progress.
 
+# interact and menu:
+ * main menu
+ * in game menu
+ * interact menu
+ * player HUD
+
+ Use Array check remeber menu?
 
 # Player:
 

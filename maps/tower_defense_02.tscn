@@ -1,0 +1,188 @@
+[gd_scene load_steps=23 format=3 uid="uid://c5gldln1yfc8y"]
+
+[ext_resource type="Script" path="res://tests/inventory_test01.gd" id="1_lmy8e"]
+[ext_resource type="Script" path="res://inventory/inventory_interface.gd" id="2_r6wp7"]
+[ext_resource type="PackedScene" uid="uid://dasuqcyshytx6" path="res://inventory/inventory.tscn" id="3_5nean"]
+[ext_resource type="PackedScene" uid="uid://ekb2mkpdc710" path="res://inventory/slot.tscn" id="4_lf5gf"]
+[ext_resource type="PackedScene" uid="uid://ws1an7gq6g26" path="res://inventory/hot_bar_inventory.tscn" id="5_vapqg"]
+[ext_resource type="PackedScene" uid="uid://qhys8mc1bdf7" path="res://prefabs/playerstate01/classplayer.tscn" id="6_gppdi"]
+[ext_resource type="Resource" uid="uid://dx38m3eaytnu8" path="res://tests/test_inventory.tres" id="7_me57v"]
+[ext_resource type="Script" path="res://inventory/inventory_data_equip.gd" id="8_jl23j"]
+[ext_resource type="PackedScene" uid="uid://cf5dpb81bcl2v" path="res://prefabs/prototype/turret01/turret_01.tscn" id="9_3b0sr"]
+[ext_resource type="PackedScene" uid="uid://dk81jqfpbp5ww" path="res://prefabs/enemy01/enemy.tscn" id="10_smkok"]
+[ext_resource type="Script" path="res://scripts/NavRegion3D.gd" id="11_nxo3h"]
+[ext_resource type="Material" uid="uid://b1ue2im1p5i3p" path="res://prefabs/prototyping/dark_grid_material.tres" id="12_70jxt"]
+[ext_resource type="Material" uid="uid://dbgmy4ipk72j4" path="res://prefabs/prototyping/orange_grid_material.tres" id="13_5rnh0"]
+[ext_resource type="Script" path="res://tests/setupfollowtest01.gd" id="15_e6njj"]
+[ext_resource type="Script" path="res://scripts/MobSpawnExist.gd" id="16_xdu8e"]
+[ext_resource type="PackedScene" uid="uid://b32r12f5hp6dy" path="res://prefabs/prototype/damagearea/damage_area01.tscn" id="18_60gbd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfswl"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_16356"]
+sky_material = SubResource("ProceduralSkyMaterial_tfswl")
+
+[sub_resource type="Environment" id="Environment_6ide3"]
+background_mode = 2
+sky = SubResource("Sky_16356")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fvto5"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+
+[sub_resource type="Resource" id="Resource_ytqyt"]
+script = ExtResource("8_jl23j")
+slot_datas = Array[Resource("res://inventory/slot_data.gd")]([null])
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_c64hb"]
+vertices = PackedVector3Array(-7.75, 1, -47.5, -15.5, 1, -47.5, -15.5, 1, -39.75, 15.5, 1, -36.75, 15.5, 1, -47.5, 7.75, 1, -47.5, -1, 1, -5, -0.75, 1, -4, 15.5, 1, -4, 15.5, 1, -15, 0, 1, -47.5, -7.75, 1, -47.5, -15.5, 1, -39.75, -15.5, 1, -31.75, -15.5, 1, -16, -3, 1, -4.75, -1, 1, -5, -15.5, 1, -24, 15.5, 1, -36.75, 7.75, 1, -47.5, 0, 1, -47.5, 15.5, 1, -25.75, 15.5, 1, -36.75, 0, 1, -47.5, -15.5, 1, -31.75, -15.5, 1, -24, -1, 1, -5, -1, 1, -5, 15.5, 1, -15, 15.5, 1, -25.75, -39.75, 1, -15.5, -47.5, 1, -15.5, -47.5, 1, -7.75, -47.5, 1, 7.75, -47.5, 1, 15.5, -36.25, 1, 15.5, -3, 1, -4.75, -15.5, 1, -16, -15.75, 1, -15.5, -39.75, 1, -15.5, -47.5, 1, -7.75, -47.5, 1, 0, -31.75, 1, -15.5, -3, 1, -3, -3, 1, -4.75, -15.75, 1, -15.5, -23.75, 1, -15.5, -2, 1, 15.5, -2, 1, -2.75, -3, 1, -3, -13.5, 1, 15.5, -47.5, 1, 0, -47.5, 1, 7.75, -36.25, 1, 15.5, -24.75, 1, 15.5, -23.75, 1, -15.5, -31.75, 1, -15.5, -47.5, 1, 0, -24.75, 1, 15.5, -13.5, 1, 15.5, -3, 1, -3, 6.75, 1, 15.5, 15.5, 1, 15.5, 15.5, 1, 5.75, 15.5, 1, -4, -0.75, 1, -4, -1.25, 1, -2.75, -2, 1, 15.5, 6.75, 1, 15.5, 15.5, 1, 5.75, -1.25, 1, -2.75, -2, 1, -2.75, -2, 1, 15.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(19, 18, 20), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 24), PackedInt32Array(24, 21, 25), PackedInt32Array(25, 21, 26), PackedInt32Array(27, 29, 28), PackedInt32Array(32, 31, 30), PackedInt32Array(35, 34, 33), PackedInt32Array(38, 37, 36), PackedInt32Array(40, 39, 41), PackedInt32Array(41, 39, 42), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 46), PackedInt32Array(48, 47, 49), PackedInt32Array(49, 47, 50), PackedInt32Array(52, 51, 53), PackedInt32Array(53, 51, 54), PackedInt32Array(56, 55, 57), PackedInt32Array(57, 55, 58), PackedInt32Array(58, 55, 59), PackedInt32Array(59, 55, 60), PackedInt32Array(63, 62, 61), PackedInt32Array(65, 64, 66), PackedInt32Array(66, 64, 69), PackedInt32Array(66, 69, 68), PackedInt32Array(66, 68, 67), PackedInt32Array(72, 71, 70)]
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_lmy8e")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6ide3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_fvto5")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryInterface" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_r6wp7")
+
+[node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("3_5nean")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 50.0
+
+[node name="EqupInventory" parent="UI/InventoryInterface" instance=ExtResource("3_5nean")]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 10.0
+offset_right = 490.0
+offset_bottom = 50.0
+
+[node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("3_5nean")]
+visible = false
+layout_mode = 0
+offset_left = 616.0
+offset_top = 16.0
+offset_right = 656.0
+offset_bottom = 56.0
+
+[node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("4_lf5gf")]
+visible = false
+modulate = Color(1, 1, 1, 0.486275)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HotBarInventory" parent="UI" instance=ExtResource("5_vapqg")]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 430.0
+offset_bottom = 90.0
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("6_gppdi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 1.5, 5)
+inventory_data = ExtResource("7_me57v")
+equip_inventory_data = SubResource("Resource_ytqyt")
+
+[node name="entities" type="Node" parent="."]
+
+[node name="turret01" parent="." groups=["deploy"] instance=ExtResource("9_3b0sr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.28256, 0.556408, -0.197227)
+
+[node name="enemy" parent="." instance=ExtResource("10_smkok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -8.14606)
+
+[node name="enemy2" parent="." groups=["enemies"] instance=ExtResource("10_smkok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.47766, 2, 8.06492)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["navmesh"]]
+navigation_mesh = SubResource("NavigationMesh_c64hb")
+script = ExtResource("11_nxo3h")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
+use_collision = true
+
+[node name="CSGBox3D_ground" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+size = Vector3(32, 1, 32)
+material = ExtResource("12_70jxt")
+
+[node name="CSGBox3D_ground3" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
+size = Vector3(32, 1, 32)
+material = ExtResource("12_70jxt")
+
+[node name="CSGBox3D_ground2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 0)
+size = Vector3(32, 1, 32)
+material = ExtResource("12_70jxt")
+
+[node name="CSGB3D_Block" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -4)
+material = ExtResource("13_5rnh0")
+
+[node name="test" type="Node3D" parent="."]
+process_mode = 4
+script = ExtResource("15_e6njj")
+
+[node name="SpawnExist2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.74042, 2.27488, -3.53914)
+script = ExtResource("16_xdu8e")
+entity = ExtResource("10_smkok")
+
+[node name="Marker3D" type="Marker3D" parent="SpawnExist2"]
+
+[node name="TargetPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5568, 1.7879, -11.4327)
+
+[node name="Marker3D" type="Marker3D" parent="TargetPoint"]
+
+[node name="DamageArea" parent="." instance=ExtResource("18_60gbd")]
+
+[node name="DamageArea2" parent="." instance=ExtResource("18_60gbd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1705, 1.5053, -7.09848)
+
+[connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
+[connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
+[connection signal="visibility_changed" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_visibility_changed"]

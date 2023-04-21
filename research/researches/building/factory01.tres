@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResearchData" load_steps=2 format=3 uid="uid://cfsbek3v1ij8t"]
+
+[ext_resource type="Script" path="res://research/researchdata.gd" id="1_y1vfp"]
+
+[resource]
+script = ExtResource("1_y1vfp")
+name = "Factory"
+description = "Type Factory"
+points = 0
+level = 0
+requires = Array[ExtResource("1_y1vfp")]([])

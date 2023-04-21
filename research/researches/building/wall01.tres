@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResearchData" load_steps=2 format=3 uid="uid://bndr18kef3p0a"]
+
+[ext_resource type="Script" path="res://research/researchdata.gd" id="1_jmmwy"]
+
+[resource]
+script = ExtResource("1_jmmwy")
+name = "Wall"
+description = "Type Wall"
+points = 0
+level = 0
+requires = Array[ExtResource("1_jmmwy")]([])

@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhhobhkstk3vq"]
+
+[ext_resource type="Script" path="res://scripts/collect_rewards01.gd" id="1_sp5r5"]
+
+[node name="siginreward" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sp5r5")
+
+[node name="MenuReward" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/MenuReward"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MenuReward/CenterContainer"]
+layout_mode = 2
+
+[node name="LReward" type="Label" parent="CanvasLayer/Control/MenuReward/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Reward(s) "
+horizontal_alignment = 1
+
+[node name="btnSiginIn" type="Button" parent="CanvasLayer/Control/MenuReward/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Sigin In "
+
+[node name="btnDrawDaily" type="Button" parent="CanvasLayer/Control/MenuReward/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Draw Daily "
+
+[node name="RewardResult" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/RewardResult"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/RewardResult"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/RewardResult/CenterContainer"]
+layout_mode = 2
+
+[node name="LName" type="Label" parent="CanvasLayer/Control/RewardResult/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Item Name "
+
+[node name="LStock" type="Label" parent="CanvasLayer/Control/RewardResult/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "x99"
+horizontal_alignment = 1
+
+[node name="btnClaim" type="Button" parent="CanvasLayer/Control/RewardResult/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Claim "
+
+[connection signal="pressed" from="CanvasLayer/Control/MenuReward/CenterContainer/VBoxContainer/btnSiginIn" to="CanvasLayer/Control" method="_on_btn_sigin_in_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MenuReward/CenterContainer/VBoxContainer/btnDrawDaily" to="CanvasLayer/Control" method="_on_btn_draw_daily_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/RewardResult/CenterContainer/VBoxContainer/btnClaim" to="CanvasLayer/Control" method="_on_btn_claim_pressed"]

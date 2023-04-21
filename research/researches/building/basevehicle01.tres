@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResearchData" load_steps=2 format=3 uid="uid://dj3ngdwa8tcq8"]
+
+[ext_resource type="Script" path="res://research/researchdata.gd" id="1_kct16"]
+
+[resource]
+script = ExtResource("1_kct16")
+name = "Base Vehicle"
+description = "Type Base Vehicle"
+points = 0
+level = 0
+requires = Array[ExtResource("1_kct16")]([])

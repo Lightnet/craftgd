@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResearchData" load_steps=2 format=3 uid="uid://nplpkang3ywe"]
+
+[ext_resource type="Script" path="res://research/researchdata.gd" id="1_cnk8p"]
+
+[resource]
+script = ExtResource("1_cnk8p")
+name = "Power Generator"
+description = "Type "
+points = 0
+level = 0
+requires = Array[ExtResource("1_cnk8p")]([])
