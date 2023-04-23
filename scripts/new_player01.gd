@@ -1,10 +1,13 @@
 extends Control
 
-@onready var le_player_name = $CenterContainer/VBoxContainer/HBoxContainer/LE_PlayerName
+@onready var le_player_name = $CenterContainer/VBoxContainer/LE_PlayerName
 @onready var cb_gender = $CenterContainer/VBoxContainer/HBoxContainer2/cb_gender
 @onready var btn_create_player = $CenterContainer/VBoxContainer/btnCreatePlayer
+@onready var offline = $"../Offline"
+@onready var new_game = $"."
 
 var player_data:PlayerData
+
 
 func _on_btn_create_player_pressed():
 	
@@ -26,4 +29,6 @@ func _on_btn_create_player_pressed():
 	
 	GameData.save_player_data(player_data)
 	
+	new_game.hide()
+	offline.show()
 	pass

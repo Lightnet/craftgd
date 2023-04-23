@@ -6,11 +6,12 @@ extends Control
 @onready var settings = $Settings
 @onready var research = $Research
 @onready var new_game = $NewGame
+#@onready var play_mode = $PlayMode
+@onready var game_mode = $PlayGameMode
 
 @export var homebase:String = "res://maps/home_base_setup.tscn"
 @export var playscene:String = "res://maps/tower_defense_02.tscn"
 @export var scene:PackedScene
-
 
 @onready var btn_new_game = $Main/CenterContainer/VBoxContainer/btnNewGame
 @onready var btn_single = $Main/CenterContainer/VBoxContainer/btnSingle
@@ -24,7 +25,8 @@ func _ready():
 	btn_new_game.hide()
 	btn_single.hide()
 	new_game.hide()
-	
+	game_mode.hide()
+	#play_mode.hide()
 	checkPlayerExist()
 	
 func checkPlayerExist():
@@ -56,7 +58,9 @@ func _on_btn_settings_pressed():
  # PLAY
 func _on_btn_play_pressed():
 	# play game mode
-	get_tree().change_scene_to_file(playscene)
+	#get_tree().change_scene_to_file(playscene)
+	#offline.hide()
+	#play_mode.show()
 	pass
 # RESEARCH
 func _on_btn_research_pressed():
@@ -66,7 +70,6 @@ func _on_btn_research_pressed():
 #HOME BASE
 func _on_btn_home_base_pressed():
 	#check and load
-	
 	get_tree().change_scene_to_file(homebase)
 	pass
 #QUIT
@@ -77,4 +80,19 @@ func _on_btn_quit_pressed():
 func _on_btn_new_game_pressed():
 	main.hide()
 	new_game.show()
+	pass
+
+func _on_btn_research_back_pressed():
+	research.hide()
+	offline.show()
+	pass
+
+func _on_btn_play_back_pressed():
+	game_mode.hide()
+	offline.show()
+	pass
+
+func _on_btn_game_modes_pressed():
+	offline.hide()
+	game_mode.show()
 	pass

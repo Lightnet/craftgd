@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bg417njrty78q"]
+[gd_scene load_steps=6 format=3 uid="uid://bg417njrty78q"]
 
 [ext_resource type="Script" path="res://scripts/main_entry.gd" id="1_27nh6"]
 [ext_resource type="PackedScene" uid="uid://mfdpxnovcre4" path="res://maps/research_tree.tscn" id="2_e0frf"]
+[ext_resource type="Script" path="res://scripts/offline_player01.gd" id="2_xqrud"]
 [ext_resource type="Script" path="res://scripts/new_player01.gd" id="3_6ph63"]
+[ext_resource type="Script" path="res://scripts/offline_playmode01.gd" id="5_7ii2h"]
 
 [node name="main_entry" type="Node"]
 
@@ -58,40 +60,68 @@ layout_mode = 2
 text = " Quit "
 
 [node name="Offline" type="Control" parent="CanvasLayer/Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_xqrud")
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/Offline"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Offline"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Offline/CenterContainer"]
+[node name="btnMainMenu" type="Button" parent="CanvasLayer/Control/Offline/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/Control/Offline/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="btnPlay" type="Button" parent="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Offline/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="btnPlay" type="Button" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Play"
 
-[node name="btnResearch" type="Button" parent="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer"]
+[node name="btnGameModes" type="Button" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = " Game Modes "
+
+[node name="btnResearch" type="Button" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = " Research"
 
-[node name="btnHomeBase" type="Button" parent="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer"]
+[node name="btnHomeBase" type="Button" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Home Base"
 
-[node name="btnSettings" type="Button" parent="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer"]
+[node name="btnSettings" type="Button" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
+
+[node name="Container" type="Control" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LPlayerName" type="Label" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container/HBoxContainer"]
+layout_mode = 2
+text = "Player Name:"
+
+[node name="LPlayer_Name" type="Label" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container/HBoxContainer"]
+layout_mode = 2
+text = "Guest"
 
 [node name="Online" type="Control" parent="CanvasLayer/Control"]
 visible = false
@@ -142,6 +172,7 @@ layout_mode = 2
 text = "Settings"
 
 [node name="NewGame" type="Control" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -163,17 +194,15 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Creation"
+text = "Character Creation"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer"]
 layout_mode = 2
+text = "Name:"
+horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Player Name:"
-
-[node name="LE_PlayerName" type="LineEdit" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="LE_PlayerName" type="LineEdit" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Player Name"
 max_length = 64
@@ -203,16 +232,116 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="research_test01" parent="CanvasLayer/Control/Research" instance=ExtResource("2_e0frf")]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Research"]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Research/VBoxContainer"]
+layout_mode = 2
+
+[node name="btnResearchBack" type="Button" parent="CanvasLayer/Control/Research/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="VBoxContainer" parent="CanvasLayer/Control/Research/VBoxContainer" instance=ExtResource("2_e0frf")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayGameMode" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_7ii2h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/PlayGameMode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer"]
+layout_mode = 2
+
+[node name="btnPlayBack" type="Button" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " Back "
+
+[node name="btnSettings" type="Button" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " Settings "
+
+[node name="VBoxContainer" type="Panel" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer/VBoxContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Creative Mode"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tower of Defense"
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Extraction Material"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Game Type:"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Tower of Defense"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="btnStart" type="Button" parent="CanvasLayer/Control/PlayGameMode/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = " Start "
 
 [connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnNewGame" to="CanvasLayer/Control" method="_on_btn_new_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnSingle" to="CanvasLayer/Control" method="_on_btn_single_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnOnline" to="CanvasLayer/Control" method="_on_btn_online_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnSettings" to="CanvasLayer/Control" method="_on_btn_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnQuit" to="CanvasLayer/Control" method="_on_btn_quit_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer/btnPlay" to="CanvasLayer/Control" method="_on_btn_play_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer/btnResearch" to="CanvasLayer/Control" method="_on_btn_research_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer/btnHomeBase" to="CanvasLayer/Control" method="_on_btn_home_base_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer/btnSettings" to="CanvasLayer/Control" method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnPlay" to="CanvasLayer/Control" method="_on_btn_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnGameModes" to="CanvasLayer/Control" method="_on_btn_game_modes_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnResearch" to="CanvasLayer/Control" method="_on_btn_research_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnHomeBase" to="CanvasLayer/Control" method="_on_btn_home_base_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnSettings" to="CanvasLayer/Control" method="_on_btn_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer/btnCreatePlayer" to="CanvasLayer/Control/NewGame" method="_on_btn_create_player_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Research/VBoxContainer/HBoxContainer/btnResearchBack" to="CanvasLayer/Control" method="_on_btn_research_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/PlayGameMode/VBoxContainer/HBoxContainer/btnPlayBack" to="CanvasLayer/Control" method="_on_btn_play_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/PlayGameMode/VBoxContainer/HBoxContainer2/btnStart" to="CanvasLayer/Control/PlayGameMode" method="_on_btn_start_pressed"]
