@@ -1,0 +1,218 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg417njrty78q"]
+
+[ext_resource type="Script" path="res://scripts/main_entry.gd" id="1_27nh6"]
+[ext_resource type="PackedScene" uid="uid://mfdpxnovcre4" path="res://maps/research_tree.tscn" id="2_e0frf"]
+[ext_resource type="Script" path="res://scripts/new_player01.gd" id="3_6ph63"]
+
+[node name="main_entry" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_27nh6")
+
+[node name="Main" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Main/CenterContainer"]
+layout_mode = 2
+
+[node name="btnNewGame" type="Button" parent="CanvasLayer/Control/Main/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+
+[node name="btnSingle" type="Button" parent="CanvasLayer/Control/Main/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Single Mode "
+
+[node name="btnOnline" type="Button" parent="CanvasLayer/Control/Main/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Online "
+
+[node name="btnSettings" type="Button" parent="CanvasLayer/Control/Main/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Settings "
+
+[node name="btnQuit" type="Button" parent="CanvasLayer/Control/Main/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Quit "
+
+[node name="Offline" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/Offline"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Offline/CenterContainer"]
+layout_mode = 2
+
+[node name="btnPlay" type="Button" parent="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="btnResearch" type="Button" parent="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Research"
+
+[node name="btnHomeBase" type="Button" parent="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Home Base"
+
+[node name="btnSettings" type="Button" parent="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Online" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/Online"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Online/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Online/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Online"
+
+[node name="Settings" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Settings/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Settings/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="NewGame" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_6ph63")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/NewGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/NewGame/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Creation"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Player Name:"
+
+[node name="LE_PlayerName" type="LineEdit" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "Player Name"
+max_length = 64
+expand_to_text_length = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Gender:"
+
+[node name="cb_gender" type="CheckButton" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Male / Female"
+
+[node name="btnCreatePlayer" type="Button" parent="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Create"
+
+[node name="Research" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="research_test01" parent="CanvasLayer/Control/Research" instance=ExtResource("2_e0frf")]
+layout_mode = 1
+
+[connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnNewGame" to="CanvasLayer/Control" method="_on_btn_new_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnSingle" to="CanvasLayer/Control" method="_on_btn_single_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnOnline" to="CanvasLayer/Control" method="_on_btn_online_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnSettings" to="CanvasLayer/Control" method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnQuit" to="CanvasLayer/Control" method="_on_btn_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer/btnPlay" to="CanvasLayer/Control" method="_on_btn_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer/btnResearch" to="CanvasLayer/Control" method="_on_btn_research_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer/btnHomeBase" to="CanvasLayer/Control" method="_on_btn_home_base_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/CenterContainer/VBoxContainer/btnSettings" to="CanvasLayer/Control" method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer/btnCreatePlayer" to="CanvasLayer/Control/NewGame" method="_on_btn_create_player_pressed"]

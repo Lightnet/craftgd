@@ -28,6 +28,7 @@ GameMangement="*res://scripts/game_mangement.gd"
 PlayerManager="*res://scripts/player_manager.gd"
 Networkweb="*res://scripts/networkweb.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+GameData="*res://scripts/game_data.gd"
 
 [editor_plugins]
 
