@@ -30,11 +30,13 @@ func _ready():
 	checkPlayerExist()
 	
 func checkPlayerExist():
-	print("Checking Player Data...")
+	#print("Checking Player Data...")
 	if GameData.check_player_data_exist():
 		var data = GameData.load_player_data()
-		print("Data: ", data)
-		print("Name: ", data.name)
+		GameData.load_player_inventory_data()
+		GameData.load_player_research_data()
+		#print("Data: ", data)
+		#print("Name: ", data.name)
 		btn_single.show()
 	else:
 		btn_new_game.show()

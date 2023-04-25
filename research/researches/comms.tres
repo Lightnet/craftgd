@@ -4,8 +4,10 @@
 
 [resource]
 script = ExtResource("1_ak3vv")
-name = "Power Generator"
+name = "comms"
 description = "Type "
 points = 0
+cost = 0
+isUnlocked = 0
 level = 0
 requires = Array[ExtResource("1_ak3vv")]([])

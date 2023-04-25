@@ -17,6 +17,12 @@
 ## Notes:
  * work in progress.
 
+## Map/Level:
+ Work in progress map or level.
+
+ * maps (folder)
+ * menu (folder)
+
 ## Layout Entity:
 
  * CharacterBody3D (player)

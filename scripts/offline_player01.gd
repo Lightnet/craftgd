@@ -1,6 +1,6 @@
 extends Control
 
-@onready var l_player_name = $VBoxContainer/HBoxContainer/Container/HBoxContainer/LPlayer_Name
+@onready var l_player_name = $VBoxContainer/HBoxContainer/Container/PlayerDataInfo/HBoxContainer/LPlayerName
 
 func _ready():
 	GameData.update_player_data.connect(_on_update_player_data)

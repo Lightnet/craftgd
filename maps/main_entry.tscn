@@ -110,18 +110,32 @@ text = "Settings"
 [node name="Container" type="Control" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container"]
+[node name="PlayerDataInfo" type="VBoxContainer" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="LPlayerName" type="Label" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container/PlayerDataInfo"]
 layout_mode = 2
-text = "Player Name:"
 
-[node name="LPlayer_Name" type="Label" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container/HBoxContainer"]
+[node name="LPlayerName" type="Label" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container/PlayerDataInfo/HBoxContainer"]
+layout_mode = 2
+text = "Name:"
+
+[node name="LPlayer_Name" type="Label" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container/PlayerDataInfo/HBoxContainer"]
 layout_mode = 2
 text = "Guest"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container/PlayerDataInfo"]
+layout_mode = 2
+
+[node name="LLevel" type="Label" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container/PlayerDataInfo/HBoxContainer2"]
+layout_mode = 2
+text = "Level:"
+
+[node name="L_Level" type="Label" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/Container/PlayerDataInfo/HBoxContainer2"]
+layout_mode = 2
+text = "0"
 
 [node name="Online" type="Control" parent="CanvasLayer/Control"]
 visible = false
