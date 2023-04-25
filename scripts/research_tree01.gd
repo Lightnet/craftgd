@@ -11,11 +11,12 @@ func _ready():
 func check_research_data():
 	#if GameData.check_player_data_exist():
 	GameData.update_player_research_data.connect(setup_research_data)
-	pass
+	#pass
 	
 func _exit_tree():
 	GameData.update_player_research_data.disconnect(setup_research_data)
-	pass
+	#pass
+	
 func clear_list():
 	# Remove any previous list
 	for child in research_list.get_children():

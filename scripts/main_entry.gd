@@ -32,7 +32,7 @@ func _ready():
 func checkPlayerExist():
 	#print("Checking Player Data...")
 	if GameData.check_player_data_exist():
-		var data = GameData.load_player_data()
+		GameData.load_player_data()
 		GameData.load_player_inventory_data()
 		GameData.load_player_research_data()
 		#print("Data: ", data)

@@ -1,4 +1,6 @@
 extends Resource
 class_name PlayerInventory
 
-@export var inventory_data:Array[ItemData]
+@export var credits:int = 999999999999999999
+#current player inventory
+@export var inventory_data:InventoryData
