@@ -6,6 +6,8 @@ var player_research_datas_path = "user://researchs/"
 var player_inventory_data_path = "user://player_inventory_data01.tres"
 var player_inventory_datas_path = "user://inventory/"
 
+var player_equip_datas_path = "user://equips/"
+
 var player_data:PlayerData
 var player_research_data:PlayerResearch
 var player_inventory_data:PlayerInventory
@@ -38,9 +40,15 @@ func save_player_inventory_data(_player_inventory_data:PlayerInventory):
 	var count = 0
 	for item_prop in player_inventory_data.inventory_data.slot_datas:
 		if item_prop != null:
-			ResourceSaver.save(item_prop, player_inventory_datas_path+"slot_"+str(count)+ ".tres")
+			ResourceSaver.save(item_prop, player_inventory_datas_path+""+str(count)+ ".tres")
 		count += 1
-		pass
+		#pass
+	count = 0
+	for item_prop in player_inventory_data.equip_inventory_data.slot_datas:
+		if item_prop != null:
+			ResourceSaver.save(item_prop, player_equip_datas_path+""+str(count)+ ".tres")
+		count += 1
+		#pass
 	#pass
 	
 func load_player_inventory_data():
@@ -67,6 +75,27 @@ func load_player_inventory_data():
 					#print("inventory_data S: ", player_inventory_data.inventory_data.slot_datas)
 					file_name = dir.get_next() #next loop
 				count += 1
+		dir = DirAccess.open(player_equip_datas_path)
+		if dir:
+			dir.list_dir_begin()
+			var file_name = dir.get_next()
+			var count = 0
+			while file_name != "":
+				if dir.current_is_dir():
+					#print("Found directory: " + file_name)
+					pass
+				else:
+					#if ResourceLoader.exists()
+					#print("Found file: " + file_name)
+					#print("PATH: ", player_research_datas_path+file_name)
+					var res_data = ResourceLoader.load(player_equip_datas_path+file_name)
+					#print("res_data: ", res_data)
+					print("res_data Name: ", res_data.item_data.name)
+					print("res_data: quantity: ", res_data.quantity)
+					player_inventory_data.equip_inventory_data.pick_up_slot_data(res_data)
+					#print("inventory_data S: ", player_inventory_data.equip_inventory_data.slot_datas)
+					file_name = dir.get_next() #next loop
+				count += 1
 		
 		update_player_inventory_data.emit(player_inventory_data)
 		return player_inventory_data
@@ -74,6 +103,7 @@ func load_player_inventory_data():
 # FOLDER CHECKS
 func check_folders():
 	check_name_folder("inventory")
+	check_name_folder("equips")
 	check_name_folder("researchs")
 	check_name_folder("homebase")
 	check_name_folder("quests")

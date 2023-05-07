@@ -39,6 +39,11 @@ func _ready():
 	PlayerManager.player = self
 	#need to check stuff
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	# game data
+	# need work on this
+	var player_inventory = GameData.load_player_inventory_data()
+	inventory_data = player_inventory.inventory_data
+	
 	pass
 
 func _physics_process(_delta):
