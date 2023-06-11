@@ -1,5 +1,9 @@
 extends Control
 
+@export var homebase:String = "res://maps/home_base_setup.tscn"
+@export var playscene:String = "res://maps/tower_defense_02.tscn"
+@export var scene:PackedScene
+
 @onready var main = $Main
 @onready var offline = $Offline
 @onready var online = $Online
@@ -8,16 +12,20 @@ extends Control
 @onready var new_game = $NewGame
 #@onready var play_mode = $PlayMode
 @onready var game_mode = $PlayGameMode
-
-@export var homebase:String = "res://maps/home_base_setup.tscn"
-@export var playscene:String = "res://maps/tower_defense_02.tscn"
-@export var scene:PackedScene
-
 @onready var btn_new_game = $Main/CenterContainer/VBoxContainer/btnNewGame
 @onready var btn_single = $Main/CenterContainer/VBoxContainer/btnSingle
+@onready var mail = $Mail
+@onready var result_rewards = $ResultRewards
+@onready var rewards = $Rewards
+@onready var shop = $Shop
 
 func _ready():
+	hide_menus()
 	main.show()
+	checkPlayerExist()
+	
+func hide_menus():
+	main.hide()
 	offline.hide()
 	online.hide()
 	settings.hide()
@@ -26,9 +34,16 @@ func _ready():
 	btn_single.hide()
 	new_game.hide()
 	game_mode.hide()
-	#play_mode.hide()
-	checkPlayerExist()
 	
+	mail.hide()
+	result_rewards.hide()
+	rewards.hide()
+	shop.hide()
+	#play_mode.hide()
+	
+	
+	
+	pass
 func checkPlayerExist():
 	#print("Checking Player Data...")
 	if GameData.check_player_data_exist():

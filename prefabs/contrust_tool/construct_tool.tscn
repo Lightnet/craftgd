@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhdxwsi3h4oyb"]
+[gd_scene load_steps=5 format=3 uid="uid://dhdxwsi3h4oyb"]
 
 [ext_resource type="Script" path="res://prefabs/contrust_tool/construct_tool01.gd" id="1_mofyi"]
+[ext_resource type="PackedScene" uid="uid://djgb2tcgjctus" path="res://prefabs/contrust_tool/model_build_tool_01.tscn" id="2_xqrk2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxjhj"]
 albedo_color = Color(0.145098, 0.470588, 0.32549, 1)
@@ -16,7 +17,11 @@ script = ExtResource("1_mofyi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="handle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0839677)
+visible = false
 mesh = SubResource("BoxMesh_u22dy")
+
+[node name="build_tool01" parent="handle" instance=ExtResource("2_xqrk2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

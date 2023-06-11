@@ -69,8 +69,8 @@ func load_player_inventory_data():
 					#print("PATH: ", player_research_datas_path+file_name)
 					var res_data = ResourceLoader.load(player_inventory_datas_path+file_name)
 					#print("res_data: ", res_data)
-					print("res_data Name: ", res_data.item_data.name)
-					print("res_data: quantity: ", res_data.quantity)
+					#print("res_data Name: ", res_data.item_data.name)
+					#print("res_data: quantity: ", res_data.quantity)
 					player_inventory_data.inventory_data.pick_up_slot_data(res_data)
 					#print("inventory_data S: ", player_inventory_data.inventory_data.slot_datas)
 					file_name = dir.get_next() #next loop
@@ -90,8 +90,8 @@ func load_player_inventory_data():
 					#print("PATH: ", player_research_datas_path+file_name)
 					var res_data = ResourceLoader.load(player_equip_datas_path+file_name)
 					#print("res_data: ", res_data)
-					print("res_data Name: ", res_data.item_data.name)
-					print("res_data: quantity: ", res_data.quantity)
+					#print("res_data Name: ", res_data.item_data.name)
+					#print("res_data: quantity: ", res_data.quantity)
 					player_inventory_data.equip_inventory_data.pick_up_slot_data(res_data)
 					#print("inventory_data S: ", player_inventory_data.equip_inventory_data.slot_datas)
 					file_name = dir.get_next() #next loop

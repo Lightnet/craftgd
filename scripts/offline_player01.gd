@@ -1,5 +1,8 @@
 extends Control
 
+
+
+
 @onready var l_player_name = $VBoxContainer/HBoxContainer/Container/PlayerDataInfo/HBoxContainer/LPlayer_Name
 
 var training_area = "res://maps/training_area01.tscn"

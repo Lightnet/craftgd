@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://djgb2tcgjctus"]
+
+[ext_resource type="PackedScene" uid="uid://ctg6bc8btd12x" path="res://prefabs/contrust_tool/build_tool01.glb" id="1_38lod"]
+
+[node name="build_tool01" instance=ExtResource("1_38lod")]

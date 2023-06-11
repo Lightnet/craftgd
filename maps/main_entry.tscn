@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bg417njrty78q"]
+[gd_scene load_steps=13 format=3 uid="uid://bg417njrty78q"]
 
 [ext_resource type="Script" path="res://scripts/main_entry.gd" id="1_27nh6"]
 [ext_resource type="PackedScene" uid="uid://mfdpxnovcre4" path="res://maps/research_tree.tscn" id="2_e0frf"]
-[ext_resource type="Script" path="res://scripts/offline_player01.gd" id="2_xqrud"]
+[ext_resource type="Script" path="res://scripts/baseoffline01.gd" id="2_xfect"]
+[ext_resource type="Script" path="res://scripts/BaseOnline01.gd" id="3_6jgft"]
 [ext_resource type="Script" path="res://scripts/new_player01.gd" id="3_6ph63"]
+[ext_resource type="Script" path="res://scripts/BaseSettings01.gd" id="4_2413j"]
 [ext_resource type="Script" path="res://scripts/offline_playmode01.gd" id="5_7ii2h"]
+[ext_resource type="Script" path="res://scripts/BaseResearch01.gd" id="6_46wxk"]
+[ext_resource type="Script" path="res://scripts/BaseShop01.gd" id="9_35ela"]
+[ext_resource type="Script" path="res://scripts/BaseRewards01.gd" id="10_024rr"]
+[ext_resource type="Script" path="res://scripts/BaseResultReward01.gd" id="11_my1vo"]
+[ext_resource type="Script" path="res://scripts/BaseMail01.gd" id="12_gks4o"]
 
 [node name="main_entry" type="Node"]
 
@@ -66,7 +73,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_xqrud")
+script = ExtResource("2_xfect")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Offline"]
 layout_mode = 0
@@ -111,6 +118,14 @@ text = "Home Base"
 layout_mode = 2
 text = "Settings"
 
+[node name="btnShop" type="Button" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shop"
+
+[node name="btnMail" type="Button" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mail"
+
 [node name="Container" type="Control" parent="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
@@ -149,6 +164,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_6jgft")
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/Online"]
 layout_mode = 1
@@ -173,19 +189,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_2413j")
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/Settings"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Settings"]
+offset_right = 218.0
+offset_bottom = 97.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Settings/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Settings/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/Settings/CenterContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/Control/Settings/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Settings/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Settings"
 
@@ -249,6 +266,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_46wxk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Research"]
 layout_mode = 1
@@ -349,6 +367,110 @@ size_flags_horizontal = 4
 layout_mode = 2
 text = " Start "
 
+[node name="Shop" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_35ela")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Shop"]
+layout_mode = 0
+offset_right = 218.0
+offset_bottom = 97.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Shop/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/Shop/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Shop/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Shop"
+
+[node name="Rewards" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_024rr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Rewards"]
+layout_mode = 0
+offset_right = 218.0
+offset_bottom = 97.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Rewards/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/Rewards/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Rewards/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Rewards"
+
+[node name="ResultRewards" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_my1vo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/ResultRewards"]
+layout_mode = 0
+offset_right = 218.0
+offset_bottom = 97.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/ResultRewards/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/ResultRewards/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/ResultRewards/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Result Rewards"
+
+[node name="Mail" type="Control" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_gks4o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Mail"]
+layout_mode = 0
+offset_right = 218.0
+offset_bottom = 97.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Mail/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/Mail/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Mail/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Mail"
+
 [connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnNewGame" to="CanvasLayer/Control" method="_on_btn_new_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnSingle" to="CanvasLayer/Control" method="_on_btn_single_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Main/CenterContainer/VBoxContainer/btnOnline" to="CanvasLayer/Control" method="_on_btn_online_pressed"]
@@ -357,10 +479,17 @@ text = " Start "
 [connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnPlay" to="CanvasLayer/Control" method="_on_btn_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnTraining" to="CanvasLayer/Control/Offline" method="_on_btn_training_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnGameModes" to="CanvasLayer/Control" method="_on_btn_game_modes_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnResearch" to="CanvasLayer/Control" method="_on_btn_research_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnResearch" to="CanvasLayer/Control/Offline" method="_on_btn_research_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnHomeBase" to="CanvasLayer/Control" method="_on_btn_home_base_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnSettings" to="CanvasLayer/Control" method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnSettings" to="CanvasLayer/Control/Offline" method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnShop" to="CanvasLayer/Control/Offline" method="_on_btn_shop_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Offline/VBoxContainer/HBoxContainer/VBoxContainer/btnMail" to="CanvasLayer/Control/Offline" method="_on_btn_mail_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Settings/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/Control/Settings" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/NewGame/CenterContainer/VBoxContainer/btnCreatePlayer" to="CanvasLayer/Control/NewGame" method="_on_btn_create_player_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Research/VBoxContainer/HBoxContainer/btnResearchBack" to="CanvasLayer/Control" method="_on_btn_research_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Research/VBoxContainer/HBoxContainer/btnResearchBack" to="CanvasLayer/Control/Research" method="_on_btn_research_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/PlayGameMode/VBoxContainer/HBoxContainer/btnPlayBack" to="CanvasLayer/Control" method="_on_btn_play_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/PlayGameMode/VBoxContainer/HBoxContainer2/btnStart" to="CanvasLayer/Control/PlayGameMode" method="_on_btn_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Shop/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/Control/Shop" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Rewards/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/Control/Rewards" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/ResultRewards/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/Control/ResultRewards" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Mail/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/Control/Mail" method="_on_button_pressed"]
